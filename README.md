@@ -1,5 +1,5 @@
 # AI-HVA
-# AI-Pipeline for Hardware Vulnerability Analysis (Sandia National Lab)
+AI-Pipeline for Hardware Vulnerability Analysis (Sandia National Lab)
 
 ## Project Overview
 
