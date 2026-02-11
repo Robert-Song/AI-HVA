@@ -1,0 +1,4 @@
+# PyCharm ignores
+.idea
+# MacOS File System ignores
+.DS_Store

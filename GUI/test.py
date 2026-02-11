@@ -1,39 +1,49 @@
 from tkinter import *
 from PIL import Image, ImageTk
-
+from tkinter import filedialog
+# Initializes root window
 root = Tk()
+# Brings the window into focus
+root.lift()
+root.focus_force()
+# Sets window title
 root.title("AI-HVA")
-#root.geometry('350x200')
+# Create and place a label for upload info
 lbl = Label(root, text = "Upload a KiCad schematic file.")
 lbl.grid(row = 0, column = 0, pady=(25, 0), padx=100)
+# Import both images for button (hover and normal)
 image = Image.open("uploadnormal.png")
-resized = image.resize((150, 150))
+resized = image.resize((246, 150))
 normalimg = ImageTk.PhotoImage(resized)
 image = Image.open("uploadhover.png")
+resized = image.resize((246, 150))
+hoverimg = ImageTk.PhotoImage(resized)
 
+# Define import file logic
+def import_file():
+    # Opens file window and ensures root window remains in focus on file dialog close
+    file_path = filedialog.askopenfilename(title="Select a file", filetypes=[("KiCad Schematics", "*.kicad_sch"), ("All files", "*.*")])
+    root.lift()
+    root.focus_force()
+    # Prints file path for now
+    if file_path:
+        # Process the selected file (you can replace this with your own logic)
+        print("Selected file:", file_path)
 
-
-def clicked() :
-    lbl.configure(text = "I just got clicked")
-
-NORMAL_BG = "#9b9b9b"
-HOVER_BG  = "#6c6c6c"
-
-btn = Label(
+# Create file import button
+filebtn = Label(
     root,
     image=normalimg,
     padx=70,
     pady=70,
-    cursor="hand2"
+    cursor="hand2",
 )
 
-btn.image = normalimg
-btn.grid(row=1, column=0, pady=50)
+filebtn.image = normalimg
+filebtn.grid(row=1, column=0, pady=25)
 
-btn.bind("<Enter>", lambda e: btn.config(image=hoverimg))
-btn.bind("<Leave>", lambda e: btn.config(image=normalimg))
-
-
-
+filebtn.bind("<Enter>", lambda e: filebtn.config(image=hoverimg))
+filebtn.bind("<Leave>", lambda e: filebtn.config(image=normalimg))
+filebtn.bind("<Button-1>", lambda e: import_file())
 
 root.mainloop()
