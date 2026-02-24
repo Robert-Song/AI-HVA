@@ -32,6 +32,7 @@ normalimg = PhotoImage(file="uploadnormal.png")
 hoverimg = PhotoImage(file="uploadhover.png")
 
 
+
 # Screen 2: clears all widgets and shows the export directory selection UI
 def show_screen2():
     global dirbtn, dirlbl
@@ -68,6 +69,26 @@ def directory_select():
         exportbtn.grid(row=4, column=0)
 
 
+# Expected file headers for each supported KiCad format
+FILE_HEADERS = {
+    ".kicad_sch": "(kicad_sch",
+    ".net": "(export",
+}
+
+# Returns True if the file is non-empty and starts with the expected header
+def validate_file(fp):
+    suffix = Path(fp).suffix.lower()
+    expected = FILE_HEADERS.get(suffix)
+    if not expected:
+        return False
+    try:
+        with open(fp, "r", encoding="utf-8") as f:
+            content = f.read(len(expected))
+        return content == expected
+    except (OSError, UnicodeDecodeError):
+        return False
+
+
 # Opens a file picker for KiCad netlists/schematics and copies them to the project root
 def import_file():
     file_paths = filedialog.askopenfilenames(
@@ -78,16 +99,34 @@ def import_file():
     root.lift()
     root.focus_force()
     if file_paths:
-        # Display the names of all selected files
-        names = ", ".join(Path(fp).name for fp in file_paths)
+        # Split files into valid and invalid
+        valid = [fp for fp in file_paths if validate_file(fp)]
+        invalid = [fp for fp in file_paths if not validate_file(fp)]
+        # Warn about any corrupted or unrecognized files
+        if invalid:
+            invalid_names = ", ".join(Path(fp).name for fp in invalid)
+            errorlbl = Label(root, text="Invalid or corrupted files: " + invalid_names, fg="red")
+            errorlbl.grid(row=2, column=0)
+        if not valid:
+            return
+        # Display the names of all valid selected files
+        names = ", ".join(Path(fp).name for fp in valid)
         filelbl = Label(root, text="Uploaded files: " + names)
         filelbl.grid(row=2, column=0)
-        # Copy each selected file to the project root directory
-        for fp in file_paths:
+        # Copy each valid file to the project root directory
+        for fp in valid:
             shutil.copy2(fp, "..")
         # Show continue button to advance to screen 2
         contbtn = Button(root, text="Continue", command=show_screen2)
         contbtn.grid(row=3, column=0, pady=(0, 35))
+
+# Persistent screen 1 status labels (created once, updated on each import attempt)
+errorlbl = Label(root, text="", fg="red")
+errorlbl.grid(row=2, column=0)
+filelbl = Label(root, text="")
+filelbl.grid(row=2, column=0)
+contbtn = Button(root, text="Continue", command=show_screen2)
+
 
 
 # Screen 1: upload button using a label widget for custom image styling
