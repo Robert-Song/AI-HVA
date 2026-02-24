@@ -5,7 +5,24 @@ from kinparse import parse_netlist
 
 class InfoCompressor:
     def __init__(self):
-        pass
+        self.seen_files = {}
+
+    def check_duplicate_file(self, filename, filecontent):
+        valid = False
+        replacement = filecontent
+        if not filename in self.seen_files.keys():
+            valid = True
+        elif len(filecontent) != len(self.seen_files[filename]):
+            valid = True
+        elif filecontent != self.seen_files[filename]:
+            valid = True
+        if valid:
+             self.seen_files[filename] = filecontent
+        else:
+             print(f"Warning: {filename} is a duplicate file, discard")
+        del filecontent
+        replacement = self.seen_files[filename]
+        return valid, replacement
 
     def parse(self, filepath):
         sch = Schematic().from_file(filepath)
@@ -59,6 +76,19 @@ class InfoCompressor:
         self.convert(filepath)
         self.essential_list_netlist("result.net")
 
-#Test case
-#ic = InfoCompressor()
-#(ic.essential_list_kicad("example.kicad_sch"))
+#Test case for US#5
+'''
+ic = InfoCompressor()
+(ic.essential_list_kicad("example.kicad_sch"))
+'''
+
+#Test case for US#5
+'''
+ic = InfoCompressor()
+adata = "ahahahah"
+bdata = "hehehehe"
+_, adata = ic.check_duplicate_file("test.txt", adata)
+_, adata = ic.check_duplicate_file("test2.txt", adata)
+_, adata = ic.check_duplicate_file("test.txt", bdata)
+_, bdata = ic.check_duplicate_file("test.txt", adata)
+'''
