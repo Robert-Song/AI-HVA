@@ -43,7 +43,11 @@ class ManualFolder:
         FDN537N: 6.5A Id, 30V Vds,  Single N-Channel Power Trench MOSFET , 23mOhm Ron, -55 to 150 Â°C (https://www.onsemi.com/pub/Collateral/FDN537N-D.pdf) 
         '''
         for i in range(min(len(partnames), len(urls))):
-            print(self.test_find_datasheet(partnames[i], urls[i]))
+            result, error = self.test_find_datasheet(partnames[i], urls[i])
+            if error:
+                print(f"Error: {error}")
+            else:
+                print(result[:100])
 
     def test_find_datasheet(self, partname, url):
         result = None
@@ -69,10 +73,27 @@ class ManualFolder:
         return result, error
 
 
+#Test case for US#14
+'''
 mf = ManualFolder()
-error = mf.set_manual_folder_path("Test")
+print("Valid folder set:")
+error = mf.set_manual_folder_path("test/manual_folder")
 if error:
     print(error)
 print(f"Current manual folder: {mf.get_manual_folder_path()}")
+print("Invalid folder set:")
+error = mf.set_manual_folder_path("test/manual_folder/dne.exe")
+if error:
+    print(error)
+print(f"Current manual folder: {mf.get_manual_folder_path()}")
+'''
+
+#Test case for US#15
+'''
+mf = ManualFolder()
+error = mf.set_manual_folder_path("test/manual_folder")
+if error:
+    print(error)
 mf.test_find_datasheets(["74AHC1G04", "74LVC1G332", "SiP32431DR3", "FDN537N"],
                         ["http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf", "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf", "http://www.vishay.com.hk/docs/66597/sip32431.pdf", "https://www.onsemi.com/pub/Collateral/FDN537N-D.pdf"])
+'''

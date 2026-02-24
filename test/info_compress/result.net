@@ -1,7 +1,7 @@
 (export (version "E")
   (design
-    (source "/Users/rileynoggle/Documents/CS407/AI-HVA/result.kicad_sch")
-    (date "2026-02-24T07:36:49-0500")
+    (source "/Users/rileynoggle/Documents/CS407/AI-HVA/test/info_compress/result.kicad_sch")
+    (date "2026-02-24T14:11:02-0500")
     (tool "Eeschema 9.0.7")
     (sheet (number "1") (name "/") (tstamps "/")
       (title_block

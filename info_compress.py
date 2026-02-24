@@ -2,6 +2,7 @@ from kiutils.schematic import Schematic
 from kiutils.items.common import Effects
 import subprocess
 from kinparse import parse_netlist
+import os
 
 class InfoCompressor:
     def __init__(self):
@@ -41,7 +42,7 @@ class InfoCompressor:
         #sch.to_file("result.kicad_sch")
         return sch.to_sexpr()
     
-    def convert(self, filepath):
+    def convert(self, filepath, output):
         sch = Schematic().from_file(filepath)
         newl = []
         banned = ["C", "R", "Fuse", "GND", "PWR_FLAG"]
@@ -65,24 +66,26 @@ class InfoCompressor:
             newprop = []
             #print(sch.hierarchicalLabels[i])
             sch.hierarchicalLabels[i].properties = newprop
-        sch.to_file("result.kicad_sch")
-        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", "result.kicad_sch"])
+        sch.to_file(output)
+        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
     
     def essential_list_netlist(self, filepath):
         for libb in parse_netlist(filepath).libparts:
             print(libb.name + ": " + libb.desc + f" ({libb.docs})")
     
     def essential_list_kicad(self, filepath):
-        self.convert(filepath)
+        self.convert(filepath, "result.kicad_sch")
         self.essential_list_netlist("result.net")
 
 #Test case for US#5
+#os.chdir("./test/info_compress")
 '''
 ic = InfoCompressor()
 (ic.essential_list_kicad("example.kicad_sch"))
 '''
 
-#Test case for US#5
+#Test case for US#20
+#os.chdir("./test/info_compress")
 '''
 ic = InfoCompressor()
 adata = "ahahahah"
