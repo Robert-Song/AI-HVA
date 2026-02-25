@@ -289,33 +289,43 @@ def build_stpa_json(raw_data):
 
 if __name__ == "__main__":
     import os
+    import glob
     
-    # HACK : later we need to run a loop on every files in the directory
-    netlist_file = "preprocessed_input/example.net"
-    output_file = "output/temp_output.json"
+    input_dir = "03_preprocessed_netlist"
+    output_dir = "04_parsed_STPA"
 
     # Allow overriding via command line
     if len(sys.argv) > 1:
-        netlist_file = sys.argv[1]
+        input_dir = sys.argv[1]
     if len(sys.argv) > 2:
-        output_file = sys.argv[2]
-
-    try:
-        with open(netlist_file, 'r', encoding='utf-8') as f:
-            content = f.read()
-            
-        raw_extracted = extract_netlist_data(content)
-        stpa_output = build_stpa_json(raw_extracted)
+        output_dir = sys.argv[2]
         
-        # Create output directory if it doesn't exist
-        out_dir = os.path.dirname(output_file)
-        if out_dir:
-            os.makedirs(out_dir, exist_ok=True)
-            
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(stpa_output, f, indent=2)
-            
-        print(f"Successfully processed '{netlist_file}' and wrote output to '{output_file}'")
-    except FileNotFoundError:
-        print(f"Error: File '{netlist_file}' not found. Please ensure the path exists.")
+    if not os.path.exists(input_dir):
+        print(f"Error: Input directory '{input_dir}' not found.")
         sys.exit(1)
+
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    netlist_files = glob.glob(os.path.join(input_dir, "*.net"))
+    if not netlist_files:
+        print(f"No .net files found in '{input_dir}'.")
+    
+    for netlist_file in netlist_files:
+        filename = os.path.basename(netlist_file)
+        basename, _ = os.path.splitext(filename)
+        output_file = os.path.join(output_dir, f"{basename}.json")
+
+        try:
+            with open(netlist_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                
+            raw_extracted = extract_netlist_data(content)
+            stpa_output = build_stpa_json(raw_extracted)
+                
+            with open(output_file, 'w', encoding='utf-8') as f:
+                json.dump(stpa_output, f, indent=2)
+                
+            print(f"Successfully processed '{netlist_file}' -> '{output_file}'")
+        except Exception as e:
+            print(f"Error processing '{netlist_file}': {e}")
