@@ -17,7 +17,8 @@ class GenAIStudioAPI:
         }
         self.prompt = "You are a helpful assistant that corrects OCR errors in a document.\
         You will be given a document and you will need to correct the OCR errors in the document.\
-        You will need to return the corrected document. Do not include any other text in your response."
+        You will need to return the corrected document. Do not include any other text in your response.\
+        Do not alter the meaning of the document. Do not add any additional information to the document. Do not remove information from the document."
     def send_request(self, message: str):
         body = {
             "model": "llama4:latest",
