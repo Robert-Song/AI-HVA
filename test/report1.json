@@ -1,0 +1,32 @@
+{
+  "input": "test/example.net",
+  "db_path": "test/component_db.json",
+  "current_component_count": 21,
+  "new_components_count": 21,
+  "new_components": [
+    "C302",
+    "C304",
+    "C305",
+    "C307",
+    "C310",
+    "C312",
+    "C314",
+    "C315",
+    "F301",
+    "Q301",
+    "R306",
+    "R314",
+    "R315",
+    "R316",
+    "R317",
+    "R318",
+    "R319",
+    "R321",
+    "U304",
+    "U307",
+    "U309"
+  ],
+  "known_components_count": 0,
+  "removed_components": [],
+  "notification": "New hardware detected!"
+}

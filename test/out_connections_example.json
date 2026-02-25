@@ -1,0 +1,145 @@
+{
+  "input": "example.net",
+  "essential_only": true,
+  "essential_component_count": 4,
+  "excluded_components": [],
+  "included_essential_component_count": 4,
+  "connections_count": 8,
+  "connections": [
+    {
+      "net": {
+        "name": "/BAT_SW",
+        "code": "1"
+      },
+      "a": {
+        "ref": "U304",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "U307",
+        "pin": "5"
+      }
+    },
+    {
+      "net": {
+        "name": "/BAT_SW",
+        "code": "1"
+      },
+      "a": {
+        "ref": "U304",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "U309",
+        "pin": "5"
+      }
+    },
+    {
+      "net": {
+        "name": "/BAT_SW",
+        "code": "1"
+      },
+      "a": {
+        "ref": "U307",
+        "pin": "5"
+      },
+      "b": {
+        "ref": "U309",
+        "pin": "5"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "U304",
+        "pin": "2"
+      },
+      "b": {
+        "ref": "U307",
+        "pin": "3"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "U304",
+        "pin": "2"
+      },
+      "b": {
+        "ref": "U309",
+        "pin": "2"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "U304",
+        "pin": "5"
+      },
+      "b": {
+        "ref": "U307",
+        "pin": "3"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "U304",
+        "pin": "5"
+      },
+      "b": {
+        "ref": "U309",
+        "pin": "2"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "U307",
+        "pin": "3"
+      },
+      "b": {
+        "ref": "U309",
+        "pin": "2"
+      }
+    }
+  ],
+  "adjacency": {
+    "U304": [
+      "U307",
+      "U309"
+    ],
+    "U307": [
+      "U304",
+      "U309"
+    ],
+    "U309": [
+      "U304",
+      "U307"
+    ]
+  },
+  "excluded_prefixes": [
+    "C",
+    "D",
+    "F",
+    "FB",
+    "L",
+    "R",
+    "TP"
+  ]
+}

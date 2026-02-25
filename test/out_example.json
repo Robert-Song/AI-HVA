@@ -1,0 +1,426 @@
+{
+  "input": "example.net",
+  "component_count": 21,
+  "components": [
+    {
+      "ref": "C302",
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "CC0402KRX7R7BB104",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "C304",
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "CC0402KRX7R7BB104",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "C305",
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "CC0402KRX7R7BB104",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "C307",
+      "value": "1uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "CC0402KRX7R7BB104",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "C310",
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "CC0402KRX7R7BB104",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "C312",
+      "value": "10uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "GRT155C80E106ME13D",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "C314",
+      "value": "22uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "CL05X226MR6NUW8",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "C315",
+      "value": "22uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "C",
+      "desc": "Unpolarized capacitor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "CL05X226MR6NUW8",
+        "Footprint": "Capacitor_SMD:C_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "F301",
+      "value": "Fuse",
+      "footprint": "Fuse:Fuse_0603_1608Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "Fuse",
+      "desc": "Fuse",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "F0603G0R02FNTR",
+        "Footprint": "Fuse:Fuse_0603_1608Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "Q301",
+      "value": "FDN337N",
+      "footprint": "Package_TO_SOT_SMD:SuperSOT-3",
+      "datasheet": "https://www.onsemi.com/pub/Collateral/FDN337N-D.pdf",
+      "lib": "lsf-kicad",
+      "name": "FDN537N",
+      "desc": "6.5A Id, 30V Vds,  Single N-Channel Power Trench MOSFET , 23mOhm Ron, -55 to 150 \u00c2\u00b0C",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "FDN337N",
+        "Footprint": "Package_TO_SOT_SMD:SuperSOT-3",
+        "Datasheet": "https://www.onsemi.com/pub/Collateral/FDN337N-D.pdf",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R306",
+      "value": "1M",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "ASC0402-1M0FT10",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R314",
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "ERJ-2RKF1003X",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R315",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "RC0402JR-1310KL",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R316",
+      "value": "10",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "RC0402JR-0710RL",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R317",
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "ERJ-2RKF1003X",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R318",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "RC0402JR-1310KL",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R319",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "RC0402JR-1310KL",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "R321",
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "datasheet": "~",
+      "lib": "Device",
+      "name": "R",
+      "desc": "Resistor",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "ERJ-2RKF1003X",
+        "Footprint": "Resistor_SMD:R_0402_1005Metric",
+        "Datasheet": "~",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "U304",
+      "value": "SiP32431DR3",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "datasheet": "http://www.vishay.com.hk/docs/66597/sip32431.pdf",
+      "lib": "Power_Management",
+      "name": "SiP32431DR3",
+      "desc": "10 pA, Ultra Low Leakage and Quiescent Current, Load Switch with Reverse Blocking, High Enable, SC-70-6",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "SiP32431DR3",
+        "Footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "Datasheet": "http://www.vishay.com.hk/docs/66597/sip32431.pdf",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "U307",
+      "value": "74AHC1G04",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+      "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "lib": "74xGxx",
+      "name": "74AHC1G04",
+      "desc": "Single NOT Gate, Low-Voltage CMOS",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "74AHC1G04DBVRG4",
+        "Footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+        "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "U309",
+      "value": "74LVC1G332",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "lib": "74xGxx",
+      "name": "74LVC1G332",
+      "desc": "Single OR 3-Input Gate, Low-Voltage CMOS",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Part Number": "74LVC1G332DCKRE4",
+        "Footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+        "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+        "Description": ""
+      }
+    }
+  ]
+}

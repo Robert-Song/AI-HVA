@@ -1,0 +1,10 @@
+{
+  "input": "test/example.net",
+  "db_path": "test/component_db.json",
+  "current_component_count": 21,
+  "new_components_count": 0,
+  "new_components": [],
+  "known_components_count": 21,
+  "removed_components": [],
+  "notification": "No new hardware detected."
+}
