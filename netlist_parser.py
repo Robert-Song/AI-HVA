@@ -290,7 +290,8 @@ def build_stpa_json(raw_data):
 if __name__ == "__main__":
     import os
     
-    netlist_file = "input/example.net"
+    # HACK : later we need to run a loop on every files in the directory
+    netlist_file = "preprocessed_input/example.net"
     output_file = "output/temp_output.json"
 
     # Allow overriding via command line
