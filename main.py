@@ -4,10 +4,10 @@ from documentProcessor import DocumentProcessor
 def main():
     # full test
     documentProcessor = DocumentProcessor()
-    result = documentProcessor.process_document("CS373_HW2_Spring2026.pdf")
+    result = documentProcessor.process_document("scyt129g.pdf")
+    print(result)
     ocrCorrector = GenAIStudioAPI()
     response = ocrCorrector.send_request(result)
-    print(response)
     with open("corrected_document.txt", "w", encoding="utf-8") as file:
         file.write(response)
 
