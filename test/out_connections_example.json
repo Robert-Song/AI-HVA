@@ -1,10 +1,10 @@
 {
-  "input": "example.net",
+  "input": "test/example.net",
   "essential_only": true,
-  "essential_component_count": 4,
+  "essential_component_count": 5,
   "excluded_components": [],
-  "included_essential_component_count": 4,
-  "connections_count": 8,
+  "included_essential_component_count": 5,
+  "connections_count": 12,
   "connections": [
     {
       "net": {
@@ -46,6 +46,62 @@
       "b": {
         "ref": "U309",
         "pin": "5"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "F301",
+        "pin": "2"
+      },
+      "b": {
+        "ref": "U304",
+        "pin": "2"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "F301",
+        "pin": "2"
+      },
+      "b": {
+        "ref": "U304",
+        "pin": "5"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "F301",
+        "pin": "2"
+      },
+      "b": {
+        "ref": "U307",
+        "pin": "3"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "7"
+      },
+      "a": {
+        "ref": "F301",
+        "pin": "2"
+      },
+      "b": {
+        "ref": "U309",
+        "pin": "2"
       }
     },
     {
@@ -121,25 +177,28 @@
   ],
   "adjacency": {
     "U304": [
+      "F301",
       "U307",
       "U309"
     ],
     "U307": [
+      "F301",
       "U304",
       "U309"
     ],
     "U309": [
+      "F301",
       "U304",
       "U307"
+    ],
+    "F301": [
+      "U304",
+      "U307",
+      "U309"
     ]
   },
   "excluded_prefixes": [
     "C",
-    "D",
-    "F",
-    "FB",
-    "L",
-    "R",
-    "TP"
+    "R"
   ]
 }

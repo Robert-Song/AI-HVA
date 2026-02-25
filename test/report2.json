@@ -1,10 +1,28 @@
 {
-  "input": "test/example.net",
+  "input": "C:\\Users\\xk445\\Downloads\\example2.net",
   "db_path": "test/component_db.json",
-  "current_component_count": 21,
+  "current_component_count": 4,
   "new_components_count": 0,
   "new_components": [],
-  "known_components_count": 21,
-  "removed_components": [],
+  "known_components_count": 4,
+  "removed_components": [
+    "C302",
+    "C304",
+    "C305",
+    "C307",
+    "C310",
+    "C312",
+    "C314",
+    "C315",
+    "F301",
+    "R306",
+    "R314",
+    "R315",
+    "R316",
+    "R317",
+    "R318",
+    "R319",
+    "R321"
+  ],
   "notification": "No new hardware detected."
 }

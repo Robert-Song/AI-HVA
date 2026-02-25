@@ -113,7 +113,7 @@ def map_connections(net_path: str, essential_only: bool = True, excluded_refs: S
     if nets is None:
         raise NetlistParseError("Parsed netlist but found no net list (nlst.nets missing).")
 
-    excluded_prefixes = {"C", "R", "L", "D", "FB", "TP", "F"}  # can tune later
+    excluded_prefixes = {"C", "R"} # optional exclusions "L", "D", "FB", "TP", "F"
     essential_refs = build_essential_set(nlst, excluded_prefixes) if essential_only else set()
 
     # Apply user exclusions to essential set (Story 10)

@@ -78,8 +78,8 @@
       "name": "Fuse"
     },
     "Q301": {
-      "value": "FDN337N",
-      "footprint": "Package_TO_SOT_SMD:SuperSOT-3",
+      "value": "~",
+      "footprint": "",
       "lib": "lsf-kicad",
       "name": "FDN537N"
     },
@@ -132,20 +132,20 @@
       "name": "R"
     },
     "U304": {
-      "value": "SiP32431DR3",
-      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "value": "~",
+      "footprint": "",
       "lib": "Power_Management",
       "name": "SiP32431DR3"
     },
     "U307": {
-      "value": "74AHC1G04",
-      "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+      "value": "~",
+      "footprint": "",
       "lib": "74xGxx",
       "name": "74AHC1G04"
     },
     "U309": {
-      "value": "74LVC1G332",
-      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "value": "~",
+      "footprint": "",
       "lib": "74xGxx",
       "name": "74LVC1G332"
     }
