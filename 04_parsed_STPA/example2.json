@@ -1,0 +1,193 @@
+{
+  "system_metadata": {
+    "system_name": "example2",
+    "netlist_source": "/Users/rileynoggle/Documents/CS407/AI-HVA/test/info_compress/example2.kicad_sch",
+    "analysis_date": "2026-02-24T20:02:42.291139"
+  },
+  "connection_pairs": {
+    "U304-U307": {
+      "endpoints": [
+        "U304",
+        "U307"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/BAT_SW"
+      ]
+    },
+    "U304-U309": {
+      "endpoints": [
+        "U304",
+        "U309"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/BAT_SW"
+      ]
+    },
+    "U307-U309": {
+      "endpoints": [
+        "U307",
+        "U309"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/BAT_SW"
+      ]
+    }
+  },
+  "components": {
+    "Q301": {
+      "component_id": "Q301",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "U304": {
+      "component_id": "U304",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "U307",
+        "U309"
+      ]
+    },
+    "U307": {
+      "component_id": "U307",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "U304",
+        "U309"
+      ]
+    },
+    "U309": {
+      "component_id": "U309",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "U304",
+        "U307"
+      ]
+    }
+  },
+  "connection_details": {
+    "U304-U307": {
+      "endpoints": [
+        "U304",
+        "U307"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/BAT_SW",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "U304-U309": {
+      "endpoints": [
+        "U304",
+        "U309"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/BAT_SW",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "U307-U309": {
+      "endpoints": [
+        "U307",
+        "U309"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/BAT_SW",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    }
+  },
+  "graph_analysis": {
+    "component_centrality": {
+      "Q301": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "U304": {
+        "degree": 0.6667,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "U307": {
+        "degree": 0.6667,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "U309": {
+        "degree": 0.6667,
+        "betweenness": 0.0,
+        "is_hub": false
+      }
+    },
+    "connection_criticality": {
+      "U304-U307": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "U304-U309": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "U307-U309": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      }
+    }
+  }
+}
