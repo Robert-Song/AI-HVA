@@ -3,6 +3,8 @@ from PIL import Image, ImageTk
 from tkinter import filedialog
 import shutil
 from pathlib import Path
+import info_compress
+from info_compress import InfoCompressor
 
 # Initializes root window
 root = Tk()
@@ -12,6 +14,8 @@ root.update_idletasks()
 x = (root.winfo_screenwidth() - root.winfo_reqwidth()) // 2
 y = (root.winfo_screenheight() - root.winfo_reqheight()) // 2
 root.geometry(f"+{x}+{y}")
+
+ic = InfoCompressor()
 
 # Brings the window into focus
 root.lift()
@@ -31,10 +35,64 @@ uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 normalimg = PhotoImage(file="uploadnormal.png")
 hoverimg = PhotoImage(file="uploadhover.png")
 
+# Tracks which file is currently being shown on screen 2
+file_index = 0
+essential_components = []
+comp_num = 0
+checkbox_states = []  # BooleanVars for the current screen's checkboxes
+
+def store_list(index=0, complist=[]):
+    checked = [comp[0] for comp, state in zip(complist, checkbox_states) if state.get()]
+    essential_components.append([checked, file_paths[index]])
+    if index + 1 < len(file_paths):
+        show_screen2(index+1)
+    else:
+        print(essential_components)
+        for ec in essential_components:
+            print(ec[1])
+            sp = ec[1].split("/")
+            if Path(ec[1]).suffix == ".kicad_sch":
+                ic.convert_whitelist_kicad(ec[1], ec[0], sp[len(sp) - 1].split(".")[0] + "-prsd.kicad_sch")
+        show_screen3()
 
 
-# Screen 2: clears all widgets and shows the export directory selection UI
-def show_screen2():
+# Screen 2: shows components for one file at a time, advancing on each continue click
+def show_screen2(index=0):
+
+    global file_index, essential_components, comp_num, checkbox_states
+    file_index = index
+
+    fp = file_paths[index]
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    if Path(fp).suffix == ".kicad_sch":
+        complist = ic.essential_list_kicad(fp)
+    elif Path(fp).suffix == ".net":
+        complist = ic.essential_list_netlist(fp)
+    comp_num = len(complist)
+    # Each checkbox gets its own BooleanVar so they toggle independently
+    checkbox_states = [BooleanVar() for _ in complist]
+    for i, (comp, state) in enumerate(zip(complist, checkbox_states)):
+        checkbox = Checkbutton(root, text=f"{comp[0]}: {comp[1]}", variable=state)
+        checkbox.grid(column=0, row=i)
+
+    # Select/deselect all toggle
+    def toggle_all():
+        all_selected = all(s.get() for s in checkbox_states)
+        for s in checkbox_states:
+            s.set(not all_selected)
+
+    toggle_btn = Button(root, text="Select All / Deselect All", command=toggle_all)
+    toggle_btn.grid(column=0, row=comp_num, pady=(10, 0))
+
+    # If there are more files, continue loads the next one; otherwise advance to screen 3
+
+    contbtn = Button(root, text="Continue", command=lambda: store_list(index, complist))
+    contbtn.grid(row=len(complist) + 2, column=0, pady=(0, 35))
+
+
+def show_screen3():
     global dirbtn, dirlbl
     # Remove all screen 1 widgets
     for widget in root.winfo_children():
@@ -91,6 +149,7 @@ def validate_file(fp):
 
 # Opens a file picker for KiCad netlists/schematics and copies them to the project root
 def import_file():
+    global file_paths
     file_paths = filedialog.askopenfilenames(
         title="Select a file",
         filetypes=[("KiCad Netlists/Schematics", ["*.net", "*.kicad_sch"])]

@@ -4,6 +4,8 @@ import subprocess
 from kinparse import parse_netlist
 import os
 
+
+
 class InfoCompressor:
     def __init__(self):
         self.seen_files = {}
@@ -57,7 +59,7 @@ class InfoCompressor:
         sch.libSymbols = newl
         for i in range(len(sch.schematicSymbols)):
             newprop = []
-            sch.schematicSymbols[i].properties = newprop
+            #sch.schematicSymbols[i].properties = newprop
         for i in range(len(sch.labels)):
             newprop = []
             #sch.labels[i].effects = Effects()
@@ -65,17 +67,63 @@ class InfoCompressor:
         for i in range(len(sch.hierarchicalLabels)):
             newprop = []
             #print(sch.hierarchicalLabels[i])
-            sch.hierarchicalLabels[i].properties = newprop
+            #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
         subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
-    
+
+    def convert_whitelist_kicad(self, filepath, whitelist, output):
+        sch = Schematic().from_file(filepath)
+        newl = []
+        for sl in sch.libSymbols:
+            if sl.entryName in whitelist:
+                newl.append(sl)
+        sch.libSymbols = newl
+        for i in range(len(sch.schematicSymbols)):
+            newprop = []
+            #sch.schematicSymbols[i].properties = newprop
+        for i in range(len(sch.labels)):
+            newprop = []
+            # sch.labels[i].effects = Effects()
+            # print(sch.labels[i])
+        for i in range(len(sch.hierarchicalLabels)):
+            newprop = []
+            # print(sch.hierarchicalLabels[i])
+            #sch.hierarchicalLabels[i].properties = newprop
+        sch.to_file(output)
+        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
+    def convert_whitelist_netlist(self, filepath, whitelist, output):
+        sch = Schematic().from_file(filepath)
+        newl = []
+        for sl in sch.libSymbols:
+            if sl.entryName in whitelist:
+                newl.append(sl)
+        sch.libSymbols = newl
+        for i in range(len(sch.schematicSymbols)):
+            newprop = []
+            #sch.schematicSymbols[i].properties = newprop
+        for i in range(len(sch.labels)):
+            newprop = []
+            # sch.labels[i].effects = Effects()
+            # print(sch.labels[i])
+        for i in range(len(sch.hierarchicalLabels)):
+            newprop = []
+            # print(sch.hierarchicalLabels[i])
+            #sch.hierarchicalLabels[i].properties = newprop
+        sch.to_file(output)
+        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
+
     def essential_list_netlist(self, filepath):
+        col = []
+        banned = ["C", "R", "Fuse", "GND", "PWR_FLAG"]
         for libb in parse_netlist(filepath).libparts:
-            print(libb.name + ": " + libb.desc + f" ({libb.docs})")
+            #print(libb.name + ": " + libb.desc + f" ({libb.docs})")
+            if libb.name not in banned:
+                col.append((libb.name, libb.desc))
+        return col
     
     def essential_list_kicad(self, filepath):
         self.convert(filepath, "result.kicad_sch")
-        self.essential_list_netlist("result.net")
+        return self.essential_list_netlist("result.net")
 
 #Test case for US#5
 #os.chdir("./test/info_compress")
