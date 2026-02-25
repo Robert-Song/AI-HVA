@@ -1,8 +1,8 @@
 {
   "system_metadata": {
-    "system_name": "example2",
-    "netlist_source": "/Users/rileynoggle/Documents/CS407/AI-HVA/test/info_compress/example2.kicad_sch",
-    "analysis_date": "2026-02-25T13:13:19.048765"
+    "system_name": "activator-prsd",
+    "netlist_source": "/Users/rileynoggle/Documents/CS407/AI-HVA/activator-prsd.kicad_sch",
+    "analysis_date": "2026-02-25T14:01:02.752842"
   },
   "connection_pairs": {
     "U304-U307": {
@@ -147,22 +147,22 @@
     "component_centrality": {
       "Q301": {
         "degree": 0.0,
-        "betweenness": "<DET: Requires NetworkX>",
+        "betweenness": 0.0,
         "is_hub": false
       },
       "U304": {
         "degree": 0.6667,
-        "betweenness": "<DET: Requires NetworkX>",
+        "betweenness": 0.0,
         "is_hub": false
       },
       "U307": {
         "degree": 0.6667,
-        "betweenness": "<DET: Requires NetworkX>",
+        "betweenness": 0.0,
         "is_hub": false
       },
       "U309": {
         "degree": 0.6667,
-        "betweenness": "<DET: Requires NetworkX>",
+        "betweenness": 0.0,
         "is_hub": false
       }
     },
@@ -170,21 +170,21 @@
       "U304-U307": {
         "control_signal_count": "<LLM>",
         "feedback_signal_count": "<LLM>",
-        "is_bridge": "<DET: Requires Graph Algo>",
+        "is_bridge": false,
         "connects_safety_critical": "<LLM>",
         "analysis_priority": "<LLM>"
       },
       "U304-U309": {
         "control_signal_count": "<LLM>",
         "feedback_signal_count": "<LLM>",
-        "is_bridge": "<DET: Requires Graph Algo>",
+        "is_bridge": false,
         "connects_safety_critical": "<LLM>",
         "analysis_priority": "<LLM>"
       },
       "U307-U309": {
         "control_signal_count": "<LLM>",
         "feedback_signal_count": "<LLM>",
-        "is_bridge": "<DET: Requires Graph Algo>",
+        "is_bridge": false,
         "connects_safety_critical": "<LLM>",
         "analysis_priority": "<LLM>"
       }

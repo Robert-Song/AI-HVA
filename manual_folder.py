@@ -31,8 +31,8 @@ class ManualFolder:
         if not os.path.exists(filename):
             error = f"Fallback file not found in {filename}"
             return result, error
-        with open(filename, "r") as file:
-            result = file.buffer.read()
+        with open(filename, "rb") as file:
+            result = file.read()
         return result, error
     
     def test_find_datasheets(self, partnames, urls):
@@ -69,7 +69,7 @@ class ManualFolder:
                 return result, error
             else:
                 return fresult, error
-        result = response.text
+        result = response.content
         return result, error
 
 

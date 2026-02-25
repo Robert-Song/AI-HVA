@@ -1,5 +1,5 @@
 import pdf2image
-from transformers import AutoProcessor, AutoModelForCausalLM
+from transformers import AutoProcessor, AutoModelForCausalLM, Qwen2VLForConditionalGeneration
 from PIL import Image
 import torch
 from dotenv import load_dotenv
@@ -21,8 +21,16 @@ class DocumentProcessor:
         print("Initializing OCR")
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
         self.torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
-        self.model = AutoModelForCausalLM.from_pretrained("microsoft/Florence-2-large", torch_dtype=self.torch_dtype, trust_remote_code=True).to(self.device)
-        self.processor = AutoProcessor.from_pretrained("microsoft/Florence-2-large", trust_remote_code=True)
+        #self.model = AutoModelForCausalLM.from_pretrained("microsoft/Florence-2-base", torch_dtype=self.torch_dtype, trust_remote_code=True, attn_implementation="eager").to(self.device)
+        #self.processor = AutoProcessor.from_pretrained("microsoft/Florence-2-base", trust_remote_code=True)
+        self.model = Qwen2VLForConditionalGeneration.from_pretrained(
+            "Qwen/Qwen2-VL-2B-Instruct",
+            torch_dtype=self.torch_dtype,
+        ).to(self.device)
+
+        self.processor = AutoProcessor.from_pretrained(
+            "Qwen/Qwen2-VL-2B-Instruct"
+        )
         self.prompt = "<OCR>"
         print("OCR initialized")
 
