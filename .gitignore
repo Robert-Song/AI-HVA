@@ -1,4 +1,19 @@
 # PyCharm ignores
 .idea
-# MacOS File System ignores
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE
+.vscode/
+
+# macOS
 .DS_Store
