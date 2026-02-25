@@ -14,3 +14,7 @@ wheels/
 
 # documents
 *.pdf
+
+# OCR outputs
+initialOCR/
+correctedOCR/

@@ -1,3 +1,5 @@
+import os
+
 from ocrCorrector import GenAIStudioAPI
 from documentProcessor import DocumentProcessor
 
@@ -15,7 +17,13 @@ class CombinedOCRProcessor:
 if __name__ == "__main__":
     ocrCorrector = GenAIStudioAPI()
     documentProcessor = DocumentProcessor()
-    documentNames = ['scyt129g', 'FDN537N-D', 'sip32431']
+    documentNames = [
+        #'scyt129g',
+        'FDN537N-D',
+        'sip32431',
+    ]
+    os.makedirs("initialOCR", exist_ok=True)
+    os.makedirs("correctedOCR", exist_ok=True)
     for documentName in documentNames:
         ocrResult = ocrCorrector.send_request(documentProcessor.process_document(f"{documentName}.pdf"))
         with open(f"initialOCR/{documentName}.txt", "w", encoding="utf-8") as file:
