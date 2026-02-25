@@ -1,0 +1,153 @@
+{
+  "known_refs": [
+    "C302",
+    "C304",
+    "C305",
+    "C307",
+    "C310",
+    "C312",
+    "C314",
+    "C315",
+    "F301",
+    "Q301",
+    "R306",
+    "R314",
+    "R315",
+    "R316",
+    "R317",
+    "R318",
+    "R319",
+    "R321",
+    "U304",
+    "U307",
+    "U309"
+  ],
+  "metadata_by_ref": {
+    "C302": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "C304": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "C305": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "C307": {
+      "value": "1uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "C310": {
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "C312": {
+      "value": "10uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "C314": {
+      "value": "22uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "C315": {
+      "value": "22uF",
+      "footprint": "Capacitor_SMD:C_0402_1005Metric",
+      "lib": "Device",
+      "name": "C"
+    },
+    "F301": {
+      "value": "Fuse",
+      "footprint": "Fuse:Fuse_0603_1608Metric",
+      "lib": "Device",
+      "name": "Fuse"
+    },
+    "Q301": {
+      "value": "FDN337N",
+      "footprint": "Package_TO_SOT_SMD:SuperSOT-3",
+      "lib": "lsf-kicad",
+      "name": "FDN537N"
+    },
+    "R306": {
+      "value": "1M",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "R314": {
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "R315": {
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "R316": {
+      "value": "10",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "R317": {
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "R318": {
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "R319": {
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "R321": {
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0402_1005Metric",
+      "lib": "Device",
+      "name": "R"
+    },
+    "U304": {
+      "value": "SiP32431DR3",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "lib": "Power_Management",
+      "name": "SiP32431DR3"
+    },
+    "U307": {
+      "value": "74AHC1G04",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+      "lib": "74xGxx",
+      "name": "74AHC1G04"
+    },
+    "U309": {
+      "value": "74LVC1G332",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "lib": "74xGxx",
+      "name": "74LVC1G332"
+    }
+  }
+}
