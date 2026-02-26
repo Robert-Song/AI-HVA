@@ -1,5 +1,5 @@
 import pdf2image
-from transformers import AutoProcessor, AutoModelForCausalLM, Qwen2VLForConditionalGeneration
+from transformers import AutoProcessor, AutoModelForCausalLM, Qwen2VLForConditionalGeneration,  BlipForConditionalGeneration, BlipProcessor
 from PIL import Image
 import torch
 from dotenv import load_dotenv
@@ -23,13 +23,16 @@ class DocumentProcessor:
         self.torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
         #self.model = AutoModelForCausalLM.from_pretrained("microsoft/Florence-2-base", torch_dtype=self.torch_dtype, trust_remote_code=True, attn_implementation="eager").to(self.device)
         #self.processor = AutoProcessor.from_pretrained("microsoft/Florence-2-base", trust_remote_code=True)
-        self.model = Qwen2VLForConditionalGeneration.from_pretrained(
-            "Qwen/Qwen2-VL-2B-Instruct",
+        
+        self.model = BlipForConditionalGeneration.from_pretrained(
+            "Salesforce/blip-image-captioning-base",
             torch_dtype=self.torch_dtype,
+            trust_remote_code=True
         ).to(self.device)
 
-        self.processor = AutoProcessor.from_pretrained(
-            "Qwen/Qwen2-VL-2B-Instruct"
+        self.processor = BlipProcessor.from_pretrained(
+            "Salesforce/blip-image-captioning-base",
+            trust_remote_code=True
         )
         self.prompt = "<OCR>"
         print("OCR initialized")
@@ -39,16 +42,18 @@ class DocumentProcessor:
         inputs = self.processor(text=self.prompt, images=image, return_tensors="pt").to(self.device, self.torch_dtype)
         print("Inputs created")
         generated_ids = self.model.generate(
-            input_ids=inputs["input_ids"],
+            #input_ids=inputs["input_ids"],
             pixel_values=inputs["pixel_values"],
-            max_new_tokens=4096,
+            #max_new_tokens=4096,
+            max_new_tokens=1024,
             num_beams=3,
-            do_sample=False
+            #do_sample=False
         )
         generated_text = self.processor.batch_decode(generated_ids, skip_special_tokens=False)[0]
-        parsed_answer = self.processor.post_process_generation(generated_text, task="<OCR>", image_size=(image.width, image.height))
+        #parsed_answer = self.processor.post_process_generation(generated_text, task="<OCR>", image_size=(image.width, image.height))
 
-        p_a = parsed_answer['<OCR>']
+        #p_a = parsed_answer['<OCR>']
+        p_a = generated_text
         print("Parsed answer")
         return p_a
     

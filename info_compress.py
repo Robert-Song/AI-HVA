@@ -13,6 +13,7 @@ class InfoCompressor:
     def check_duplicate_file(self, filename, filecontent):
         valid = False
         replacement = filecontent
+        print(filename)
         if not filename in self.seen_files.keys():
             valid = True
         elif len(filecontent) != len(self.seen_files[filename]):

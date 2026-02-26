@@ -76,7 +76,7 @@ def store_list(index=0, complist=[]):
                         cole.append(filename)
                 dp = DocumentProcessor()
                 for co in cole:
-                    dp.process_document(co)
+                    print(dp.process_document(co))
                         
                         
 
@@ -169,7 +169,11 @@ def validate_file(fp):
     try:
         with open(fp, "r", encoding="utf-8") as f:
             content = f.read(len(expected))
-        return content == expected
+        if content != expected:
+            return False
+        else:
+            worked, content = ic.check_duplicate_file(fp, content)
+            return worked
     except (OSError, UnicodeDecodeError):
         return False
 
@@ -186,8 +190,13 @@ def import_file():
     root.focus_force()
     if file_paths:
         # Split files into valid and invalid
-        valid = [fp for fp in file_paths if validate_file(fp)]
-        invalid = [fp for fp in file_paths if not validate_file(fp)]
+        valid = []
+        invalid = []
+        for fp in file_paths:
+            if validate_file(fp):
+                valid.append(fp)
+            else:
+                invalid.append(fp)
         # Warn about any corrupted or unrecognized files
         if invalid:
             invalid_names = ", ".join(Path(fp).name for fp in invalid)
