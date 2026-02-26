@@ -99,10 +99,10 @@ def show_screen3():
         widget.destroy()
     # Prompt label
     exportlabel = Label(root, text="Choose a destination folder to export the output.")
-    exportlabel.grid(row=0, column=0, pady=(25, 0), padx=100)
+    exportlabel.grid(row=0, column=0, pady=(25, 0), padx=50)
     # Button to open directory picker
     dirbtn = Button(root, text="Choose Directory", command=directory_select)
-    dirbtn.grid(row=1, column=0, pady=25)
+    dirbtn.grid(row=1, column=0, pady=(0,35))
     # Placeholder label updated once a directory is chosen
     dirlbl = Label(root, text="")
 
@@ -121,10 +121,10 @@ def directory_select():
         dirlbl.config(text="Export folder: " + directory)
         dirlbl.grid(row=2, column=0, pady=(0, 35))
         # Re-show choose directory button below the label so user can reselect
-        dirbtn.grid(row=3, column=0)
+        dirbtn.grid(row=3, column=0, pady=0)
         # Export button to confirm and proceed
         exportbtn = Button(root, text="Export")
-        exportbtn.grid(row=4, column=0)
+        exportbtn.grid(row=4, column=0, pady=(0,35))
 
 
 # Expected file headers for each supported KiCad format
@@ -132,7 +132,9 @@ FILE_HEADERS = {
     ".kicad_sch": "(kicad_sch",
     ".net": "(export",
 }
-
+filelbl = None
+errorlbl = None
+contbtn = None
 # Returns True if the file is non-empty and starts with the expected header
 def validate_file(fp):
     suffix = Path(fp).suffix.lower()
@@ -150,6 +152,10 @@ def validate_file(fp):
 # Opens a file picker for KiCad netlists/schematics and copies them to the project root
 def import_file():
     global file_paths
+    global filelbl
+    global errorlbl
+    global contbtn
+    global allvalid
     file_paths = filedialog.askopenfilenames(
         title="Select a file",
         filetypes=[("KiCad Netlists/Schematics", ["*.net", "*.kicad_sch"])]
@@ -161,23 +167,36 @@ def import_file():
         # Split files into valid and invalid
         valid = [fp for fp in file_paths if validate_file(fp)]
         invalid = [fp for fp in file_paths if not validate_file(fp)]
+        allvalid = True
+        errorlbl.destroy()
         # Warn about any corrupted or unrecognized files
         if invalid:
             invalid_names = ", ".join(Path(fp).name for fp in invalid)
             errorlbl = Label(root, text="Invalid or corrupted files: " + invalid_names, fg="red")
-            errorlbl.grid(row=2, column=0)
+            errorlbl.grid(row=2, column=0, pady=(0, 35))
+            allvalid = False
         if not valid:
+            filelbl.destroy()
+            allvalid = False
+            contbtn.destroy()
             return
         # Display the names of all valid selected files
         names = ", ".join(Path(fp).name for fp in valid)
-        filelbl = Label(root, text="Uploaded files: " + names)
-        filelbl.grid(row=2, column=0)
+        filelbl.destroy()
+        if allvalid:
+            errorlbl.destroy()
+            filelbl = Label(root, text="Uploaded files: " + names)
+            filelbl.grid(row=2, column=0)
         # Copy each valid file to the project root directory
         for fp in valid:
             shutil.copy2(fp, "..")
         # Show continue button to advance to screen 2
-        contbtn = Button(root, text="Continue", command=show_screen2)
-        contbtn.grid(row=3, column=0, pady=(0, 35))
+        if allvalid:
+            contbtn = Button(root, text="Continue", command=show_screen2)
+            contbtn.grid(row=3, column=0, pady=(0, 35))
+        else:
+            contbtn.destroy()
+
 
 # Persistent screen 1 status labels (created once, updated on each import attempt)
 errorlbl = Label(root, text="", fg="red")
