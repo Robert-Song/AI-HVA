@@ -17,3 +17,13 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# OCR Results
+correctedOCR/
+initialOCR/
+
+# environment variables
+.env
+
+#documents
+*.pdf
