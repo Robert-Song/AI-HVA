@@ -68,6 +68,7 @@ class ManualFolder:
                 error = f"URL and fallback failed"
                 return result, error
             else:
+                print("Fallback file successful")
                 return fresult, error
         result = response.content
         return result, error

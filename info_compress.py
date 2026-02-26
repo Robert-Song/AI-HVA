@@ -159,8 +159,8 @@ ic = InfoCompressor()
 #os.chdir("./test/info_compress")
 '''
 ic = InfoCompressor()
-adata = "ahahahah"
-bdata = "hehehehe"
+adata = "test content 1"
+bdata = "test content 2"
 _, adata = ic.check_duplicate_file("test.txt", adata)
 _, adata = ic.check_duplicate_file("test2.txt", adata)
 _, adata = ic.check_duplicate_file("test.txt", bdata)
