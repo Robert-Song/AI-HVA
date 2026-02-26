@@ -1,0 +1,42 @@
+[
+  {
+    "ref": "U304",
+    "value": "SiP32431DR3",
+    "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+    "datasheet": "http://www.vishay.com.hk/docs/66597/sip32431.pdf",
+    "lib": "Power_Management",
+    "name": "SiP32431DR3",
+    "desc": "10 pA, Ultra Low Leakage and Quiescent Current, Load Switch with Reverse Blocking, High Enable, SC-70-6",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Part Number": "SiP32431DR3",
+      "Footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "Datasheet": "http://www.vishay.com.hk/docs/66597/sip32431.pdf",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "U309",
+    "value": "74LVC1G332",
+    "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+    "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+    "lib": "74xGxx",
+    "name": "74LVC1G332",
+    "desc": "Single OR 3-Input Gate, Low-Voltage CMOS",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Part Number": "74LVC1G332DCKRE4",
+      "Footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "Description": ""
+    }
+  }
+]
