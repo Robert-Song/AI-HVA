@@ -11,6 +11,10 @@ try:
 except ImportError:
     HAS_NX = False
 
+class NetlistParseError(Exception):
+    """Exception raised for errors in the netlist parsing."""
+    pass
+
 def parse_s_expr(s):
     # Simple S-expression parser.
     # Converts (key value) into nested lists: ['key', 'value'].
@@ -26,12 +30,21 @@ def parse_s_expr(s):
         elif token == ')':
             if len(stack) > 1:
                 stack.pop()
+            else:
+                raise NetlistParseError("Invalid netlist format: Unexpected closing parenthesis ')'")
         else:
             # Handle quoted strings specifically
             if token.startswith('"') and token.endswith('"'):
                 stack[-1].append(token[1:-1])
             else:
                 stack[-1].append(token)
+                
+    if len(stack) > 1:
+        raise NetlistParseError("Invalid netlist format: Missing closing parenthesis ')'")
+        
+    if not stack[0]:
+        raise NetlistParseError("Invalid netlist format: Empty or completely invalid content")
+        
     return stack[0][0]
 
 def extract_netlist_data(file_content):
@@ -39,6 +52,9 @@ def extract_netlist_data(file_content):
     # pre-process to handle S-expression parsing quoted strings / spaces stuffs
     content = re.sub(r'"([^"]*)"', lambda m: '"' + m.group(1).replace(' ', '_SPACE_') + '"', file_content)
     parsed = parse_s_expr(content)
+    
+    if not isinstance(parsed, list) or len(parsed) == 0:
+        raise NetlistParseError("Invalid netlist format: Expected S-expression block, but got a flat string or empty document.")
     
     # data containers
     data = {"metadata": {}, "components": {}, "nets": {}}
@@ -327,5 +343,7 @@ if __name__ == "__main__":
                 json.dump(stpa_output, f, indent=2)
                 
             print(f"Successfully processed '{netlist_file}' -> '{output_file}'")
+        except NetlistParseError as e:
+            print(f"Failed parsing '{netlist_file}': {e}")
         except Exception as e:
             print(f"Error processing '{netlist_file}': {e}")
