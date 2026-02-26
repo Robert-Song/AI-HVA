@@ -33,8 +33,8 @@ uploadlbl = Label(root, text="Upload a KiCad schematic or netlist file.")
 uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 
 # Load normal and hover state images for the upload button
-normalimg = PhotoImage(file="uploadnormal.png")
-hoverimg = PhotoImage(file="uploadhover.png")
+normalimg = PhotoImage(file="GUI/uploadnormal.png")
+hoverimg = PhotoImage(file="GUI/uploadhover.png")
 
 # Tracks which file is currently being shown on screen 2
 file_index = 0
@@ -100,8 +100,8 @@ def show_screen4():
     uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 
     # Load normal and hover state images for the upload button
-    normalimg = PhotoImage(file="uploadnormal.png")
-    hoverimg = PhotoImage(file="uploadhover.png")
+    normalimg = PhotoImage(file="GUI/uploadnormal.png")
+    hoverimg = PhotoImage(file="GUI/uploadhover.png")
     filebtn = Label(
         root,
         image=normalimg,
