@@ -5,6 +5,13 @@ import shutil
 from pathlib import Path
 import info_compress
 from info_compress import InfoCompressor
+import logging
+import chiller
+
+logging.basicConfig(format="%(levelname)s: %(message)s")
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
+
 
 # Initializes root window
 root = Tk()
@@ -53,7 +60,7 @@ def store_list(index=0, complist=[]):
             sp = ec[1].split("/")
             if Path(ec[1]).suffix == ".kicad_sch":
                 ic.convert_whitelist_kicad(ec[1], ec[0], sp[len(sp) - 1].split(".")[0] + "-prsd.kicad_sch")
-        show_screen3()
+        show_screen_debug()
 
 
 # Screen 2: shows components for one file at a time, advancing on each continue click
@@ -71,6 +78,7 @@ def show_screen2(index=0):
     elif Path(fp).suffix == ".net":
         complist = ic.essential_list_netlist(fp)
     comp_num = len(complist)
+
     # Each checkbox gets its own BooleanVar so they toggle independently
     checkbox_states = [BooleanVar() for _ in complist]
     for i, (comp, state) in enumerate(zip(complist, checkbox_states)):
@@ -92,11 +100,59 @@ def show_screen2(index=0):
     contbtn.grid(row=len(complist) + 2, column=0, pady=(0, 35))
 
 
-def show_screen3():
-    global dirbtn, dirlbl
-    # Remove all screen 1 widgets
+debug_enabled = BooleanVar()
+
+
+class DebugWindow(logging.Handler):
+    def __init__(self):
+        super().__init__()
+        self.win = Toplevel(root)
+        self.win.title("Debug Output")
+        self.win.geometry("600x400")
+
+        self.text = Text(self.win, state="disabled", bg="black", fg="lime",
+                         font=("Courier", 11), wrap="word")
+        scrollbar = Scrollbar(self.win, command=self.text.yview)
+        self.text.configure(yscrollcommand=scrollbar.set)
+
+        scrollbar.pack(side=RIGHT, fill=Y)
+        self.text.pack(fill=BOTH, expand=True)
+        self.win.lift()
+
+    def emit(self, record):
+        msg = self.format(record) + "\n"
+        self.text.configure(state="normal")
+        self.text.insert(END, msg)
+        self.text.configure(state="disabled")
+        self.text.see(END)
+
+
+def _apply_debug():
+    if debug_enabled.get():
+        handler = DebugWindow()
+        handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+        logging.getLogger().addHandler(handler)
+        logging.getLogger().setLevel(logging.DEBUG)
+    else:
+        logging.getLogger().setLevel(logging.WARNING)
+
+
+def show_screen_debug():
     for widget in root.winfo_children():
         widget.destroy()
+    Label(root, text="Debug Options").grid(row=0, column=0, pady=(25, 0), padx=100)
+    Checkbutton(root, text="Enable debug output", variable=debug_enabled).grid(row=1, column=0, pady=(10, 0))
+    Button(root, text="Continue", command=lambda: [
+        _apply_debug(),
+        show_screen3()
+    ]).grid(row=2, column=0, pady=(10, 35))
+
+
+def show_screen3():
+    global dirbtn, dirlbl
+    for widget in root.winfo_children():
+        if not isinstance(widget, Toplevel):
+            widget.destroy()
     # Prompt label
     exportlabel = Label(root, text="Choose a destination folder to export the output.")
     exportlabel.grid(row=0, column=0, pady=(25, 0), padx=50)
