@@ -1,5 +1,4 @@
 from tkinter import *
-from PIL import Image, ImageTk
 from tkinter import filedialog
 import shutil
 from pathlib import Path
@@ -7,12 +6,11 @@ import info_compress
 from info_compress import InfoCompressor
 import logging
 import chiller
+from combinedOCRProcessor import CombinedOCRProcessor
 
 logging.basicConfig(format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.WARNING)
-
-
 # Initializes root window
 root = Tk()
 
@@ -23,6 +21,7 @@ y = (root.winfo_screenheight() - root.winfo_reqheight()) // 2
 root.geometry(f"+{x}+{y}")
 
 ic = InfoCompressor()
+cop = CombinedOCRProcessor()
 
 # Brings the window into focus
 root.lift()
@@ -100,6 +99,7 @@ def show_screen2(index=0):
     contbtn.grid(row=len(complist) + 2, column=0, pady=(0, 35))
 
 
+<<<<<<< HEAD
 debug_enabled = BooleanVar()
 
 
@@ -138,6 +138,48 @@ def _apply_debug():
 
 
 def show_screen_debug():
+=======
+def show_screen4():
+    for widget in root.winfo_children():
+        widget.destroy()
+    uploadlbl = Label(root, text="Upload a PDF file.")
+    uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
+
+    # Load normal and hover state images for the upload button
+    normalimg = PhotoImage(file="uploadnormal.png")
+    hoverimg = PhotoImage(file="uploadhover.png")
+    filebtn = Label(
+        root,
+        image=normalimg,
+        padx=70,
+        pady=70,
+        cursor="hand2",
+    )
+
+    # Keep a reference to prevent garbage collection
+    filebtn.image = normalimg
+    filebtn.grid(row=1, column=0, pady=25)
+
+    # Swap image on hover and trigger import on click
+    filebtn.bind("<Enter>", lambda e: filebtn.config(image=hoverimg))
+    filebtn.bind("<Leave>", lambda e: filebtn.config(image=normalimg))
+    filebtn.bind("<Button-1>", lambda e: import_pdf())
+
+def import_pdf():
+    file_path = filedialog.askopenfilename(
+        title="Select a file",
+        filetypes=[("PDF Files", ["*.pdf"])]
+    )
+    # Keep root window in focus after dialog closes
+    root.lift()
+    root.focus_force()
+    contbtn = Button(root, text="Begin OCR", command=lambda: cop.process_document(file_path))
+    contbtn.grid(row=3, column=0, pady=(0, 35))
+
+def show_screen3():
+    global dirbtn, dirlbl
+    # Remove all screen 1 widgets
+>>>>>>> fd63f561602225b9570ef4908f9d622a2cad04f0
     for widget in root.winfo_children():
         widget.destroy()
     Label(root, text="Debug Options").grid(row=0, column=0, pady=(25, 0), padx=100)
@@ -179,7 +221,7 @@ def directory_select():
         # Re-show choose directory button below the label so user can reselect
         dirbtn.grid(row=3, column=0, pady=0)
         # Export button to confirm and proceed
-        exportbtn = Button(root, text="Export")
+        exportbtn = Button(root, text="Continue", command=show_screen4)
         exportbtn.grid(row=4, column=0, pady=(0,35))
 
 
