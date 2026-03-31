@@ -1,11 +1,13 @@
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from tkinter import *
 from tkinter import filedialog
 import shutil
 from pathlib import Path
-import info_compress
 from info_compress import InfoCompressor
 import logging
-import chiller
 from combinedOCRProcessor import CombinedOCRProcessor
 
 logging.basicConfig(format="%(levelname)s: %(message)s")
@@ -99,7 +101,6 @@ def show_screen2(index=0):
     contbtn.grid(row=len(complist) + 2, column=0, pady=(0, 35))
 
 
-<<<<<<< HEAD
 debug_enabled = BooleanVar()
 
 
@@ -138,16 +139,23 @@ def _apply_debug():
 
 
 def show_screen_debug():
-=======
-def show_screen4():
     for widget in root.winfo_children():
         widget.destroy()
+    Label(root, text="Debug Options").grid(row=0, column=0, pady=(25, 0), padx=100)
+    Checkbutton(root, text="Enable debug output", variable=debug_enabled).grid(row=1, column=0, pady=(10, 0))
+    Button(root, text="Continue", command=lambda: [
+        _apply_debug(),
+        show_screen3()
+    ]).grid(row=2, column=0, pady=(10, 35))
+
+
+def show_screen4():
+    for widget in root.winfo_children():
+        if not isinstance(widget, Toplevel):
+            widget.destroy()
     uploadlbl = Label(root, text="Upload a PDF file.")
     uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 
-    # Load normal and hover state images for the upload button
-    normalimg = PhotoImage(file="uploadnormal.png")
-    hoverimg = PhotoImage(file="uploadhover.png")
     filebtn = Label(
         root,
         image=normalimg,
@@ -165,6 +173,7 @@ def show_screen4():
     filebtn.bind("<Leave>", lambda e: filebtn.config(image=normalimg))
     filebtn.bind("<Button-1>", lambda e: import_pdf())
 
+
 def import_pdf():
     file_path = filedialog.askopenfilename(
         title="Select a file",
@@ -175,19 +184,6 @@ def import_pdf():
     root.focus_force()
     contbtn = Button(root, text="Begin OCR", command=lambda: cop.process_document(file_path))
     contbtn.grid(row=3, column=0, pady=(0, 35))
-
-def show_screen3():
-    global dirbtn, dirlbl
-    # Remove all screen 1 widgets
->>>>>>> fd63f561602225b9570ef4908f9d622a2cad04f0
-    for widget in root.winfo_children():
-        widget.destroy()
-    Label(root, text="Debug Options").grid(row=0, column=0, pady=(25, 0), padx=100)
-    Checkbutton(root, text="Enable debug output", variable=debug_enabled).grid(row=1, column=0, pady=(10, 0))
-    Button(root, text="Continue", command=lambda: [
-        _apply_debug(),
-        show_screen3()
-    ]).grid(row=2, column=0, pady=(10, 35))
 
 
 def show_screen3():
