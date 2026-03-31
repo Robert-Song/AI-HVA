@@ -1,9 +1,10 @@
 import sys
 import os
+import threading
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from tkinter import *
-from tkinter import filedialog
+from tkinter import filedialog, ttk
 import shutil
 from pathlib import Path
 from info_compress import InfoCompressor
@@ -13,17 +14,18 @@ from combinedOCRProcessor import CombinedOCRProcessor
 logging.basicConfig(format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.WARNING)
+
+ic = InfoCompressor()
+cop = CombinedOCRProcessor()
+
 # Initializes root window
 root = Tk()
 
 # Position window at center of screen
-root.update_idletasks()
+root.update_idletasks() 
 x = (root.winfo_screenwidth() - root.winfo_reqwidth()) // 2
 y = (root.winfo_screenheight() - root.winfo_reqheight()) // 2
 root.geometry(f"+{x}+{y}")
-
-ic = InfoCompressor()
-cop = CombinedOCRProcessor()
 
 # Brings the window into focus
 root.lift()
@@ -174,6 +176,18 @@ def show_screen4():
     filebtn.bind("<Button-1>", lambda e: import_pdf())
 
 
+_ocr_stopped = False
+_progress_bar = None
+
+
+def set_progress(value):
+    """Update the progress bar on screen 5. value should be 0-100.
+    Can be called from other modules: import GUI.gui as gui; gui.set_progress(50)
+    """
+    if _progress_bar is not None:
+        _progress_bar['value'] = value
+
+
 def import_pdf():
     file_path = filedialog.askopenfilename(
         title="Select a file",
@@ -182,8 +196,43 @@ def import_pdf():
     # Keep root window in focus after dialog closes
     root.lift()
     root.focus_force()
-    contbtn = Button(root, text="Begin OCR", command=lambda: cop.process_document(file_path))
+    contbtn = Button(root, text="Begin OCR", command=lambda: start_ocr(file_path))
     contbtn.grid(row=3, column=0, pady=(0, 35))
+
+
+def start_ocr(file_path):
+    global _ocr_stopped
+    _ocr_stopped = False
+    show_screen5()
+
+    def run():
+        result = cop.process_document(file_path)
+        if not _ocr_stopped:
+            root.after(0, lambda: on_ocr_complete(result))
+
+    threading.Thread(target=run, daemon=True).start()
+
+
+def on_ocr_complete(result):
+    # TODO: handle OCR result and advance to next screen
+    pass
+
+
+def stop_ocr():
+    global _ocr_stopped
+    _ocr_stopped = True
+    show_screen4()
+
+
+def show_screen5():
+    global _progress_bar
+    for widget in root.winfo_children():
+        if not isinstance(widget, Toplevel):
+            widget.destroy()
+    Label(root, text="Processing...").grid(row=0, column=0, pady=(25, 0), padx=100)
+    _progress_bar = ttk.Progressbar(root, orient="horizontal", length=300, mode="determinate", maximum=100)
+    _progress_bar.grid(row=1, column=0, pady=(10, 0), padx=40)
+    Button(root, text="Stop Processing", fg="red", command=stop_ocr).grid(row=2, column=0, pady=(10, 35))
 
 
 def show_screen3():
