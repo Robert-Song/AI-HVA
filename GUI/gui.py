@@ -1,6 +1,7 @@
 import sys
 import os
 import threading
+import json
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from tkinter import *
@@ -22,7 +23,7 @@ cop = CombinedOCRProcessor()
 root = Tk()
 
 # Position window at center of screen
-root.update_idletasks() 
+root.update_idletasks()
 x = (root.winfo_screenwidth() - root.winfo_reqwidth()) // 2
 y = (root.winfo_screenheight() - root.winfo_reqheight()) // 2
 root.geometry(f"+{x}+{y}")
@@ -103,7 +104,23 @@ def show_screen2(index=0):
     contbtn.grid(row=len(complist) + 2, column=0, pady=(0, 35))
 
 
+_CONFIG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config.json")
+
+def _load_config():
+    try:
+        with open(_CONFIG_PATH, "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def _save_config(data):
+    cfg = _load_config()
+    cfg.update(data)
+    with open(_CONFIG_PATH, "w") as f:
+        json.dump(cfg, f)
+
 debug_enabled = BooleanVar()
+debug_enabled.set(_load_config().get("debug_enabled", False))
 
 
 class DebugWindow(logging.Handler):
@@ -146,6 +163,7 @@ def show_screen_debug():
     Label(root, text="Debug Options").grid(row=0, column=0, pady=(25, 0), padx=100)
     Checkbutton(root, text="Enable debug output", variable=debug_enabled).grid(row=1, column=0, pady=(10, 0))
     Button(root, text="Continue", command=lambda: [
+        _save_config({"debug_enabled": debug_enabled.get()}),
         _apply_debug(),
         show_screen3()
     ]).grid(row=2, column=0, pady=(10, 35))
