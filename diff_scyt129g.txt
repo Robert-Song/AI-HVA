@@ -1,0 +1,360 @@
+Instruments (TTI) offers a full spectrum of
+logic functions and technologies include-including
+ing BICMOS, bipolar, and the latest
+maintenancelatest technology while
+still maintainmaintaining support for traditional
+LIVITLVIT Transfers.
+CompeterCompetitor Part Profiles
+WINWin not only today's race, but
+tomorrowstomorrow's with TI Little Logic
+TlTI's large portfolio includes single, dual-
+Better engine, customer centrecenter
+functions in space -saving packages
+BroadcastBroad portfolio of function and
+to no end-of-life policy, the product
+butterfliesbuffers, registers, transistorstranslators, and
+To no pit-Stop, ever end-of -life policy
+to deliver ptpit-stop
+call your TI TI Field Sales office, your
+\n
+Little LogicGuideLogic Guide 2018 | 3
+080.8 to 5.65
+3,.3
+2,.0
+1,.0 to 5,.5
+5,.0.5.
+0,.5.0.
+4,.5 to 65.5, 5,.6
+-2,.5-8
+-3,.0-5.8
+\n
+· letSupports supports hot insertion
+· allowAllow voltage on the inputs or
+. Drive at 1.5V at 2.9 mmA a 2.5 vV
+. Operate at range 1.6 mmA a 3.5 mmA a typical
+. ShemitSchmitt trigger allows any slope
+· Operating (low MhzMHz to 5 V
+· Speed MhzMHz at 3.3 V vs 5 V V
+. Speed (lowest power - 1.3 MhzMHz vs 3.6 M aat 5V
+. Open drain HifiHi-fi-2
+· Power drain HifHi-fi-3
+. Over -voltage input enables up or down
+. Operating (Lowest power- 0.6 vV 3.8 v3V 3.6V
+· Driver at 1,.9 mmA A at 3,.3 V
+Drive 1.9 MHz at 3.3 V 3.7 vV typical
+Speed 50 MHz at 3:.3 V Typical
+· Operating range: 0.8-V to 2.7-V VocVcc
+· operating range: 2.3-vV to 3.6-V V VcVcc
+· 2.0-insns typical pd
+SN7ACBTG1G1384SN74ACBTG1G1384
+SN77ACBTGT1285SN77AUC2GG66SN74ACBTGT1285 SN74AUC2G66
+SN71AUC22GG6SN74AUC1G26
+. Operating range : 1.65~ V to 5.5~ V Vcc
+CBTLV (low voltage bus switch])
+LVC (lowvoltagelow-voltage CMOsCMOS)
+. operating range : 3.0~ V 3.36~6 V VocVcc.
+SN747VC1G66SN74LVC1G66
+SNT74VC1CG66SN74LVC1G66
+. SN7ACTBTLV1G1537SN74ACTBTLV1G1537
+transition from 5-V tubessystems to LVTTL.
+Visit www.tlti.com/signals/switches for the application report, "Selecting the Right TI Signal Switch."
+3.5-5ns typical input
+ing nine single-channel logic functions in the 19th1.97,
+SN7AUP1657SN74AUP1G97
+SNT4AUP1799SN74AUP1G99
+Sn7AUp1G98SN74AUP1G98
+ButlerBuffer
+LVC (low-voltage CMOS) - Operating range: 1.8 -V to 5.5 -V Vcc
+- 3.0-ns 5.0 typical pd
+SN4A4LVC1G87SN74LVC1G87
+SNN7A4VC1G89SN74LVC1G89
+InvertorInverter
+devices to fully integrate gate and up or up of
+\ndown 
+\ntranslation functionality operating
+gates which are NAND and NORDNOR, NOR,
+· -40º°C to 125℃°C ℃ a operation
+Widgets and voltage range of 181.08 V
+widefieldwide field of logic gate functions to
+GMOs Input
+\n3,.3 V
+V. CMOS Output
+(1.8.5 V3V 3.0V0 V)
+needs. The Broad TI NanoStar™ and
+IQNFNIQFN package portfolio continues to and
+trial for medical, automotive and indus-industrial
+Our latest NanoStar® additions include
+IQFN (0,.50 mm pitch DFW package) -
+6.5mm smaller than DFSFDSF ( 0.35 mm pitch)
+.6% smaller Than DFSfDSF (0:.35 mm Pitch)
+0,.5mm pitch enables ease of
+· Direct cross to NXP® "GX" package
+wCPPWCPP-
+7-PnPin
+9-Ball 10-Ball 11-Ball 12-Ball 13-Ball 14-BallBalll 15-Ball 16-Ball 17-Ball 18-Ball 19-Ball 20-Ball 21-Ball 22-Ball 23-Ball 24-Ball 25-Ball 26-Ball 27-Ball 28-Ball 29-Ball 30-Ball 31-Ball 32-Ball 33-Ball 34-Ball 35-Ball 36-Ball 37-Ball 38-Ball 39-Ball 40-Ball 50-Ball 51-Ball 52-Ball 53-Ball 54-Ball 55-Ball 56-Ball 57-Ball 58-Ball 59-Ball 60-Ball 61-Ball 62-Ball 63-Ball 64-Ball 65-Ball 66-Ball 67-Ball 68-Ball 69-Ball 70-Ball 71-Ball 72-Ball 73-Ball 74-Ball 75-Ball 76-Ball 77-Ball 78-Ball 79-Ball 80-Ball 81-Ball 82-Ball 83-Ball 84-Ball 85-Ball 86-Ball 87-Ball 88-Ball 89-Ball 90-Ball 91-Ball 92-Ball 93-Ball 94-Ball 95-Ball 96-Ball 97-Ball 98-Ball 99-Ball 104-Ball 105-Ball 106-Ball 107-Ball 108-Ball 109-Ball 110-Ball 115-Ball 116-Ball 117-Ball 130-Ball 129-Ball 140-Ball 125-Ball 126-Ball 127-Ball 128-Ball 133-Ball 135-Ball 154-Ball 155-Ball 156-Ball 158-Ball 159-Ball 170-Ball 145-Ball 151-Ball 152-Ball 153-Ball 164-Ball 175-Ball 176-Ball 177-Ball 178-Ball 179-Ball 184-Ball 181-Ball 189-Ball 190-Ball 191-Ball 192-Ball 183-Ball 199-Ball 220-Ball 230-Ball 222-Ball 229-Ball 235-Ball 226-Ball 227-Ball 240-Ball 260-Ball 270-Ball 255-Ball 280-Ball 261-Ball 262-Ball 283-Ball 285-Ball 256-Ball 287-Ball 288-Ball 289-Ball 290-Ball 303-Ball 320-Ball 340-Ball 345-Ball 355-Ball 370-Ball 375-Ball 390-Ball 440-Ball 430-Ball 450-Ball 460-Ball 480-Ball 505-Ball 610-Ball 620-Ball 630-Ball 640-Ball 625-Ball 650-Ball 670-Ball 700-Ball 770-Ball 720-Ball 800-Ball 820-Ball 840-Ball 850-Ball 900-Ball 1100-Ball 1200-Ball 1300-Ball 1400-Ball 1500
+-DTE-SFT-SIS-SDSP-S TECH-SEN-SEM-SOL-S LE-LEDL-SALE-SING-S,S-PIC-DIM-SZ-SH-D/SDX/S-SIM SIM-SHL-SIR-S"S-NAM-PMS-S'-S-TAM-F-DIE-DHS-DCR-S®-S1-S:D-S S-SULT-S3-SLC-SMB-DUSB-S
+\nSingle 4-Input OR Gate
+\nSingle 5-Input Driver W/Open Drain Output
+VVC1604
+\nSingle 6-InputNORInput NOR Gate
+XL VVC1607
+X VVC 1607
+\nSingle 8-Input Or Gate
+\nSingle 9-Input/Output W/ Open Drain Output
+XLV1608
+\nSingle 10- Input/Output Output
+XLv1609
+\nSingle 12-Input or Gate
+\nXL vV16071
+\nLVL16072
+Single 1- Input NAND gate
+Single Sine-Input Trigger W/O-Open Drain OutPUTOutput
+Single Input Trigger Inverververter InverterterInverter/Inverter
+X/D-Stage Inverizer Inverger InverperterInverter/Inverter
+Single E-D Type-Drip-D Drain Drain Input-Drain Output Output
+XD-Dip-Type-Type Drain Outoutout Output
+Single Type-Type Flip-Flip-Flop
+Auc1018SingleAuc1018 Single-Type Flip Flop-Flap-GATE
+Single Buffer Buffer Gate W3W/3-State Output
+Single ButterBuffer Buffer Gate w/3-state Output
+AUCK1018 single-input NANONAND Gate
+AUMP1006SingleAUMP1006 Single Input Butter/Driver / Driver/ Driver with Drain OutPUTOutput
+AAP1008SingleAAP1008 Single Input Gate Gate
+A.AUP1107AUG130AUP1107 AUG130 AUG120 AUG121 AUG123 AUG124 AUG125 AUG126 AUG127 AUG128 AUG129 AUG134 AUG135 AUG145 AUG136 AUG137 AUG138 AUG139 AUG140 AUG150 AUG170 AUG175 AUG176 AUG167 AUG169 AUG172 AUG173 AUG174 AUG177 AUG178 AUG179 AUG189 AUG190 AUG191 AUG192 AUG194 AUG195 AUG196 AUG197 AUG186 AUG187 AUG188 AUG199 AUG184 AUG19 AUG198 AUG171 AUG182 AUG193 AUG183 AUG185 AUG165 AUG164 AUG155 AUG160 AUG162 AUG163 AUG143 AUG168 AUG159 AUG146 AUG180 AUG151 AUG152 AUG153 AUG147 AUG154 AUG156 AUG157 AUG158 AUG166 AUG17 AUG18 AUG149 AUG181 AUG142 AUG144 AUG148 AUG15 AUG16 AUG205 AUG207 AUG208 AUG229 AUG202 AUG203 AUG204 AUG220 AUG225 AUG226 AUG227 AUG213 AUG223 AUG214 AUG215 AUG255 AUG216 AUG270 AUG265 AUG275 AUG267 AUG268 AUG269 AUG218 AUG228 AUG219 AUG230 AUG233 AUG235 AUG245 AUG248 AUG249 AUG239 AUG250 AUG295 AUG26 AUG206 AUG27 AUG258 AUG285 AUG259 AUG286 AUG287 AUG28 AUG29 AUG289 AUG209 AUG279 AUG290 AUG299 AUG210 AUG240 AUG201 AUG221 AUG22 AUG23 AUG24 AUG25 AUG20 AUG21 AUG243 AUG224 AUG234 AUG241 AUG251 AUG242 AUG232 AUG254 AUG257 AUG263 AUG264 AUG252 AUG273 AUG244 AUG237 AUG274 AUG277 AUG246 AUG253 AUG297 AUG247 AUG294 AUG298 AUG276 AUG288 AUG296 AUG307 AUG280 AUG271 AUG278 AUG318 AUG303 AUG319 AUG292 AUG282 AUG281 AUG293 AUG304 AUGUST AUGAUG229
+UG27AUG28AUG24AUG27UG27 AUG28 AUG24 AUG27
+UG29AUG31UG29 AUG31 AUG30 AUG32 AUG38 AUG34 AUG89 AUG39 AUG31AUG34AUG31 AUG34
+UG34AUG38AUG39AUG36UG34 AUG38 AUG39 AUG36 AUG88 AUG33 AUG36
+UG37 AUG48 AUG47 AUG42 AUG44 AUG AUG43 AUG45 AUG87 AUG49 AUG4 AUG40 AUG58 AUG41 AUG46 AUGB AUG59 AUG37AUG18AUG37 AUG18
+UG18AUG88UG18 AUG88
+UG88AUG19AUG48AUG44AUGAUGEUG88 AUG19 AUG48 AUG44 AUGAUGE AUG64 AUG68 AUG
+S07-23S0723 S07
+Invert Buffer/DiverDriver and/ORor Up/ Down-Transistor
+LXT1217-X1 Input Exclusive/or (0/OR) gate and/ooror Up/down-transistor
+NOTE: Visit www.tech-technologieti.com for product release updates.
+1717171616161716171717 17 17 16 16 16 17 16 17 17
+17167417 16 74
+AP171767AP 17 76 7
+1617676716 76 76 7
+174717 47
+164716 47
+176417 64
+17676417 76 64
+16163416 16 34
+166416 64
+V17176464V 17 17 64 64
+163716 37
+16676716646464167416741717476716 76 76 71 66 46 64 16 74 16 74 17 76 7
+177417 74
+162416 24
+162716 27
+17686817 68 68
+163816 38
+16746464176816 74 64 64 17 68
+Little LogLogic Guide Guide 2018
+162816 28
+111111 11
+Dual INverterInverter/Inverter Drain Output
+NOVX: Visit www.wwwti.techtech.co.ukcom/product releasefor updatesdatasheet, package, and other product information
+S77S77S78
+S78
+\nS79
+Configurer Multiple-FunctonFunction Gate
+Ultra-Configurable MultiplicatonMultiplication Gate
+ALVIC169xxLIVIC169xxxLIVC169xxXLVIC167xxLVIC16xxLUVIC167xxxLVICT169xxLLVIC165xxLALVIC169xx LIVIC169xxx LIVC169xx XLVIC167xx LVIC16xx LUVIC167xxx LVICT169xx LLVIC165xx L
+LAVIC169XXLUV16xxXLVIcc167xxXLIVIC165xxxLUV160xxLAVC169xLUV167xxxXLVICT167xxLLUV16XXLVVICT165xxXLUV16xxxLAVV16xxLVV16xLV16XXXLVV16XLAVIC169XX LUV16xx XLVIcc167xx XLIVIC165xxx LUV160xx LAVC169x LUV167xxx XLVICT167xx LLUV16XX LVVICT165xx XLUV16xxx LAVV16xx LVV16x LV16XXX LVV16X
+VLT16XLV167VLT16X LV167
+LOV16XLV16XXLV16XVVVLOV16X LV16XX LV16X VVV
+LVD16XXVV6XXLAV16XXVLV16LVD16XX VV6XX LAV16XX VLV16
+LVO16XXLLV16IXLV15XXLVLV15XLUV15XLV17XXLIV16XXLV16VXLAV17XXLV17XLV18XXLV18XLV19XLV20XLV21XLV22XLV23XLV24XLV25XLV26XLV27XLV28XLV29XLV30XLV31XLV32XLV34XLV35XLV36XLV37XLV38XLV39XLV40XLV41XLV42XLV43XLV44XLV45XLV46XLV47XLV48XLV49XLV50XLV51XLV52XLV53XLV54XLV55XLV56XLV57XLV58XLV59XLV60XLV61XLV62XLV63XLV64XLV65XLV66XLV67XLV68XLV69XLV70XLV71XLV72XLV73XLV74XLV76XLV77XLV78XLV79XLV80XLV81XLV82XLV83XLV84XLV85XLV88XLV89XLV90XLV91XLV92XLV93XLV94XLV95XLV96XLV97XLV98XLV99XLV100XLV110XLV101XLV102XLV103XLV104XLV105XLV106XLV107XLV112XLV127XLV128XLV129XLV130XLV131XLV122XLV132XLV134XLV135XLV136XLV137XLV138XLV139XLV140XLV145XLV150XLV160XLV175XLV176XLV167XLV168XLV178XLV165XLV169XLV170XLV171XLV172XLV173XLV164XLV177XLV188XLV192XLV187XLV179XLV190XLV220XLV200XLV218XLV183XLV194XLV195XLV196XLV199XLV197XLV228XLV198XLV229XLV219XLV210XLV217XLV216XLV223XLV225XLV226XLV227XLV248XLV214XLV215XLV267XLV265XLV268XLV270XLV269XLV208XLV259XLV206XLV230XLV250XLV260XLV213V228XV218XV220XV225XLVO16XX LLV16IX LV15XX LVLV15X LUV15X LV17XX LIV16XX LV16V X LAV17XX LV17X LV18XX LV18X LV19X LV20X LV21X LV22X LV23X LV24X LV25X LV26X LV27X LV28X LV29X LV30X LV31X LV32X LV34X LV35X LV36X LV37X LV38X LV39X LV40X LV41X LV42X LV43X LV44X LV45X LV46X LV47X LV48X LV49X LV50X LV51X LV52X LV53X LV54X LV55X LV56X LV57X LV58X LV59X LV60X LV61X LV62X LV63X LV64X LV65X LV66X LV67X LV68X LV69X LV70X LV71X LV72X LV73X LV74X LV76X LV77X LV78X LV79X LV80X LV81X LV82X LV83X LV84X LV85X LV88X LV89X LV90X LV91X LV92X LV93X LV94X LV95X LV96X LV97X LV98X LV99X LV100X LV110X LV101X LV102X LV103X LV104X LV105X LV106X LV107X LV112X LV127X LV128X LV129X LV130X LV131X LV122X LV132X LV134X LV135X LV136X LV137X LV138X LV139X LV140X LV145X LV150X LV160X LV175X LV176X LV167X LV168X LV178X LV165X LV169X LV170X LV171X LV172X LV173X LV164X LV177X LV188X LV192X LV187X LV179X LV190X LV220X LV200X LV218X LV183X LV194X LV195X LV196X LV199X LV197X LV228X LV198X LV229X LV219X LV210X LV217X LV216X LV223X LV225X LV226X LV227X LV248X LV214X LV215X LV267X LV265X LV268X LV270X LV269X LV208X LV259X LV206X LV230X LV250X LV260X LV213V LV228X V218X V220X V225X
+XLXIXIXIXXIXIXIIXIXXLXIXIXIX X IXIXIIXIX
+XLVIXIxxxIXXLIXIXIIIXXIXXLVIXIxxxIX XLIXIXIIIXXIX
+\n
+Single - Type-Fip-FloFlop-Flap W3 -
+\n
+Dual-Dual Input Wiper W/O2/O3/O4/O5/O6/O7/O8/O9/O10/O11/O12/O13/O14/O15/O16/O17/O18/O19/O20/O21/O22/O23/O24/O25/O26/O27/O28/O29/O30/O31/O32/O33/O34/O35/O36/O37/O38/O39/O40/O41/O42/O43/O44/O45/O46/O47/O48/O50/O51/O52/O53/O54/O55/O56/O57/O58/O59/O60/O61/O62/O63/O64/O65/O66C66/O67C67/O68C68/O69C69/O70C70/O71C71/O72C72/O73C73/O74C74/O76C76/O78/O79/O80/O81/O82/O83/O84/O85/O86/O87/O88/O89/O90/O91/O92/O93/O94/O95/O96/O97/O98/O99/O101/O102/O104/O105/O106/O107/O110/O112/O113/O114/O115/O116/O117/O118/O119/O120/O121/O122/O123/O124/O125/O126/O127/O128/O129/O130/O131/O132/O134/O135/O136/O137/O138/O169/O170/O171/O172/O173/O174/O175/O176/O187/O188/O179/O180/O190/O220/O230/O/O225/O260/O270/O205/O207/O208/O210/O215/O216/O217/O218/O219/O213/O223/O214/O203/O250/O226/O229/O255/O206/O227/O228/O265/O267/O268/O269/O280/O290/O320/O380/O310/O315/O365/O1/O318/O370/O319/O330/O350/O-
+18/N/N(LTC/L/LTCWZ/WV/W/WX/W3/W1/W7/NCT/W4/WIZ/W
+Single Inverter Buffer/DiverDriver Open Drain Drain
+Single input NORDNOR
+Single InterverterBufferInverter Buffer/Driver OpenerOpen Drain Drain Output
+Single ButterBuffer w/W/Schmit Trigger
+1 of 2 Input/Swmit Schmitt Triggers
+1/2 Input/Wipe/Flip D-Flip-Flop
+Single -Bus Buffer Gate w/3.-State
+Dual Gate (8-pin - In-pin) - Dual Input NORDNOR - Dual Inverters
+Dual InververterInverter (UnbufferUnbuffered/UnbufferBuffered)
+Dual 2-Input/Flap D-FlpFlip-Flop
+Dual D-Type Flip/Flp-FlOPFlop
+Single Low-Power Bus Switch (SN7AUC1G126)
+34 Function-Level Bus Switch (SN7AC1G134)
+TIITI (AUP)
+FairfieldFairchild (NXP)
+Single INPUT 2-Input NANONAND
+Single Single Buffer/Trigger-Trigger Type-Type Flip-FopFlop
+Dual Input NANDNNAND (N/8-InPUTINPUT NAND)
+Dual Dual Buffer/Input NANDWNAND W/Wiper Drain OutPUTOutput
+Dual InPUT2DUALIPWiperInput Driver2-Dual IP Wiper Driver Driver W-Drain Drain Output Output
+TohibaToshiba (TCS/SW)
+FarfieldFairchild (NCTS)
+NOTE: WT.WATHTHT4AHTIC12161616 
+Note: http://www.wwwti.WT.com.com for product releasesrelease updates 
+Little Logic Guide 2018 | Little Logic Guide 2019 | 21 2121ference
+Cross-Reference
+\nCompetitor Cross-References
+SN7/4LVC1657SN74LVC1657
+SingleConfigurableSingle Configurable (6 functions)
+SN74/4LC1658SN74LVC1658
+NCT75258NC75258
+\n
+Single Configuration (9 functions)
+SNA7/ALVC169SN74LVC169
+SN71/4LV1698SN74LVC1698
+LC168
+\nSingle configurable (8 functions)
+SingleconfigurableSingle configurable (9 functionfunctions)
+SNN7/AULV169SN74LVC169
+SNC7/AUV169)
+74ALVC1687-
+SNS7/AAULV167AULV167
+Single configuration (8 function)
+74AUV1657-
+7AUP167-
+NTC7/6P/8AUP158-
+74AUP169-
+AUUP168-Single Configurative (5 function)
+SN4/AUIP168-
+AUIP169- Single Configurable(5 functions)
+Sn7/AIUP168 -
+74AAUP169 -
+NOTE: Visit www.www.techtech.com/product-release updates
+AUPU169
+NAXPNXP
+SNSN74U/4/4U/T100
+MCTMCT74V/4V/C16100
+\nAUUP108
+Single Input Positive-AND Gate -
+SN24SN74ALV/ALV/T102
+SN27SN27ALP/ALP/T104
+MC7MC74AC/AC/G1610-
+4AUPT108-Single Positive-ANOAND Gate
+SM7/AlP/UT105-
+MU74/AUG/T106-
+Sn27/Alp/UT115-
+AUpt117-
+AUP11715-
+SNE/ALp/AU/T155-
+AUTP157-
+AUFP157-Single Single-Purpose-Buffer Buffer Buffer Gate-
+MU77/AUpl/T152-
+MCZ/4VC/IG1610B-
+AC7/AVIC/IGT16B 
+- AUPT157
+SNZ/ALPU/T156-
+INPUT 157-
+SZN/AALP175-
+AUAP178-
+AUPAUP187-
+7ALP178-7A4AUJP179-
+6V/0 NanoFree™
+ Logic Gate Function
+SN4A1UC6.
+TN27WZ.NLTZW.NL1UG.
+\nLittle Logic Configurables
+\nLittle logic Translation
+-NOTES: Visit www.technologie.com for product release updates.
+Texas Instruments
+LittleLogic Guide 2018 | 23
+\nResources and Support
+· Complete schematic/block diagrams
+0.00-0.0.1.2.0-0-1.0
+\ninertmentment of the publication is information regarding
+PhonePhoneIMPORTANT (1977-991-2616
+phone number: 1-888-981
+Other trademarks and the property of the respective owners.
+(1977-892-3737)
+Tele phone number:
+Hong Kong
+800-861-9841
+Telecom
+Europe, Middle East, and Africa
+India
+000-00-881-1008
+000 -00-081-1086
+Korea
+(800-88-982-1009
+Europe-Middle East, & Africa
+Malaysia
+1,800-00 -983-797
+(0800-893-897)
+Philippines
+1.800-082-1084
+International.
++49 (0) 871 921 2101
+1:800-886-1028
+(09) 881 921 2021
+Philippine
+1/800-885-1024
+Russian Support
+(49 (09) 971 1071
+Thailand
+001-800 -888-1026
+Note: The European Free Call (Free Number)
+International 
+International -+66-21-23373868
+is not active in all countries. If you have technical
+international number below. Please use the
+Fax:
++86-23-23773868.
+international 
+international
+international numeral number above.
+Fax
+(40-49) 8 8101 80 245
+internet
+tiasia@t.com /t.c/sc/asia.htm
+Support.t.i.com or t-china-tia.com)
+Printed in U.S.A. (Printed, City, State)
+Direct Email
+askexas@tasxas
+tEXAS
+INSTRUMENTSS
+SCYT129G
+IMPORTANT NOTICE FOR TI DESIGN INFORMATION AND RESOURCES
+Texas Instruments Incorporated (TTTTI) technical application or other design advice, services or information, including, but not limited to,
+ reference designs and materials relating to technical modules, collectively, "TI Resources)" are intended to assist designers who are
+ developing applications and materials that incorporate TI Products. By downloading, accessing or using any particular TI Resource in any way, you are
+individuality individually or, if you are acting on behalf of a company, your company, agree to use it solely for this purpose and subject to the terms of
+ this.
+\n
+enhancesments enhancements, improvements and other changes to TI Resources. It is applicableyour analysis,responsibility evaluationto andanalyze, judgmentevaluate and make judgments and corrections.
+\n
+You understand and agree that you have any other responsibility for TI Resources, such as ITITI Resources. TiTI Resources. TiiTI Resources. TeievesTI reserves the right to make corrections,
+(and of all of TI Products used for or or other failuresenhancements, withimprovements all applicable regulations, and other applicablechanges failures.to You
+anticipateTI dangerous consequences or failuresResources. (2)It monitoris theiryour compliance,responsibility and their consequences, and (3) listen to theensure likelihood of failures. If you
+will thoroughly test that such applications and the functionality of TiTI Products as used asin aany particular TIITI resourceResource.
+TII
+TI Products are not applicabledesigned tofor alluse applicablein requirementsall applications, and that applicable requirements. If applicable requirements are applicable, you
+ testing other than that specific specifications described in the published documents, and if applicable to this resource, it is not required that you
+ The TI Products identified in such such applications, NOTNO OTHER LICENSE, EXPRESS orOR IMPPLIEDIMPLIED, TO STOPPLED, orOR OFTHERSEVEOTHERWISE TO
+The TTIUSE TI Products listed in such Resources, NOOTHERNO OTHER LICENSE., EXPRESS OR IMPPLIEDIMPLIED, orOR OPSTOPPED,OTHERWISE areTO not allowed to apply for any applications that includeUSE.
+the
+The TI Products thatlisted havein beensuch issuedResources as required. The TTI products are not authorized to use this resource. This indicates that they are not included in the
+ RIGHT OF TI OR ANY ANYTHIRD THIRTY PARTY PARTY HEREIN, BUT NOT NOTLIMITED HEREIN.TO ButANY notPATENT onlyRIGHT, limitedTRADEMARK to any patent rightRIGHT, mightOR workOTHER right,INTELLECTUAL orPROPERTY RIGHT.
+regarding
+Regarding or referencing third-party products or services does not require a license to a third license to use any patent or other product or services, or a warranty or
+ endorsement thereof. Use of TIITI Resources. This requires a license not to comply with the patent or any intellectual property of the
+ TI RESOURSRESOURCES OR PROVIDED IT IS AND WITH ALL FAULTS. TTITI DISCUSSALESDISCLAIMS ALL OTHER WARRANTIES AND OTHER WARRANTY IS NOT LIMITED TO
+ ACCURACY OR COMPLETESCOMPLETENESS, TITLE, TITLES, TITL, AND ALL FILLEDIMPLIED FILLURE PURPOSE, AND NON-NON-INFROMPURPOSEINFRINGEMENT. AND ANY AMPLIFIED WARRANTY OR ANY PARTY INTELLECTUAL.
+PROPERTY RIGHTS.
+IIN NO EVENT SHALL NOTTI BE LIABLE FOR SHALL NOT DEFINED IF INFINITY YOU AGAINST ANY ANYDAMAGES, ANYINCLUDING INCLUING BUT NOT
+THIS ISLIMITED NOTTO ABILITY FOR THIS PARTY PURPOSE. IT IS NOT INFINITIBILITY FOR ANY ANYTHINGINDIRECT, BUT NOT INTENT
+DESCRIBED IN IT RESOURIES OR OTHERWEARESSPECIAL, IN NO EVENT SHALL IT IS LIABLE OR ANYCONSEQUENTIAL ACTUAL,DAMAGES DIRECT, SPECIAL, OR
+\nARISING OUT OF TIITI RESOUREESRESOURCES OR USE THESEOF ORTI THESE,RESOURCES. IN NO EVENT SHALL TOTI BE LIEBLELIABLE FOR ANY ACTIVALACTUAL, DIRECT., SPECIAL,
+POSSIBBILITY OFOR TTICONSEQUENTIAL RESOLVES,DAMAGES INCENTARISING SHALLOUT TOOF EXEMPLYTI RESOURCES OR EXPLORATIONUSE OF THETI OR
+PossibilityBILITY OF SUCH DAMAGESRESOURCES.
+\n
+This Notice applies to TI Resoures, Additional representatives against any damages, costs, and/or LIABILITIES BEEN ADVISED out of your non-
+Compliance with the terms and provisions of this NoticeResources. This Notice:
+This notice applies to Ti Resources, Additional applications apply to the use of the use and purchase of certain types of materials, TI products and services, TIITI products and Services.
+, modules, and samples (http://www.ti.com/docs/documents/samples/tampls.htm)
+Copyright @ 2018, Texas Instruments incorporated
+Incorporated
