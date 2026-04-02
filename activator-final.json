@@ -1,0 +1,86 @@
+{
+  "system_metadata": {
+    "system_name": "activator-prsd",
+    "netlist_source": "/Users/rileynoggle/Documents/CS407/AI-HVA/activator-prsd.kicad_sch",
+    "analysis_date": "2026-02-26T17:12:55.517068"
+  },
+  "connection_pairs": {
+    "U307-U309": {
+      "endpoints": [
+        "U307",
+        "U309"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/BAT_SW"
+      ]
+    }
+  },
+  "components": {
+    "U307": {
+      "component_id": "U307",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "U309"
+      ]
+    },
+    "U309": {
+      "component_id": "U309",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "U307"
+      ]
+    }
+  },
+  "connection_details": {
+    "U307-U309": {
+      "endpoints": [
+        "U307",
+        "U309"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/BAT_SW",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    }
+  },
+  "graph_analysis": {
+    "component_centrality": {
+      "U307": {
+        "degree": 1.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "U309": {
+        "degree": 1.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      }
+    },
+    "connection_criticality": {
+      "U307-U309": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": true,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      }
+    }
+  }
+}
