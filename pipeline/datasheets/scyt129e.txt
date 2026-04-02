@@ -1,0 +1,1329 @@
+Little Logic Guide
+Gates
+Configurables
+Signal Switches
+Translators
+ti.com 2018
+Little Logic Guide
+Table of Contents
+Introduction
+Overview ......................................................3
+As the world leader in logic, Texas
+Instruments (TI) offers a full spectrum of Little Logic Products by Performance 4
+logic functions and technologies includ-
+Logic Migration to 1.8-V Future . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+ing BiCMOS, Bipolar, and the latest
+advanced CMOS families. TI offers the Performance Comparisons ..........................................4
+most advanced logic technology while Gate Functions....................................................4
+still maintaining support for traditional
+Signal Switches ...................................................5
+logic products.
+Configurables.....................................................6
+Our logic portfolio includes:
+LV1T Translators...................................................6
+• Over 2000 functions
+Packaging 7
+• Technologies from 0.8 V to 18 V
+Advanced Packaging...............................................7
+• Best in class End-of-Life policies
+Little Logic Packaging ..............................................8
+Little Logic Package Cross Reference..................................8
+Selection Tables 9
+Single-Gate Functions ..............................................9
+Dual-Gate Functions ..............................................12
+Triple-Gate Functions..............................................14
+Signal-Switch Functions............................................14
+Configurable Functions ............................................15
+Voltage Translation Functions .................................... 15-16
+Cross-Reference 17
+Competitor Cross-Reference..................................... 17-22
+Part Number Definition.............................................23
+Competitor Part Prefixes ...........................................23
+Resources and Support 24
+TI Worldwide Technical Support......................................24
+2 | Little Logic Guide 2018 Texas Instruments
+Little Logic Guide
+Overview
+WIN not only today’s race, but More performance, one-stop selection
+tomorrow’s with TI Little Logic TI’s large portfolio includes single-, dual- TI Logic Forces:
+and triple-gates of the most popular
+• Worldwide #1 vendor
+Better engine, customer centric functions in space saving packages
+in the logic market
+With TI’s broad technical experience to allow you the space you need. By
+and application support in logic, analog replacing multiple devices through single • Broadest portfolio of function and
+package combinations
+and mixed signal designs, we provide configurable functions, Little Logic helps
+our customers with gate functions, to reduce inventory. • No end-of-life policy, the product
+you need is always available
+buffers/registers, level translators and
+No pit-stop, ever
+switches in state-of-the art packaging. • Biggest capacity in the market,
+TI Logic’s stable no end-of-life policy
+To better meet your growing needs, TI no delivery pit-stop
+secures that all products in our portfolio
+works closely with you to get your engine • Best-in-class support for easier
+will always be available. This means more
+started. and faster design
+than 10,000 devices are orderable to
+Faster time-to-market, easy-to-use support the widest range of applications
+Reaching faster time-to-market requires and end-equipment at any time you need
+easier design routing and minimized them. Little Logic’s stable delivery culture
+development risk. Little Logic devices is nothing new; it has lasted for more
+in TI’s space saving packages are easy than 40 years. We help you to keep going
+to implement, stay closer to the circuitry and solve delivery issues.
+and help simplify board designs. Without
+WIN with best-in-class support
+time-consuming invention of new silicon,
+For more information on TI’s Little Logic,
+designers can reach better performance
+call your local TI Field Sales office, your
+with ASIC designs by using Little Logic
+authorized TI distributor,
+functions.
+or visit us at www.ti.com/littlelogic.
+Before After
+Buffer
+Single
+gate
+Single
+Single µP
+µP gate gate
+Texas Instruments Little Logic Guide 2018 | 3
+Little Logic Products by Performance
+Logic Migration to 1.8-V Future
+Keep the pace, even longer!
+TI’s numerous logic technologies with low
+power help designers extend battery life
+easily. With a varied operating voltage
+of 5.5 V down to 0.8 V, this graph shows
+how our devices work to keep your
+system running faster and longer.
+Technology advancement
+Operating Optimized Propagation Output Input
+Voltage Range Voltage Delay - tpd Drive Tolerance I
+OFF
+Family (V) (V) (typ) (ns) (mA) (V) Protection
+AUP 0.8 to 3.6 3.3 3.5 4 3.6 Yes
+AUC 0.8 to 2.7 1.8 2.0 8 3.6 Yes
+LVC 1.65 to 5.5 3.3 3.0 24 5.5 Yes
+AHC 2.0 to 5.5 5.0 5.0 8 5.5 No
+AHCT 4.5 to 5.5 5.0 5.0 8 5.5 No
+CBT 4.5 to 5.5 5.0 0.25† –‡ 5.5 Yes
+CBTD 4.5 to 5.5 5.0 0.25† –‡ 5.5 Yes
+CBTLV 2.3 to 3.6 3.3 0.25† –‡ 3.6 Yes
+CB3T 2.5 to 3.6 3.3 0.25† –‡ 5.5 Yes
+LV1T 1.8 to 5.5 3.3 5 7 5.5 No
+†The progagation delay is the calculated RC time constant of the typical on-state resistance of the switch and the specified load capacitance, when driven by an ideal voltage source (zero output impedance).
+The value listed is a maximum.
+‡The FET switch has no output drive. The drive current at the output terminal is determined by the drive current of the device connected at the input terminal of the FET switch.
+4 | Little Logic Guide 2018 Texas Instruments
+)
+V(
+egatlov
+ylppuS
+CC
+AHC–7.0 ns
+AHCT–7.1 ns
++ LVC–3.4 ns 5
+5 V AHC–10.5 ns
+LV1T–20 ns
+4 AUP–4.3 ns
+LVC–3.6 ns
++ LVC–4.4 ns
+AUP–5.5 ns 3 AUC–2.0 ns
+3.3 V + A LV U C P – – 7 8 . . 2 2 n n s s
+AUC–2.4 ns
+AUC–2.3 ns 2 2.5 V + AUP–10.3 ns AUC–3.3 ns
+AUP–15.6 ns AUC–4.7 ns
+1.8 V + + AUP–18.0 ns
+1 1.5 V +
+1.2 V
+0.8 V
+0
+Performance Comparisons
+Gate Functions
+Little Logic gates have all the features of Advantages: AUC (fastest speed)
+their bigger cousins but in single, double, • I off supports hot insertion • Operating range 0.8 V to 2.7 V
+and triple gate functions. They cover the • I off allows voltages on the inputs or • Drive 5 mA at 1.5 V, 9 mA at 2.5 V
+full range of voltages from 0.8 V to 5.5 V. outputs when V cc is at 0 V • Speed 350 MHz at 2.5 V typical
+They come in tiny packages making them • Shcmitt trigger input allows any slope
+AHC (low power)
+excellent for handheld and any other on the rise and fall times
+• Operating range 2.0 V to 5.5 V
+equipment where space is a concern.
+Translators • Drive 4 mA at 3.3 V, 8 mA at 5 V
+Standard gates include: • LV1Txxx devices support both up and • Speed 150 MHz at 5 V typical
+• 2- and 3-input gates down translation.
+LVC (high drive)
+• Schmitt trigger input gates • AUP1Txx devices support up
+• Operating range 1.65 V to 5.5 V
+• 3-state output buffer translation • Drive 24 mA at 3.3 V, 32 mA at 5.0 V
+• Open drain output • Over voltage tolerant on input allows • Speed 250 MHz at 5 V typical
+• Power off Hi-Z down translation
+• Buffer decoder and multiplexer • Open drain output enables up or down AUP (lowest power – less than 0.9 µA
+• Latch and flip-flop translation at 3.3 V)
+• Operating range 0.8 V to 3.6 V
+• Dual power rail translator
+LV1T (up or down translation) • Drive 1.9 mA at 1.5 V, 4 mA at 3.3 V
+• Gate translations
+• Operating range 1.8 V to 5.5 V • Speed 190 MHz at 3.3 V typical
+• Drive 7 mA at 3.3 V
+• Speed 50 MHz at 3.3 V typical
+Little Logic Products by Performance
+Signal Switches
+CBT (Bus switch) CB3T (low-voltage translation bus AUC (advanced ultra-low-voltage
+• Operating range: 4-V to 5.5-V V switch) CMOS)
+CC
+• 0.25-ns typical t pd • Operating range: 2.3-V to 3.6-V V CC • Operating range: 0.8-V to 2.7-V V CC
+• 0.25-ns typical t • 2.0-ns typical t
+pd pd
+SN74CBT1G125 SN74CBT1G384
+SN74CBTD1G125 SN74CBTD1G384 SN74CB3T1G125 SN74AUC1G66 SN74AUC2G66
+SN74AUC2G53
+LVC (low-voltage CMOS)
+CBTLV (low-voltage bus switch) • Operating range: 1.65-V to 5.5-V V CC
+• Operating range: 2.3-V to 3.6-V V CC • 3.0-ns typical t pd
+• 0.25-ns typical t
+pd
+SN74LVC1G66 SN74LVC2G53
+SN74CBTLV1G125 SN74LVC1G3157 SN74LVC2G66
+3.3 V
+LVTTL
+LVC1G66 TTL-to-LVTTL level shifter
+The LVC1G66 can be used for simple
+translation from 5-V TTL levels to LVTTL.
+The control pin is tolerant to 5.5 V and,
+with a maximum r of 15 Ω at V = GND B A
+ON CC
+3.3 V, the voltage drop across the switch
+is only 0.36 V with 24 mA of through C V CC
+current.
+5-V TTL
+Signal
+LVC1G66
+Visit www.ti.com/signalswitches for the application report, “Selecting the Right TI Signal Switch.”
+Texas Instruments Little Logic Guide 2018 | 5
+Little Logic Products by Performance
+Configurables
+The next-generation configurable AUP (advanced ultra-low-power
+devices in the Little Logic portfolio are CMOS)
+the 1G97/98/99 functions in both the • Operating range: 0.8-V to 3.6-V V
+CC
+LVC and AUP technologies. By provid- • 3.5-ns typical t
+pd
+ing nine single-gate logic solutions in the
+1G97/98 and 60 functions in the 1G99, SN74AUP1G57 SN74AUP1G58
+the devices allow reductions in device SN74AUP1G97 SN74AUP1G98
+inventory and simplify part management. SN74AUP1G99
+LVC (low-voltage CMOS)
+• Operating range: 1.8-V to 5.5-V V
+CC
+• 3.0-ns typical t
+pd
+SN74LVC1G57 SN74LVC1G58
+SN74LVC1G97 SN74LVC1G98
+SN74LVC1G99
+LV1T is the industry’s first logic family of
+devices to fully integrate gate and up or
+down translation functionality operating
+from a single power supply. The LV1T
+family is available in nine different logic
+gates which are NAND & AND, NOR,
+OR, and XOR as well as several different
+buffer functions giving the customer a
+wide portfolio of logic gate functions to
+choose from.
+LV1T
+5 4 5 4 5 4
+3.3 V
+CMOS Input 1 2 3 1 2 3 1 2 3
+1T00 1T02 1T04
+(1.8 V, 2.5 V, 3.3 V)
+V CMOS Output 5 4 5 4 5 4
+CC
+(3.3 V)
+LVTTL/CMOS
+1 2 3 1 2 3 1 2 3
+(3.3 V) 1T08 1T32 1T34
+5 4 5 4 5 4
+1 2 3 1 2 3 1 2 3
+1T86 1T125 1T126
+LV1T Family Functions
+6 | Little Logic Guide 2018 Texas Instruments
+C
+C
+0
+1
+0
+4
+C
+C
+0
+1
+2
+7
+C
+C
+0
+1
+4
+5 8
+NAND NOR Inverter C98
+Inverter Buffer Selector
+with
+Inverter
+C
+C
+0
+1
+4
+7
+C
+C
+0
+3
+8
+2
+C
+C
+1
+1
+4
+5 7
+1G97
+Inverter AND Inverter C97
+Buffer OR Selector
+1G98
+LV1T Translators
+Key Features Benefits
+• Wide voltage range (1.8-5.0 V V ) • More than 50% board reduction by
+cc
+• Up-translation mode integration of the logic gate function
+• Down-translation mode and the up and down level shifter
+• —40º to 125ºC T operation • Widest voltage range of 1.8 V to 5.0 V
+a
+• Single power supply enables ease of
+routing
+• Single logic product family for three
+design modes
+• Extended temperature range
+Applications
+• Industrial - Metering
+• Automotive – Infotainment
+• Computing – Tablets, PC
+• Personal Electronics – Smartphones,
+Wearables
+Packaging
+Advanced Packaging
+Electronic development continues to needs. The broad TI NanoStarTM and µQFN (0.35mm pitch DSF package)
+grow into new and innovative markets. μQFN package portfolio continues to • Smallest line pitch, µQFN package
+Since innovation often means shrinking offer more performance at a smaller size in full production today
+size, packaging finds itself in the forefront to solve design issues. TI has developed • Over 30% smaller than the original,
+of enabling new features. and qualified fine pitch options in both • 0.5 mm pitch µQFN package
+package nodes.
+The ability to further customize packag-
+ing for medical, automotive and indus- Our latest NanoStarTM additions include µQFN (0.50 mm pitch DPW package)
+trial applications is playing a bigger role small, 0.3 mm pitch offerings such as • 56% Smaller than DRY (0.5 mm pitch)
+meeting new desires and enabling 0.6 mm x 0.9 mm x 0.5 mm, 6-pin pack- package
+solutions that were not possible in the ages that are easy-to-use in smaller and • 36% Smaller than DSF (0.35 mm pitch)
+past. Meeting today’s dynamic market thinner end applications. package
+needs for advanced package solutions The µQFN portfolio now includes the • 0.5 mm pitch enables ease of
+like size, thermal, electrical, and cost is world’s smallest 0.8 mm x 0.8 mm (0.5 mm manufacturing
+more exciting than ever. pitch) package, called the DPW package. • Sampling multiple functions across
+LVC/AUP
+TI continues to invest in innovative
+• Direct cross to NXP “GX” package
+solutions to be a leader in package
+development and offers two distinct
+package type solutions to address
+today’s, as well as tomorrow’s, market
+31%
+Smaller
+36%
+Smaller
+QFN µQFN µQFN
+(DRY) (DSF) (DPW)
+Little Logic Package Trend
+QFN µQFN
+SOT-23 (DRY) (DSF)
+(DBV) 1 x 1.45 x 0.6 (H) 1 x 1 x 0.35 (H)
+Lead Pitch 0.5 Lead Pitch 0.3
+2.9 x 2.8 x 1.45 (H)
+Lead Pitch 0.95 DRL
+1.6 x 1.6 x 0.6 (H) WCSP WCSP µQFN
+Lead Pitch 0.5 (YZP) (YZV) (DPW)
+0.9 x 1.45 x 0.5 (H) 0.9 x 0.9 x 0.5 (H) 0.8 x 0.8 x 0.4 (H)
+SC-70
+(DCK) Lead Pitch 0.5 Lead Pitch 0.5 Lead Pitch 0.5
+2 x 2.1 x 1.1 (H)
+Lead Pitch 0.65
+WCSP WCSP WCSP
+(YFP) (YFP) (YFP)
+0.77 x 1.57 x 0.5 (H) 0.77 x 1.17 x 0.5 (H) 0.77 x .77 x 0.5 (H)
+Lead Pitch 0.4 Lead Pitch 0.4 Lead Pitch 0.4
+Development
+Texas Instruments Little Logic Guide 2018 | 7
+Packaging
+Little Logic Packaging
+YFP YZP DCK DBV DCT DCU DRY DSF DQE RSE YZV DRL DPW
+8-Ball 6-Ball 4-Ball 8-Ball 5-/6-Ball 5-/6-Pin 5-/6-Pin 8-Pin 8-Pin 6-Pin 6-Pin 8-Pin 8-Pin 4-Ball 5-/6-Pin 5-Pin
+YFP YZP DCK DBV DCT DCU DRY DSF DQE RSE YZV DRL DPW
+8-Ball 6-Ball 4-Ball 8-Ball 5-/6-Ball 5-/6-Pin 5-/6-Pin 8-Pin 8-Pin 6-Pin 6-Pin 8-Pin 8-Pin 4-Ball 5-/6-Pin 5-Pin
+Package Sizes
+Height (inches) 0.020 0.020 0.020 0.020 0.020 0.037 0.047 0.051 0.035 0.022 0.014 0.014 0.022 0.020 0.020 0.015
+Packag(emm)
+(0,50) (0,
+Y
+5
+F
+0
+P
+) (0,5
+Y
+0
+F
+)
+P
+(0,50
+Y
+)
+FP
+(0,5
+Y
+0
+Z
+)
+P
+(0,
+Y
+9
+Z
+5
+P
+) (1
+D
+,2
+C
+0
+K
+) (1
+D
+,3
+B
+0
+V
+) (0,
+D
+9
+C
+0
+T
+) (0,
+D
+5
+C
+5
+U
+) (0,
+D
+37
+R
+)
+Y
+(0,3
+D
+7
+S
+)
+F
+(0,55
+D
+)
+QE
+(0,50)
+RSE
+(0,50
+Y
+)
+ZV
+(0,40)
+DRL DPW
+Pin 8-ball 6-ball 4-ball 8-ball 5-/6-ball 5-/6-pin 5-/6-pin 8-pin 8-pin 6-pin 6-pin 8-pin 8-pin 4-ball 5-/6-pin 5-pin
+Area (inches) 0.002 0.001 0.009 0.003 0.002 0.008 0.014 0.010 0.010 0.002 0.001 0.002 0.003 0.001 0.003 0.001
+Height (mm) (1,29) (00.,08199)7 (00,5.081)97(1,805.0)197(1,02.60)197 (40,.9051)97 0.(093)74 (06.,07427)2 (06.,07521)2 (10,.2093)54(00,6.04155)7 (10,2.091)57(1,904.0)146(0,650).0217(1,904.0)197(0,604.)0197 0.0157
+(inches) (mm)
+Pitch (inches) 0.016 0.001.56 0.0106.5 0.0200.5 0.0200.5 0.002.65 00.0.9357 0.012.26 0.012.30 0.002.09 0.001.44 0.0104.4 0.0200.370.0200.55 0.0200.5 0.0200.5 0.4
+(mm) (0,40) (0,40) (0,40) (0,50) (0,50) (0,65) (0,95) (0,65) (0,50) (0,50) (0,35) (0,35) (0,50) (0,50) (0,50) (0,50)
+Area 0.002 0.001 0.001 0.003 0.002 0.007 0.013 0.018 0.010 0.002 0.002 0.002 0.003 0.001 0.003 0.001
+Len(gsqth. i(nincchheess) )( sq. 0 m .0 m 62 ) 0.046 0.030 0.075 0.039 0.083 0.110 0.157 0.122 0.039 0.039 0.039 0.059 0.035 0.047 0.031
+(mm) (1,57) (11.,21078)9 (00,7.970)09(1,900.5)929(1,410.)71 (21,1.300)5 (24,8.20) (48,0.102) (31,110.8) (1,060.2) (1,001) (1,001) (1,501).4 (0,902).25 (1,200).81(0,801).92 0.64
+WPidittchh ( i(ninchchees)s ) (m0.m03)0 00.0.03106 0.003.001 60.0305.0 16 0.003.50 20 0.00.7092 0 00..101246 00.1.01367 00.0.07296 0.00.5072 0 0.00.3092 0 0.005.051 4 0.0509.0 140.0350 .0200.0603.0 200.0301. 020 0.020
+(mm) (0,77) (0,07.74) (0,707.)4 (0,900).4 (0,900).5 (2,000.5) (20,.9605) (20,9.955) (20,0.605) (1,405.5) (1,000.5) (1,400.3)5 (1,500).35(0,90)0.5 (1,600).5 (0,80)0.5 0.5
+Length (inches) (mm) 0.030 0.030 0.030 0.035 0.035 0.083 0.110 0.157 0.122 0.039 0.039 0.039 0.059 0.035 0.047 0.031
+0.77 0.77 0.77 0.9 0.9 2.1 2.8 4 3.1 1 1 1 1.5 0.9 1.2 0.8
+LWiitdtthl e(in cLheos) (gmmic) P0a.06c2ka0g.04i6ng0 .0C30ro0s.0s75-Re0.0f5e7ren0.0c79e 0.114 0.116 0.079 0.039 0.039 0.055 0.059 0.035 0.063 0.031
+1.57 1.17 0.77 1.9 1.45 2 2.9 2.95 2 1 1 1.4 1.5 0.9 1.6 0.8
+Cross-Reference
+Device TI Fairchild ON Toshiba NXP Pericom STMicro
+NanoStar™
+YZP L6 — — — — —
+Package WCSP
+SOT-23 (5-pin) DBV M5 DT F GV TX ST
+SC-70 (5-pin) DCK P5 DF FU GW CX CT
+SOT-23 (6-pin) DBV DT — — GV — —
+SC-70 (6-pin) DCK P6 DF — DW — —
+SSOP (8-pin) DCT — — FU — — —
+VSSOP (8-pin) DCU K8 US FK DC — —
+SOT563 (6-pin) DRL — XV5T2 ESV — — —
+NanoStar (4-ball) YZV — — — — — —
+Micro QFN (8-pin) DQE — — — — — —
+Micro QFN (8-pin) RSE L8 MU — GM — —
+Micro QFN (6-pin) DRY L6 AM — GM — —
+Micro QFN (6-pin) DSF FH CM — GF — —
+Micro QFN (5-pin) DPW — — — GX — —
+TI package YZP is NanoStar package DBV is 5- and 6-pin leadframe DCT is 8-pin leadframe DRL is 6-pin plastic
+suffix decoder YZV is NanoStar package DCK is 5- and 6-pin leadframe, slightly smaller than DBV DCU is 8-pin leadframe, slightly smaller than DCT small-outline
+8 | Little Logic Guide 2018 Texas Instruments
+Selection Tables
+Single-Gate Functions
+Single-Gates
+SOT-23 SC70 SM8 US8 X2SON SOT USON X2SON UQFN DSBGA DSBGA DSBGA µQFN
+Function Description (DBV) (DCK) (DCT) (DCU) (DQE) (DRL) (DRY) (DSF) (RSE) (YFP) (YZP) (YZV) (DPW)
+LVC1G00 Single 2-Input NAND Gate X X X X X X X
+LVC1G02 Single 2-Input NOR Gate X X X X X X X
+LVC1G04 Single Inverter X X X X X X X X
+LVC1Gu04 Single Unbuffered Inverter X X X X X X X
+LVC1Gx04 Crystal Oscillator Driver X X X
+LVC1G06 Single Inverter Buffer/Driver w/Open Drain Output X X X X X X X
+LVC1G07 Single Buffer/Driver w/Open Drain Output X X X X X X X X
+LVC1G08 Single 2-Input AND Gate X X X X X X X
+LVC1G10 Single 3-Input NAND Gate X X X X X
+LVC1G11 Single 3-Input AND Gate X X X X X
+LVC1G14 Single Schmitt Trigger Inverter X X X X X X X
+LVC1G17 Single Schmitt Trigger Buffer X X X X X X X X
+LVC1G18 1 of 2 Non-Inverting MUX X X X X X
+LVC1G19 1 of 2 Decoder/Demultiplexer X X X X X
+LVC1G27 Single 3-Input NOR Gate X X X X X
+LVC1G29 2 of 3 Decoder/Demultiplexer X X X
+LVC1G32 Single 2-Input OR Gate X X X X X X X
+LVC1G34 Single Buffer Gate X X X X X X X X X
+LVC1G38 Single 2-Input NAND Gate w/Open Drain Output X X X X X
+LVC1G74 Single Positive-Edge-Triggered D-Type Flip-Flop X X X X
+LVC1G79 Single D-Type Flip-Flop X X X X
+LVC1G80 Single D-Type Flip-Flop X X X
+LVC1G86 Single 2-Input Exclusive-OR Gate X X X X
+LVC1G123 Single Retrig Monostable w/Schmitt Trigger Inputs X X X
+LVC1G125 Single Bus Buffer Gate w/3-State Output X X X X X X X
+LVC1G126 Single Bus Buffer Gate w/3-State Output X X X X X X
+LVC1G132 Single 2-input NAND gate with Schmitt Trigger input X X X
+LVC1G139 2-Line to 4-Line Decoder X X X
+LVC1G175 Single D-Type Flip-Flop w/Asynch Clr X X X X
+LVC1G240 Single Buffer/Driver w/3-State Output X X X X X
+LVC1G332 Single 3-Input OR Gate X X X X X
+LVC1G373 Single D-Type Latch w/3-State Output X X X
+LVC1G374 Single D-Type Flip-Flop w/3-State Output X X X
+LVC1G386 Single 3-Input Exclusive-OR Gate X X X X X
+LVC1G0832 Single 3-Input Positive AND-OR Gate X X X
+LVC1G3208 Single 3-Input Positive OR-AND Gate X X X
+AHC1G00 Single 2-Input NAND Gate X X X
+AHC1G02 Single 2-Input NOR Gate X X X
+AHC1G04 Single Inverter X X X
+AHC1GU04 Single Unbuffered Inverter X X X
+AHC1G08 Single 2-Input AND Gate X X X
+AHC1G09 Single 2-Input AND Gate w/ Open Drain Output X X
+AHC1G14 Single Schmitt Trigger Inverter X X X
+AHC1G32 Single 2-Input OR Gate X X X
+AHC1G86 Single 2-Input Exclusive-OR Gate X X X
+AHC1G125 Single Bus Buffer Gate w/3-State Output X X X
+AHC1G126 Single Bus Buffer Gate w/3-State Output X X X
+AUC1G00 Single 2-Input NAND Gate X X X X
+AUC1G02 Single 2-Input NOR Gate X X X X
+AUC1G04 Single Inverter X X X X X
+AUC1Gu04 Single Unbuffered Inverter X X X
+AUC1G06 Single Inverter Buffer/Driver w/Open Drain Output X X X
+AUC1G07 Single Buffer/Driver w/Open Drain Output X X X
+AUC1G08 Single 2-Input AND Gate X X X X
+AUC1G14 Single Schmitt Trigger Inverter X X X
+AUC1G17 Single Schmitt Trigger Buffer X X X X
+AUC1G19 1 of 2 Decoder/Demultiplexer X X X X
+AUC1G32 Single 2-Input OR Gate X X X X
+AUC1G74 Single Positive-Edge-Triggered D-Type Flip-Flop X X X X
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Texas Instruments Little Logic Guide 2018 | 9
+Selection Tables
+Single-Gate Functions
+Single-Gates (continued)
+SOT-23 SC70 SM8 US8 X2SON SOT USON X2SON UQFN DSBGA DSBGA DSBGA µQFN
+Function Description (DBV) (DCK) (DCT) (DCU) (DQE) (DRL) (DRY) (DSF) (RSE) (YFP) (YZP) (YZV) (DPW)
+AUC1G79 Single D-Type Flip-Flop X X X
+AUC1G80 Single D-Type Flip-Flop X X X
+AUC1G86 Single 2-Input Exclusive-OR Gate X X X
+AUC1G125 Single Bus Buffer Gate w/3-State Output X X X
+AUC1G126 Single Bus Buffer Gate w/3-State Output X X X
+AUC1G240 Single Buffer/Driver w/3-State Output X X X
+AUP1G00 Single 2-Input NAND Gate X X X X X X X X
+AUP1G02 Single 2-Input NOR Gate X X X X X X X
+AUP1G04 Single Inverter X X X X X X X
+AUP1G06 Single Inverter Buffer/Driver w/Open Drain Output X X X X X X
+AUP1G07 Single Buffer/Driver w/Open Drain Output X X X X X X X X
+AUP1G08 Single 2-Input AND Gate X X X X X X X X
+AUP1G14 Single Schmitt Trigger Inverter X X X X X X X
+AUP1G17 Single Schmitt Trigger Buffer X X X X X X X
+AUP1G32 Single 2-Input OR Gate X X X X X X X X
+AUP1G34 Single Buffer Gate X X X X X X X X
+AUP1G57 2-Input Non-Inverting MUX X X X X X X X
+AUP1G74 Single Positive-Edge-Triggered D-Type Flip-Flop X X X X X X
+AUP1G79 Single D-Type Flip-Flop X X X X X X X
+AUP1G80 Single D-Type Flip-Flop X X X X X X
+AUP1G125 Single Bus Buffer Gate w/3-State Output X X X X X X X
+AUP1G126 Single Bus Buffer Gate w/3-State Output X X X X X X X
+AUP1G240 Single Buffer/Driver w/3-State Output X X X X X X
+AHCT1G00 Single 2-Input Positive-NAND Gate X X
+AHCT1G02 Single 2-Input Positive-NOR Gate X X
+AHCT1G04 Single Inverter Gate X X
+AHCT1G08 Single 2-Input Positive-AND Gate X X X
+AHCT1G14 Single Schmitt-Trigger Inverter Gate X X
+AHCT1G32 Single 2-Input Positive-OR Gate X X X
+AHCT1G86 Single 2-Input Exclusive-OR Gate X X
+AHCT1G125 Single Bus Buffer Gate With 3-State Output X X X
+AHCT1G126 Single Bus Buffer Gate With 3-State Output X X
+SOT-23 SC70 SM8 US8 SOT DSBGA USON X2SON DSBGA
+Function Description (DBV) (DCK) (DCT) (DCU) (DRL) (YZP) (DRY) (DSF) (YFP)
+AUP1T00 2-Input NAND Gate X
+AUP1T02 2-Input NOR Gate X
+AUP1T04 Inverter X
+AUP1T08 2-Input AND Gate X
+AUP1T14 Schmitt Trigger Inverter X
+AUP1T17 Schmitt Trigger Buffer X
+AUP1T32 2-Input OR Gate Single-Bit X
+AUP1T34 Buffer/Driver X X X
+AUP1T50 Schmitt Trigger Buffer/Driver X
+AUP1T57 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T58 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T86 2-Input Exclusive-OR Gate X
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+10 | Little Logic Guide 2018 Texas Instruments
+Little Logic Guide
+Single-Gate Functions
+SOT-23 SC70 SM8 US8 SOT DSBGA USON X2SON DSBGA
+Function Description (DBV) (DCK) (DCT) (DCU) (DRL) (YZP) (DRY) (DSF) (YFP)
+AUP1T87 2-Input Exclusive NOR Gate X
+AUP1T97 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T98 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T157 2 to 1 Data Selector/Multiplexer X
+AUP1T158 2-Input Multiplexer X
+SOT-23 SC70 SM8 US8 SOT USON DSBGA USON X2SON DSBGA
+Function Description (DBV) (DCK) (DCT) (DCU) (DRL) (DPK) (YZP) (DRY) (DSF) (YFP)
+LV1T00 NAND Gate and/or Up/Down-Translator X X
+LV1T04 Inverter Buffer/Driver and/or Up/Down-Translator X X
+LV1T08 2-Input AND Gate and/or Up/Down-Translator X X
+LV1T02 2-Input NOR Gate and/or Up/Down-Translator X X
+LV1T32 2-Input OR Gate and/or Up/Down-Translator X X
+LV1T34 Single Buffer Gate X X
+LV1T125 Buffer/Driver w/3-State Output w/High Disabled X X
+and/or Up/Down-Translator
+LV1T126 Buffer/Driver w/3-State Outputs w/Low Disabled X X
+and/or Up/Down-Translator
+LV1T86 2-Input Exclusive-OR (XOR) Gate and/or Up/Down- X X
+Translator
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Single-Gate Diagram
+Texas Instruments Little Logic Guide 2018 | 11
+Selection Tables
+Dual-Gate Functions
+Dual-Gates
+SOT-23 SC70 SM8 US8 SOT USON X2SON X2SON UQFN DSBGA DSBGA
+Function Description (DBV)-6 (DCK) (DCT) (DCU) (DRL) (DRY) (DSF) (DQE) (RSE) (YFP) (YZP)
+LVC2G00 Dual 2-Input NAND Gate X X X
+LVC2G02 Dual 2-Input NOR Gate X X X
+LVC2G04 Dual Inverter X X X X
+LVC2GU04 Dual Unbuffered Inverter X X X
+LVC2G06 Dual Inverter w/Open Drain Output X X X X X
+LVC2G07 Dual Non-Inverter w/Open Drain Output X X X X X
+LVC2G08 Dual 2-Input AND Gate X X X
+LVC2G14 Dual Schmitt Inverter X X X
+LVC2G17 Dual Schmitt Trigger Input Buffers X X X X X
+LVC2G32 Dual 2-Input OR Gate X X X
+LVC2G34 Dual Non-Inverter X X X X
+LVC2G38 Dual 2-Input NAND Gate w/Open Drain Output X X X
+LVC2G53 2:1 Analog Multiplexer/Demultiplexer X X X
+LVC2G79 Dual Positive-Edge-Triggered D-Type Flip-Flop X X X
+LVC2G80 Dual Positive-Edge-Triggered D-Type Flip-Flop X X X
+LVC2G86 Dual 2-Input Exclusive-OR Gate X X X
+LVC2G125 Dual Bus Buffer Gate w/3-State Outputs X X X
+LVC2G126 Dual Bus Buffer Gate w/3-State Outputs X X X
+LVC2G132 Dual 2-Input NAND Gate with Schmitt-Trigger Inputs X X X
+LVC2G157 Single 2 Line to 1 Line Data Selector/Multiplexer X X X
+LVC2G240 Dual Bus Buffer Gate w/3-State Outputs X X X
+LVC2G241 Dual Buffer/Driver w/3-State Outputs X X X
+AUC2G00 Dual 2-Input NAND Gate X X X
+AUC2G02 Dual 2-Input NOR Gate X X X
+AUC2G04 Dual Inverter X X X
+AUC2GU04 Dual Unbuffered Inverter X X X X
+AUC2G06 Dual Inverter w/Open Drain Output X X X
+AUC2G07 Dual Non-Inverter w/Open Drain Output X X X
+AUC2G08 Dual 2-Input AND Gate X X X
+AUC2G32 Dual 2-Input OR Gate X X X
+AUC2G34 Dual Non-Inverter X X X X
+AUC2G53 2:1 Analog Multiplexer/Demultiplexer X X X
+AUC2G79 Dual Positive-Edge-Triggered D-Type Flip-Flop X X X
+AUC2G80 Dual Positive-Edge-Triggered D-Type Flip-Flop X X X
+AUC2G86 Dual 2-Input Exclusive-OR Gate X X X
+AUC2G125 Dual Bus Buffer Gate w/3-State Outputs X X X
+AUC2G126 Dual Bus Buffer Gate w/3-State Outputs X X X X
+AUC2G240 Dual Bus Buffer Gate w/3-State Outputs X X X
+AUC2G241 Dual Buffer/Driver w/3-State Outputs X X X
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+12 | Little Logic Guide 2018 Texas Instruments
+Selection Tables
+Dual-Gate Functions
+8 7 6 5
+LVC
+AUC
+1 2 3 4
+Texas Instruments Little Logic Guide 2018 | 13
+QS C D R
+8 7 6 5 8 7 6 5 8 7 6 5
+LVC
+AUC
+1 2 3 4 1 2 3 4 1 2 3 4
+2G00 2G02 2G08
+8 7 6 5
+1 2 3 4
+2G74
+8 7 6 5 8 7 6 5 8 7 6 5 8 7 6 5
+1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4
+2G86 2G125 2G157 2G241
+Q
+Dual-Gates (continued)
+SOT-23 SC70 SM8 US8 SOT USON X2SON X2SON UQFN DSBGA DSBGA
+Function Description (DBV)-6 (DCK) (DCT) (DCU) (DRL) (DRY) (DSF) (DQE) (RSE) (YFP) (YZP)
+AUP2G00 Dual 2-Input NAND Gate X X X X
+AUP2G02 Dual 2-Input NOR Gate X X X X
+AUP2G04 Dual Inverter X X X X
+AUP2G06 Dual Inverter w/Open Drain Output X X X X
+AUP2G07 Dual Non-Inverter w/Open Drain Output X X X X
+AUP2G08 Dual 2-Input AND Gate X X X X X
+AUP2G14 Dual Schmitt Inverter X X X X
+AUP2G17 Dual Schmitt Trigger Input Buffers X X X X
+AUP2G32 Dual 2-Input OR Gate X X X X
+AUP2G34 Dual Non-Inverter X X X X
+AUP2G79 Dual Positive-Edge-Triggered D-Type Flip-Flop X X X X
+AUP2G80 Dual Positive-Edge-Triggered D-Type Flip-Flop X X X X
+AUP2G125 Dual Bus Buffer Gate w/3-State Outputs X X X X X
+AUP2G126 Dual Bus Buffer Gate w/3-State Outputs X X X X X
+AUP2G240 Dual Bus Buffer Gate w/3-State Outputs X X X X
+AUP2G241 Dual Buffer/Driver w/3-State Outputs X X X X
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Dual-Gate Diagram
+6 5 4 6 5 4 6 5 4 6 5 4
+LVC LVC LVC LVC LVC LVC
+AUC AUC AUC AUC AUC
+1 2 3 1 2 3 1 2 3 1 2 3
+2G04/2GU04 2G06 2G07 2G14
+6 5 4 8 7 6 5 6 5 4 8 7 6 5 8 7 6 5 8 7 6 5
+LVC LVC LVC LVC LVC LVC Q LVC
+AUC AUC AUC C D AUC D C
+1 2 3 1 2 3 Q
+2G17 1 2 3 4 2G34 1 2 3 4 1 2 3 4 1 2 3 4
+2G32 2G38 2G53 2G79
+8 7 6 5 8 7 6 5
+Q LVC LVC LVC LVC LVC LVC
+C D AUC AUC AUC AUC G A/B AUC
+D C A B Y Y
+Q
+1 2 3 4 1 2 3 4
+2G80 2G126 2G240
+Selection Tables
+Triple-Gate Functions
+Triple-Gates
+SM8 US8 X2SON UQFN DSBGA DSBGA
+Function Description (DCT) (DCU) (DQE) (RSE) (YFP) (YZP)
+LVC3G04 Triple Inverter Gate X X X
+LVC3GU04 Triple Inverter Gate (Unbuffered) X X X
+LVC3G06 Triple Inverter Buffer/Driver w/Open Drain Output X X X
+LVC3G07 Triple Buffer/Driver w/Open Drain Output X X X
+LVC3G14 Triple Schmitt Trigger Inverter X X X
+LVC3G17 Triple Schmitt Trigger Buffer X X X
+LVC3G34 Triple Buffer Gate X X X
+AUP3G04 Triple Inverter Gate X X X X
+AUP3G06 Triple Inverter Buffer/Driver w/Open Drain Output X X X X
+AUP3G07 Triple Buffer/Driver w/Open Drain Output X X X X
+AUP3G14 Triple Schmitt Trigger Inverter X X X X
+AUP3G17 Triple Schmitt Trigger Buffer X X X X
+AUP3G34 Triple Buffer Gate X X X X
+Triple-Gate Diagram
+Signal-Switch Functions
+Signal-Switch
+SOT-23 SC70 SOT-23 SC70 SM8 US8 SOT DSBGA SON SON
+Function Description (DBV)-5 (DCK)-5 (DBV)-6 (DCK)-6 (DCT) (DCU) (DRL) (YZP) (DRY) (DSF)
+CBT1G125 Single FET Bus Switch X X
+CBT1G384 Single FET Bus Switch X X
+CB3T1G125 Single FET Bus Switch X X
+CBTD1G125 Single FET Bus Switch X X
+CBTD1G384 Single FET Bus Switch X X
+CBTLV1G125 Single FET Bus Switch X X
+LVC1G66 Single Analog Switch X X X X X X
+LVC1G3157 Single-Pole, Double-Throw (SPDT) Analog Switch X X X X X X
+LVC2G53 Single-Pole, Double-Throw (SPDT) Analog Switch X X X
+LVC2G66 Dual Analog Switch X X X
+AUC1G66 Dual Analog Switch X X X
+AUC2G53 Single-Pole, Double-Throw (SPDT) Analog Switch X X X
+AUC2G66 Dual Analog Switch X X X
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Signal-Switch Diagram
+5 4 5 4 5 4 6 5 4 8 7 6 5 8 7 6 5
+LVC CBT CBT LVC LVC LVC
+AUC CB3T CBTD AUC AUC
+CBTD
+CBTLV
+1 2 3 1 2 3 1 2 3 1 2 3
+1G66 1G125 1G384 1G3157 1 2 3 4 1 2 3 4
+2G53 2G66
+14 | Little Logic Guide 2018 Texas Instruments
+Selection Tables
+Configurable Functions
+Configurables
+SOT-23 DSBGA DSBGA SC70 USON SM8 SON
+Function Description (DBV)-6 US8 (DCU) SOT (DRL) (YZP) (YFP) (DCK) (DRY) (DCT) (DSF)
+LVC1G57 Configurable Multiple-Function Gate X X X X X X
+LVC1G58 Configurable Multiple-Function Gate X X X X X X
+LVC1G97 Configurable Multiple-Function Gate X X X X X X
+LVC1G98 Configurable Multiple-Function Gate X X X X X X
+LVC1G99 Ultra-Configurable Multiple-Function Gate X X X
+AUP1G57 Configurable Multiple-Function Gate X X X X X X X
+AUP1G58 Configurable Multiple-Function Gate X X X X X X X
+AUP1G97 Configurable Multiple-Function Gate X X X X X X X
+AUP1G98 Configurable Multiple-Function Gate X X X X X X X
+AUP1G99 Ultra-Configurable Multiple-Function Gate X X X
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Configurable Diagrams
+8 7 6 5
+6 5 4 6 5 4 6 5 4 6 5 4 LVC
+LVC LVC LVC LVC AUP
+AUP AUP AUP AUP
+1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 4
+1G57 1G58 1G97 1G98 1G99
+Voltage Translation Functions
+Single-Supply
+SOT-23 SC70 SM8 US8 SOT DSBGA USON X2SON DSBGA
+Function Description (DBV) (DCK) (DCT) (DCU) (DRL) (YZP) (DRY) (DSF) (YFP)
+AUP1T00 2-Input NAND Gate X
+AUP1T02 2-Input NOR Gate X
+AUP1T04 Inverter X
+AUP1T08 2-Input AND Gate X
+AUP1T14 Schmitt Trigger Inverter X
+AUP1T17 Schmitt Trigger Buffer X
+AUP1T32 2-Input OR Gate Single-Bit X
+AUP1T34 Buffer/Driver X X X
+AUP1T50 Schmitt Trigger Buffer/Driver X
+AUP1T57 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T58 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T86 2-Input Exclusive-OR Gate X
+AUP1T87 2-Input Exclusive NOR Gate X
+AUP1T97 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T98 Single-Supply Voltage-Level Translator with 9 X X X X X X
+Configurable Gate Logic Functions
+AUP1T157 2 to 1 Data Selector/Multiplexer X
+AUP1T158 2-Input Multiplexer X
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Texas Instruments Little Logic Guide 2018 | 15
+Selection Tables
+Voltage Translation Functions
+Single-Supply (continued)
+SOT-23 SC70 SM8 US8 SOT USON DSBGA USON X2SON DSBGA
+Function Description (DBV) (DCK) (DCT) (DCU) (DRL) (DPK) (YZP) (DRY) (DSF) (YFP)
+LV1T00 NAND Gate and/or Up/Down-Translator X X
+LV1T04 Inverter Buffer/Driver and/or Up/Down-Translator X X
+LV1T08 2-Input AND Gate and/or Up/Down-Translator X X
+LV1T02 2-Input NOR Gate and/or Up/Down-Translator X X
+LV1T32 2-Input OR Gate and/or Up/Down-Translator X X
+LV1T34 Single Buffer Gate X X
+LV1T125 Buffer/Driver w/3-State Output w/High Disabled X X
+and/or Up/Down-Translator
+LV1T126 Buffer/Driver w/3-State Outputs w/Low Disabled X X
+and/or Up/Down-Translator
+LV1T86 2-Input Exclusive-OR (XOR) Gate and/or Up/Down- X X
+Translator
+Dual-Supply
+SOT-23 SC70 SM8 US8 SOT USON DSBGA USON X2SON DSBGA
+Function Description (DBV) (DCK) (DCT) (DCU) (DRL) (DPK) (YZP) (DRY) (DSF) (YFP)
+AVC1T45 Dual-Supply Transceiver w/Configurable Voltage X X X X
+Translation and 3-State Outputs
+AVC2T45 Dual-Bit Dual-Supply Transceiver w/Configurable X X X
+Voltage Translation and 3-State Outputs
+AVCH1T45 Dual-Supply Transceiver w/Configurable Voltage X X X
+Translation and 3-State Outputs
+AVCH2T45 Dual-Bit Dual-Supply Transceiver w/Configurable X X X
+Voltage Translation and 3-State Outputs
+LVC1T45 Dual-Supply Transceiver w/Configurable Voltage X X X X
+Translation and 3-State Outputs
+LVC2T45 Dual-Bit Dual-Supply Transceiver w/Configurable X X X
+Voltage Translation and 3-State Outputs
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Translation Diagrams
+5 4 5 4 5 4 5 4 5 4 5 4 5 4 5 4 6 5 4
+LVC
+AUP1T AUP1T AUP1T AUP1T AUP1T AUP1T AUP1T AUP1T AVC
+LV1T LV1T LV1T LV1T LV1T LV1T AVCH
+1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3
+1T00 1T02 1T04 1T08 1T14 1T17 1T32 1T34 1T45
+8 7 6 5
+LVC 6 5 4 6 5 4 5 4 5 4 6 5 4 6 5 4 5 4
+AVC
+AVCH AUP1T AUP1T AUP1T AUP1T AUP1T AUP1T LV1T
+LV1T
+1 2 3 4 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3 1 2 3
+2T45 1T57 1T58 1T86 1T87 1T97 1T98 1T125
+5 4 6 5 4 6 5 4
+LV1T AUP1T AUP1T
+1 2 3 1 2 3 1 2 3
+1T126 1T157 1T158
+16 | Little Logic Guide 2018 Texas Instruments
+Cross-Reference
+Competitor Cross-Reference
+LVC Devices
+Fairchild ON Toshiba Pericom
+Function Description TI (LVC) (NC7S/WZ) ON (SZ) ON (NLU) (NLX) (TC7S/WZ) NXP (LVC) (STX) STMicro (LX)
+Single Gate
+1G00 Single 2-Input NAND SN74LVC1G00 NC7SZ00 NL17SZ00 NLU1G00 — TC7SZ00 74LVC1G00 — 74LX1G00
+1G02 Single 2-Input NOR SN74LVC1G02 NC7SZ02 NL17SZ02 — — TC7SZ02 74LVC1G02 PI74STX1G02 74LX1G02
+1G04 Single Inverter SN74LVC1G04 NC7SZ04 NL17SZ04 NLU1G04 — TC7SZ044 74LVC1G04 — 74LX1G04
+1GU04 Single Inverter (Unbuffered) SN74LVC1GU04 NC7SZU04 NL17SZU04 NLU1GU04 — TC7SZU04 74LVC1GU04 PI74STX1GU04 74LX1GU04
+1GX04 Crystal Driver SN74LVC1GX04 — — — — — 74LVC1GX04 — —
+1G06 Single Inverter Buffer/Driver SN74LVC1G06 — NL17SZ06 — — — 74LVC1G06 — —
+w/Open Drain Output
+1G07 Single Buffer/Driver w/Open SN74LVC1G07 — NL17SZ07 NLU1G07 — TCSZ07 74LVC1G07 — 74LX1G07
+Drain Output
+1G08 Single 2-Input AND SN74LVC1G08 NC7SZ08 NL17SZ08 NLU1G08 — TC7SZ08 74LVC1G08 PI74STX1G08 74LX1G08
+1G10 Single 3-Input NAND SN74LVC1G10 NC7SZ10 — — — — 74LVC1G10 — —
+1G11 Single 3-Input AND SN74LVC1G11 NC7SZ11 — — — — 74LVC1G11 — —
+SOT-23 SC70 SM8 US8 SOT USON DSBGA USON X2SON DSBGA 1G14 Single Inverter w/Schmitt SN74LVC1G14 NC7SZ14 NL17SZ14 NLU1G14 — TC7SZ14 74LVC1G14 — 74LX1G14
+Function Description (DBV) (DCK) (DCT) (DCU) (DRL) (DPK) (YZP) (DRY) (DSF) (YFP) Trigger
+AVC1T45 Dual-Supply Transceiver w/Configurable Voltage X X X X 1G17 Single Buffer w/Schmitt SN74LVC1G17 — NL17SZ17 — — — 74LVC1G17 — —
+Translation and 3-State Outputs Trigger
+AVC2T45 Dual-Bit Dual-Supply Transceiver w/Configurable X X X 1G18 1 of 2 Non-Inverting MUX SN74LVC1G18 NC7SZ18 NL7SZ18 — — — 74LVC1G18 — —
+Voltage Translation and 3-State Outputs
+1G19 1 of 2 Decoder SN74LVC1G19 NC7SZ19 NL7SZ19 — — — 74LVC1G19 — —
+1G27 Single 3-Input NOR SN74LVC1G27 NC7SZ27 — — — — — — —
+AVCH1T45 Dual-Supply Transceiver w/Configurable Voltage X X X
+1G29 2 of 3 Decoder/Demultiplexer SN74LVC1G29 — — — — — — — —
+Translation and 3-State Outputs
+1G32 Single 2-Input OR SN74LVC1G32 NC7SZ32 NL17SZ32 NLU1G32 — TC7SZ126 74LVC1G32 — 74LX1G32
+AVCH2T45 Dual-Bit Dual-Supply Transceiver w/Configurable X X X
+Voltage Translation and 3-State Outputs 1G34 Single Buffer Gate SN74LVC1G34 — NL17SZ16 — — TC7SZ32 74LVC1G34 — 74LX1G70
+1G38 Single 2-Input NAND w/Open SN74LVC1G38 NC7SZ38 — — — TC7SH34 74LVC1G38 — —
+Drain Output
+LVC1T45 Dual-Supply Transceiver w/Configurable Voltage X X X X
+Translation and 3-State Outputs 1G79 Single D-Type Flip-Flop SN74LVC1G79 — — — — TC7SZ38 74LVC1G79 — —
+LVC2T45 Dual-Bit Dual-Supply Transceiver w/Configurable X X X 1G80 Single D-Type Flip-Flop SN74LVC1G80 — — — — — 74LVC1G80 — —
+Voltage Translation and 3-State Outputs 1G86 Single 2-Input Exclusive-OR SN74LVC1G86 NC7SZ86 NL17SZ86 NLU1G86 — — 74LVC1G86 — 74LX1G86
+1G123 Single Retrig Monostable SN74LVC1G123 — — — — TC7SZ86 — — —
+Multivibrator
+1G125 Single-Bus Buffer Gate SN74LVC1G125 NC7SZ125 NL17SZ125 — — — 74LVC1G125 — 74LX1G125
+w/3-State
+1G126 Single-Bus Buffer Gate SN74LVC1G126 NC7SZ126 NL17SZ126 — — TC7SZ125 74LVC1G126 PI74STX1G126 74LX1G126
+w/3-State
+1G132 Single 2-Input NAND w/ SN74LVC1G132 — — — — TC7SZ126 — — 74LX1G132
+Schmitt Trigger
+1G139 2-Line to 4-Line Decoder SN74LVC1G139 — — — — — — — —
+1G175 Single D-Type Flip-Flop w/ SN74LVC1G175 NC7SZ175 — — — — 74LVC1G175 — —
+Asynch Clear
+1G240 Single Bus Buffer Gate w/3- SN74LVC1G240 — — — — — — — —
+State
+1G332 Single 3-Input OR SN74LVC1G332 NC7SZ332 — — — — 74LVC1G332 — —
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Texas Instruments Little Logic Guide 2018 | 17
+Cross-Reference
+Competitor Cross-Reference
+LVC Devices (continued)
+Fairchild Toshiba
+Function Description TI (LVC) (NC7S/WZ) ON (SZ) ON (NLU) ON (NLX) (TC7S/WZ) NXP (LVC) Pericom (STX) STMicro (LX)
+Single Gate
+1G373 Single D-Type Latch w/3- SN74LVC1G373 NC7SZ373 — — — — — — —
+State
+1G374 Single D-Type Flip-Flop SN74LVC1G374 NC7SZ374 — — — — — — —
+w/3-State
+1G386 Single 3-Input Exclusive-OR SN74LVC1G386 NC7SZ386 — — — — 74LVC1G386 — —
+1G0832 Single 3-Input Positive SN74LVC1G0832 — — — — — — — —
+AND-OR Gate
+1G3208 Single 3-Input Positive SN74LVC1G3208 — — — — — — — —
+OR-AND Gate
+Dual Gate
+2G0 Dual 2-Input NAND SN74LVC2G00 NC7WZ00 NL27WZ00 — — TC7WZ00 74LVC2G00 — —
+2G02 Dual 2-Input NOR SN74LVC2G02 NC7WZ02 NL27WZ02 — — TC7WZ02 74LVC2G02 — —
+2G04 Dual Inverter SN74LVC2G04 NC7WZ04 NL27WZ04 NLU2G04 NLX2G04 — 74LVC2G04 — —
+2GU04 Dual Inverter (Unbuffered) SN74LVC2GU04 NC7WZU04 NL27WZU04 NLU2GU04 NLX2GU04 — 74LVC2GU04 — —
+2G06 Dual Inverter Buffer SN74LVC2G06 — NL27WZ06 NLU2G06 NLX2G06 — 74LVC2G06 — —
+Driver w/Open Drain Output
+2G07 Dual-Buffer Driver w/Open SN74LVC2G07 NC7WZ07 NL27WZ07 NLU2G07 NLX2G07 — 74LVC2G07 — —
+Drain Output
+2G08 Dual 2-Input AND SN74LVC2G08 NC7WZ08 NL27WZ08 — NLX2G08 TC7WZ08 74LVC2G08 PI74STX2G08 —
+2G14 Dual Inverter w/Schmitt SN74LVC2G14 NC7WZ14 NL27WZ14 NLU2G14 NLX2G14 — 74LVC2G14 — —
+Trigger
+2G17 Dual Buffer w/Schmitt SN74LVC2G17 NC7WZ17 NL27WZ17 NLU2G17 NLX2G17 — 74LVC2G17 — —
+Trigger Input
+2G32 Dual 2-Input OR SN74LVC2G32 NCWZ32 NL27WZ32 — — TC7WZ32 74LVC2G32 — —
+2G34 Dual Buffer Gate SN74LVC2G34 NC7WZ16 NL27WZ16 — — — 74LVC2G34 — —
+2G38 Dual 2-Input NAND w/ SN74LVC2G38 NCWZ38 — — TC7WZ38 74LVC2G38 — —
+Open Drain Output
+2G74 D-Type Flip-Flop w/Pre SN74LVC2G74 NC7SZ74 NL17SZ74 — — TC7WZ74 74LVC2G74 — —
+and CLR
+2G79 Dual D-Type Flip-Flop SN74LVC2G79 — — — — — — — —
+2G80 Dual D-Type Flip-Flop SN74LVC2G80 — — — — — — — —
+2G86 Dual 2-Input Exclusive- SN74LVC2G86 NC7WZ86 NL27WZ86 — NLX2G86 — 74LVC2G86 — —
+OR
+2G125 Dual-Bus Buffer Gate SN74LVC2G125 NC7WZ125 NL27WZ125 — — — 74LVC2G125 — —
+w/3-State
+2G126 Dual-Bus Buffer Gate SN74LVC2G126 NC7WZ126 NL27WZ126 — — — 74LVC2G126 — —
+w/3-State
+2G132 Dual 2-Input NAND w/ SN74LVC2G132 NC7WZ132 — — — — — — —
+Schmitt Trigger Input
+2G157 2-Input Non-Inverting SN74LVC2G157 — — — — — — — —
+Mux
+2G240 Dual-Bus Buffer Gate SN74LVC2G240 NC7WZ240 — — — — 74LVC2G240 — —
+w/3-State
+2G241 Dual-Bus Buffer Gate SN74LVC2G241 NC7WZ241 — — — — 74LVC2G241 — —
+w/3-State
+Triple Gate
+3G04 Triple Inverter SN74LVC3G04 NC7NZ04 NNL37WZ04 — — TC7WZ04 74LVC3G04 — —
+3GU04 Triple Inverter (Unbuffered) SN74LVC3GU04 NC7NZU04 — — — TC7WZU04 74LVC3GU04 — —
+3G06 Triple Inverter Buffer/Driver SN74LVC3G06 — NL37WZ06 — — — 74LVC3G06 — —
+w/Open Drain Output
+3G07 Triple Buffer/Driver w/Open SN74LVC3G07 — NL37WZ07 — — — 74LVC3G07 — —
+Drain Output
+3G14 Triple Inverter w/Schmitt SN74LVC3G14 NC7NZ14 NL37WZ14 NLU3G14 NLX3G14 TC7WZ14 74LVC3G14 — —
+Trigger
+3G17 Triple Buffer w/Schmitt SN74LVC3G17 NC7NZ17 NL37WZ17 NLU3G17 NLX3G17 — 74LVC3G17 — —
+Trigger
+3G34 Triple Buffer SN74LVC3G34 NC7NZ34 NL37WZ16 — — TC7WZ34 74LVC3G34 PI74STX2G08 —
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+18 | Little Logic Guide 2018 Texas Instruments
+Cross-Reference
+Competitor Cross-Reference
+AUC Devices
+Fairchild
+Function Description TI (AUC) (NC7SV)) ON (SV) Toshiba Pericom
+Single Gate (5-pin, unless noted)
+1G00 Single 2-Input NAND SN74AUC1G00 NL17SV00 — TC7SA00 —
+1G02 Single 2-Input NOR SN74AUC1G02 NL17SV02 — — —
+1G04 Single Inverter SN74AUC1G04 NL17SV04 — TC7SA04 —
+1GU04 Single Inverter (Unbuffered) SN74AUC1GU04 — — TC7SAU04 —
+1G06 Single Inverter Buffer/Driver w/Open Drain SN74AUC1G06 — — — —
+1G07 Single Buffer/Driver w/Open Drain Output SN74AUC1G07 NL17SV08 NL27WZ00 — —
+1G08 Single 2-Input AND SN74AUC1G08 — NL27WZ02 TC7SA08 PI74ST1G08
+1G14 Single Inverter w/Schmitt Trigger SN74AUC1G14 — NL27WZ04 — —
+1G17 Single Buffer w/Schmitt Trigger SN74AUC1G17 — NL27WZU04 — —
+1G19 1 of 2 Decoder/Demultiplexer SN74AUC1G19 NL17SV32 NL27WZ06 TC7PA19 —
+1G32 Single 2-Input OR SN74AUC1G32 — NL27WZ07 TC7SA32 PI74ST1G32
+1G74 D-Type Flip-Flop w/Pre and CLR SN74AUC1G74 — NL27WZ08 — —
+1G79 Single D-Type Flip-Flop SN74AUC1G79 — NL27WZ14 — —
+1G80 Single D-Type Flip-Flop SN74AUC1G80 — NL27WZ17 — —
+1G86 Single 2-Input Exclusive-OR SN74AUC1G86 — NL27WZ32 — PI74ST1G86
+1G125 Single-Bus Buffer Gate w/3-State SN74AUC1G125 — NL27WZ16 — PI74ST1G125
+1G126 Single-Bus Buffer Gate w/3-State SN74AUC1G126 — — PI74ST1G126
+1G240 Single-Bus Buffer Gate w/3-State SN74AUC1G240 — NL17SZ74 — —
+Dual Gate (8-pin, unless noted)
+2G00 Dual 2-Input NAND SN74LVC3G04 — — — —
+2G02 Dual 2-Input NOR SN74LVC3GU04 — — — —
+2G04 Dual Inverter NC7WV04 — TCPA04 —
+2GU04 Dual Inverter (Unbuffered) SN74LVC3G07 — — TCPAU04 —
+2G06 Dual Inverter Buffer/Driver w/Open Drain Output SN74LVC3G14 — — — —
+2G07 Dual Buffer/Driver w/Open Drain Output SN74LVC3G17 NC7WV07 — — —
+2G08 Dual 2-Input AND SN74LVC3G34 — — — —
+2G32 Dual 2-Input OR SN74LVC3G04 — — — —
+2G34 Dual Buffer SN74LVC3GU04 NC7WV16 — TC7PA34 —
+2G79 Dual D-Type Flip-Flop SN74LVC3G06 — — — —
+2G80 Dual D-Type Flip-Flop SN74LVC3G07 — — — —
+2G86 Dual 2-Input Exclusive-OR SN74LVC3G14 — — — —
+2G125 Dual-Bus Buffer Gate w/3-State SN74LVC3G17 NC7WV125 — — —
+2G126 Dual-Bus Buffer Gate w/3-State SN74LVC3G34 — — — —
+2G240 Dual-Bus Buffer Gate w/3-State SN74LVC3G17 — — — —
+2G241 Dual-Bus Buffer Gate w/3-State SN74LVC3G34 — — —
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Texas Instruments Little Logic Guide 2018 | 19
+Cross-Reference
+Competitor Cross-Reference
+Signal-Switch Devices
+Function Description TI Toshiba Fairchild NXP Pericom
+CBT1G125 Single FET Bus Switch SN74CBT1G125 — — — —
+CBTD1G125 Single FET Bus Switch SN74CBTD1G125 — — — —
+CBT1G384 Single Low-Power Bus Switch SN74CBT1G384 TC7SB384 NC7SZ384 74LVC1G384 —
+CBTD1G384 384 Function w/Level Shifting SN74CBTD1G384 TC7SBD384 NC7SZD384 — —
+CBTLV1G125 Single LV FET Bus Switch SN74CBTLV1G125 — — — —
+CB3T1G125 Single FET Bus Switch SN74CB3T1G125 — — — —
+AUC1G66 Single Analog Switch SN74AUC1G66 — — — —
+AUC2G53 SPDT Analog Switch SN74AUC2G53 TC7PA53 — — —
+AUC2G66 Dual Analog Switch SN74AUC2G66 — — — —
+LVC1G66 Single Analog Switch SN74LVC1G66 — NC7SZ66 74LVC1G66 —
+LVC1G3157 SPDT Analog Switch SN74LVC1G3157 — NC7SB3157 74LVC1G3157 PISA3157
+LVC2G53 SPDT Analog Switch SN74LVC2G53 — — — —
+LVC2G66 Dual Analog Switch SN74LVC2G66 — NC7WB66 74LVC2G66 —
+AUP Devices (5-pin, unless noted)
+Function Description TI (AUP) NXP (AUP) Fairchild (NC7SV) Toshiba
+Single Gate
+1G00 Single 2-Input NAND SN74AUP1G00 74AUP1G00 NC7SP00 TC7SG00
+1G02 Single 2-Input NOR SN74AUP1G02 74AUP1G02 NC7SP02 TC7SG02
+1G04 Single Inverter SN74AUP1G04 74AUP1G04 NC7SP04 TC7SG04
+1G06 Single Inverter Buffer/Driver w/Open Drain Output SN74AUP1G06 74AUP1G06 — —
+1G07 Single Buffer/Driver w/Open Drain Output SN74AUP1G07 74AUP1G07 — TC7SG07
+1G08 Single 2-Input AND SN74AUP1G08 74AUP1G08 NC7SP08 TC7SG08
+1G14 Single Inverter w/Schmitt Trigger SN74AUP1G14 74AUP1G14 NC7SP14 TC7SG14
+1G17 Single Buffer w/Schmitt Trigger SN74AUP1G17 74AUP1G17 NC7SP17 TC7SG17
+1G32 Single 2-Input OR SN74AUP1G32 74AUP1G32 NC7SP32 TC7SG32
+1G34 Single Buffer SN74AUP1G344 74AUP1G34 NC7SP34 TC7SG34
+1G74 Single Positive-Edge-Trigger D-Type Flip-Flop SN74AUP1G74 74AUP1G74 NC7SP74 —
+1G79 Single D-Type Flip-Flop SN74AUP1G79 74AUP1G79 — —
+1G80 Single D-Type Flip-Flop SN74AUP1G80 74AUP1G80 — —
+1G125 Single-Bus Buffer Gate w/3-State SN74AUP1G125 74AUP1G125 NC7SP125 TC7SG125
+1G126 Single-Bus Buffer Gate w/3-State SN74AUP1G126 74AUP1G126 NC7SP126 TC7SG126
+1G157 Single 2-Input Non-Inverting MUX SN74AUP1G157 74AUP1G157 NC7SP157 —
+1G240 Single-Bus Buffer Gate w/3-State SN74AUP1G240 7AUP1G240 — —
+Dual Gate (8-pin, unless noted)
+2G00 Dual 2-Input NAND SN74AUP2G00 74AUP2G00 NC7WP00 —
+2G02 Dual 2-Input NOR SN74AUP2G02 74AUP2G02 NC7WP02 —
+2G04 Dual Inverter SN74AUP2G04 74AUP2G04 NC7WP04 —
+2G06 Dual Inverter Buffer/Driver w/Open Drain Output SN74AUP2G06 74AUP2G06 — —
+2G07 Dual Buffer/Driver w/Open Drain Output SN74AUP2G07 74AUP2G07 NC7WP07 —
+2G08 Dual 2-Input AND SN74AUP2G08 74AUP2G08 NC7WP08 —
+2G125 Dual-Bus Buffer Gate w/3-State SN74AUP2G125 74AUP2G125 NC7WP125 —
+2G126 Dual-Bus Buffer Gate w/3-State SN74AUP2G126 74AUP2G126 NC7WP126 —
+2G14 Dual Inverter w/Schmitt Trigger SN74AUP2G14 74AUP2G14 NC7WP14 —
+2G17 Dual Buffer w/Schmitt Trigger Input SN74AUP2G17 74AUP2G17 NC7WV17 —
+2G240 Dual-Bus Buffer Gate w/3-State SN74AUP2G240 74AUP2G240 NC7WP240 —
+2G241 Dual-Bus Buffer Gate w/3-State SN74AUP2G241 74AUP2G241 — —
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+20 | Little Logic Guide 2018 Texas Instruments
+Cross-Reference
+Competitor Cross-Reference
+AUP Devices (5-pin, unless noted) (continued)
+Function Description TI (AUP) NXP (AUP) Fairchild (NC7SV) Toshiba
+2G32 Dual 2-Input OR SN74AUP2G32 74AUP2G32 NC7WP32 —
+2G34 Dual Buffer Gate SN74AUP2G34 74AUP2G34 — —
+2G79 Dual D-Type Flip-Flop SN74AUP2G79 74AUP2G79 — —
+2G80 Dual D-Type Flip-Flop SN74AUP2G80 74AUP2G80 — —
+Triple gates
+3G04 Triple Inverter SN74AUP3G04 74AUP3G04 NC7NP04 —
+3G06 Triple Inverter Buffer/Driver w/Open Drain Output SN74AUP3G06 74AUP3G06 — —
+3G07 Triple Buffer/Driver w/Open Drain Output SN74AUP3G07 74AUP3G07 — —
+3G17 Triple Buffer w/Schmitt Trigger SN74AUP3G17 74AUP3G17 — —
+3G34 Triple Buffer SN74AUP3G34 74AUP3G34 NC7NP34 —
+AHC Devices
+Function Description TI (AHC) Toshiba (TC7S/W) Fairchild (NC7S) ON (VHC) STMicro (V1G) NXP
+1G00 Single 2-Input NAND Gate SN74AHC1G00 TC7SH00 NC7S00 MC74VHC1G00 74V1G00 74AHC1G00
+1G02 Single 2-Input NOR SN74AHC1G02 TC7SH02 NC7S02 MC74VHC1G02 74V1G02 74AHC1G02
+1G04 Single Inverter SN74AHC1G04 TC7SH04 NC7S04 MC74VHC1G04 74V1G04 74AHC1G04
+1GU04 Single Inverter (Unbuffered) SN74AHC1GU04 TC7SHU04 NC7SU04 MC74VHC1GU04 74V1GU04 74AHC1GU04
+1G08 Single 2-Input AND SN74AHC1G08 TC7SH08 NC7S08 MC74VHC1G08 74V1G08 74AHC1G08
+1G14 Single Inverter w/Schmitt Trigger SN74AHC1G14 TC7SH14 NC7S14 MC74VHC1G14 74V1G14 74AHC1G14
+1G32 Single 2-Input OR 2 SN74AHC1G32 TC7SH32 NC7S32 MC74VHC1G32 74V1G32 74AHC1G32
+1G86 Single 2-Input Exclusive-OR SN74AHC1G86 TC7SH86 NC7S86 MC74VHC1G86 74V1G86 74AHC1G86
+1G125 Single-Bus Buffer Gate w/3-State SN74AHC1G125 TC7SH125 — MC74VHC1G125 74V1G125 74AHC1G125
+1G126 Single-Bus Buffer Gate w/3-State SN74AHC1G126 TC7SH126 — MC74VHC1G126 74V1G126 74AHC1G126
+AHCT Devices
+Function Description TI (AHCT) Toshiba (TC7SE/WT) Fairchild (NC7ST) ON (VHC1GT) STMicro (V1T) NXP
+1G00 Single 2-Input NAND SN74AHCT1G00 TC7SET00 NC7S00 MC74VHC1G00 74V1G00 74AHC1G00
+1G02 Single 2-Input NOR SN74AHCT1G02 TC7SET02 NC7S02 MC74VHC1G02 74V1G02 74AHC1G02
+1G04 Single Inverter SN74AHCT1G04 TC7SET044 NC7S04 MC74VHC1G04 74V1G04 74AHC1G04
+1G08 Single 2-Input AND SN74AHCT1G08 TC7SET08 NC7SU04 MC74VHC1GU04 74V1GU04 74AHC1GU04
+1G14 Single Inverter w/Schmitt Trigger SN74AHCT1G14 — NC7S08 MC74VHC1G08 74V1G08 74AHC1G08
+1G32 Single 2-Input OR SN74AHCT1G32 TC7SET32 NC7S14 MC74VHC1G14 74V1G14 74AHC1G14
+1G86 Single 2-Input Exclusive-OR SN74AHCT1G86 TC7SET86 NC7S32 MC74VHC1G32 74V1G32 74AHC1G32
+1G125 Single-Bus Buffer Gate w/3-State SN74AHCT1G125 — NC7S86 MC74VHC1G86 74V1G86 74AHC1G86
+1G126 Single-Bus Buffer Gate w/3-State SN74AHTC1G126 — — MC74VHC1G125 74V1G125 74AHC1G125
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Texas Instruments Little Logic Guide 2018 | 21
+Cross-Reference
+Competitor Cross-Reference
+Configurable Devices
+Function Description TI Fairchild NXP
+LVC1G57 Single Configurable (5 functions) SN74LVC1G57 NC7SZ57 74LVC1G57
+LVC1G58 Single Configurable (5 functions) SN74LVC1G58 NC7SZ58 74LVC1G58
+LVC1G97 Single Configurable (9 functions) SN74LVC1G97 — 74LVC1G97
+LVC1G98 Single Configurable (9 functions) SN74LVC1G98 — 74LVC1G98
+LVC1G99 Ultra-Configurable (60 functions) SN74LVC1G99 — —
+AUP1G57 Single Configurable (5 functions) SN74AUP1G57 NC7SP57/74AUP1G57 74AUP1G57
+AUP1G58 Single Configurable (5 functions) SN74AUP1G58 NC7SP58/74AUP1G58 74AUP1G58
+AUP1G97 Single Configurable (9 functions) SN74AUP1G97 74AUP1G97 74AUP1G97
+AUP1G98 Single Configurable (9 functions) SN74AUP1G98 74AUP1G98 74AUP1G98
+AUP1G99 Ultra-Configurable (60 functions) SN74AUP1G99 — —
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+AUP1T Translators
+Function Description TI ON NXP Fairchild
+AUP1T00 Single 2-Input Positive-NAND Gate SN74AUP1T00 MC74VHC1GT00 — —
+AUP1T02 Single 2-Input Positive-NOR Gate SN74AUP1T02 MC74VHC1GT00 — —
+AUP1T04 Single Inverter Gate SN74AUP1T04 MC74VHC1GT04 — —
+4AUP1T08 2-Input Positive-AND Gate SN74AUP1T08 MC74VHC1GT08 — —
+AUP1T14 Single Schmitt-Trigger Inverter Gate SN74AUP1T14 MC74VHC1GT14 — —
+AUP1T157 Buffer Multiplexer (Noninverted) SN74AUP1T157 — — —
+AUP1T158 Buffer Multiplexer (Inverted) SN74AUP1T158 — — —
+AUP1T17 Single Schmitt-Trigger Buffer Gate SN74AUP1T17 MC74VHC1GT86 — —
+AUP1T32 2-Input Positive-OR Gate SN74AUP1T32 MC74VHC1GT32 — —
+AUP1T57 Configurable, Single-Supply Voltage Translator SN74AUP1T57 — 74AUP1T57 —
+AUP1T58 Configurable, Single-Supply Voltage Translator SN74AUP1T58 — 74AUP1T58 —
+AUP1T86 2-Input Exclusive-OR Gate SN74AUP1T86 MC74VHC1GT86 — —
+AUP1T87 2-Input Positive Exclusive-NOR Gate SN74AUP1T87 — — —
+AUP1T97 Configurable, Single-Supply Voltage Translator SN74AUP1T97 — 74AUP1T97 —
+AUP1T98 Configurable, Single-Supply Voltage Translator SN74AUP1T98 — 74AUP1T98 —
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+22 | Little Logic Guide 2018 Texas Instruments
+Cross-Reference
+Part Number Definition
+Naming System
+SN74AUP 1G 08 DRY R
+DBV 5/6 Leads SOT-23
+DCK 5/6 Leads SC-70
+R=Tape & Reel
+DRL 5/6 Leads SOT553/563
+T= Small Tape & Reel
+YZP 5/6/8 NanoFree™
+YFP 5/6/8 NanoFree™
+Logic Gate Function
+YZV 4 Leads DSBGA
+DRY 5/6 QFN
+1G Single Gate
+RSE 5/6 QFN
+2G Dual Gate
+DCT 8 Leads SM8
+3G Triple Gate
+DCU 8 Leads US8
+AHC CMOS/CMOS 1T Single Gate Translation
+DSF 5/6 Leads µQFN
+AHCT TTL to 5 V CMOS 2T Dual Gate Translation
+DQE 8 Leads µQFN
+LVC Low-Voltage CMOS
+DPW 5 Leads µQFN
+AUP Low Power Consumption
+AUC Ultra-Low-Voltage 1.8 V
+CBT 5 V Digital Switch
+CBTD 5 V to 3.3 V Translation Switch
+CBTLV Low-Voltage Digital Switch
+Competitor Part Prefixes
+Signal-Switch Devices
+TI TOSHIBA FAIRCHILD ON ON (NLU) ON (NLX) STMicro NXP Pericom
+Little Logic
+SN74AHC1G TC7SH NC7S MC74VHC1G — — 74V1G 74AHC1G —
+SN74AHCT1G TC7SET NC7ST MC74VHC1GT — — 74V1GT 74AHCT1G —
+SN74AUC1G TC7SA/PA NC7SV NL17SV — — — — —
+SN74AUC2G TC7PA NC7WV — — — — — —
+SN74AUP1G TC7SG NC7SP — — — — 74AUP1G —
+SN74LVC1G TC7SZ NC7SZ NL17SZ NLU1G NLX1G 74LX1G 74LVC1G PI74STX1G
+SN74LVC2G TC7WZ NC7WZ NL27WZ NLU1G NLX1G — 74LVC2G PI74STX2G
+SN74LVC3G TC7WZ NC7NZ NL37WZ NLU1G NLX1G — 74LVC3G —
+Little Logic Signal Switches
+SN74AUC2G TC7PA — — — — — — —
+SN74CBT1G TC7SB NC7SZ — — — — — —
+SN74CBTD1G TC7SBD NC7SZD — — — — — —
+SN74CBTLV1G TC7SBL — — — — — — —
+SN74LVC1G — NC7SZ — — — — 74LVC1G —
+SN74LVC2G — NC7WB — — — — — —
+Little Logic Configurables
+SN74AUP1G — NC7SP — — — — — —
+SN74LVC1G — NC7SZ — — — — — —
+Little Logic Translation
+SN74LVC1T — NC7SP — — — — — —
+SN74LVC2T — NC7SZ — — — — — —
+NOTE: Visit www.ti.com/littlelogic for product release updates.
+Texas Instruments Little Logic Guide 2018 | 23
+Resources and Support
+Resources and Support
+Jump start your design process
+• Comprehensive reference designs
+• Complete schematics/block diagrams
+• BOMs
+• Design files and test reports
+Search by product type,
+application or keyword to find
+inspiration for your next design
+www.ti.com/tidesigns
+e2e.ti.com
+TI Worldwide Technical Support
+Internet Japan Important Notice: The products and services of Texas
+TI Semiconductor Product Information Center Fax International +81-3-3344-5317 I s n o s ld tr u s m ub e j n e t c s t I t n o c T o I r ’ p s o s r t a a t n e d d a a rd n d t e i r ts m s s u a b n s d id c ia o r n ie d s it i d o e n s s c o ri f b s e a d l e h . e rein are
+Home Page Domestic 0120-81-0036 Customers are advised to obtain the most current and complete
+support.ti.com Internet information about TI products and services before placing orders. TI
+assumes no liability for applications assistance, customer’s
+TI E2E™ Community Home Page International support.ti.com/sc/pic/japan.htm applications or product designs, software performance, or
+e2e.ti.com Domestic www.tij.co.jp/pic infringement of patents. The publication of information regarding
+any other company’s products or services does not constitute TI’s
+approval, warranty or endorsement thereof.
+Product Information Centers Asia
+Americas Phone +1(512) 434-1560 Phone Toll-Free Number T ot h h e e p r l t a ra tf d o e rm m a b r a k r s a a n r d e E th 2 e E p a r r o e p t e ra rt d y e o m f a th rk e s ir o r f e T s e p x e a c s t iv In e s t o r w um ne e r n s t . s. All
+Note: Toll-free numbers may not support
+Brazil Phone 0800-891-2616
+mobile and IP phones.
+Mexico Phone 0800-670-7544
+Australia 1-800-999-084
+Fax +1(972)927-6377 China 800-820-8682
+Internet support.ti.com/sc/pic/americas.htm Hong Kong 800-96-5941
+India 000-800-100-8888
+Europe, Middle East, and Africa Indonesia 001-803-8861-1006
+Phone Korea 080-551-2804
+European Free Call 00800-ASK-TEXAS Malaysia 1-800-80-3973
+(00800 275 83927) New Zealand 0800-446-934
+Philippines 1-800-765-7404
+International +49 (0) 8161 80 2121
+Singapore 800-886-1028
+Russian Support +7 (4) 95 98 10 701
+Taiwan 0800-006800
+Note: The European Free Call (Toll Free) number Thailand 001-800-886-0010
+is not active in all countries. If you have technical International +86-21-23073444
+difficulty calling the free call number, please use the Fax +86-21-23073686
+international number above. Email tiasia@ti.com or ti-china@ti.com
+Internet support.ti.com/sc/pic/asia.htm
+Fax +49 (0) 8161 80 2045
+Internet www.ti.com/asktexas © 2018 Texas Instruments Incorporated
+Printed in U.S.A. by (Printer, City, State)
+Direct Email asktexas@ti.com
+SCYT129G
+IMPORTANT NOTICE FORTIDESIGNINFORMATIONANDRESOURCES
+TexasInstrumentsIncorporated(‘TI”)technical,applicationorotherdesignadvice,servicesorinformation,including,butnotlimitedto,
+referencedesignsandmaterialsrelatingtoevaluationmodules,(collectively,“TIResources”)areintendedtoassistdesignerswhoare
+developingapplicationsthatincorporateTIproducts;bydownloading,accessingorusinganyparticularTIResourceinanyway,you
+(individuallyor,ifyouareactingonbehalfofacompany,yourcompany)agreetouseitsolelyforthispurposeandsubjecttothetermsof
+thisNotice.
+TI’sprovisionofTIResourcesdoesnotexpandorotherwisealterTI’sapplicablepublishedwarrantiesorwarrantydisclaimersforTI
+products,andnoadditionalobligationsorliabilitiesarisefromTIprovidingsuchTIResources.TIreservestherighttomakecorrections,
+enhancements,improvementsandotherchangestoitsTIResources.
+Youunderstandandagreethatyouremainresponsibleforusingyourindependentanalysis,evaluationandjudgmentindesigningyour
+applicationsandthatyouhavefullandexclusiveresponsibilitytoassurethesafetyofyourapplicationsandcomplianceofyourapplications
+(andofallTIproductsusedinorforyourapplications)withallapplicableregulations,lawsandotherapplicablerequirements.You
+representthat,withrespecttoyourapplications,youhaveallthenecessaryexpertisetocreateandimplementsafeguardsthat(1)
+anticipatedangerousconsequencesoffailures,(2)monitorfailuresandtheirconsequences,and(3)lessenthelikelihoodoffailuresthat
+mightcauseharmandtakeappropriateactions.YouagreethatpriortousingordistributinganyapplicationsthatincludeTIproducts,you
+willthoroughlytestsuchapplicationsandthefunctionalityofsuchTIproductsasusedinsuchapplications.TIhasnotconductedany
+testingotherthanthatspecificallydescribedinthepublisheddocumentationforaparticularTIResource.
+Youareauthorizedtouse,copyandmodifyanyindividualTIResourceonlyinconnectionwiththedevelopmentofapplicationsthatinclude
+theTIproduct(s)identifiedinsuchTIResource.NOOTHERLICENSE,EXPRESSORIMPLIED,BYESTOPPELOROTHERWISETO
+ANYOTHERTIINTELLECTUALPROPERTYRIGHT,ANDNOLICENSETOANYTECHNOLOGYORINTELLECTUALPROPERTY
+RIGHTOFTIORANYTHIRDPARTYISGRANTEDHEREIN,includingbutnotlimitedtoanypatentright,copyright,maskworkright,or
+otherintellectualpropertyrightrelatingtoanycombination,machine,orprocessinwhichTIproductsorservicesareused.Information
+regardingorreferencingthird-partyproductsorservicesdoesnotconstitutealicensetousesuchproductsorservices,orawarrantyor
+endorsementthereof.UseofTIResourcesmayrequirealicensefromathirdpartyunderthepatentsorotherintellectualpropertyofthe
+thirdparty,oralicensefromTIunderthepatentsorotherintellectualpropertyofTI.
+TIRESOURCESAREPROVIDED“ASIS”ANDWITHALLFAULTS.TIDISCLAIMSALLOTHERWARRANTIESOR
+REPRESENTATIONS,EXPRESSORIMPLIED,REGARDINGTIRESOURCESORUSETHEREOF,INCLUDINGBUTNOTLIMITEDTO
+ACCURACYORCOMPLETENESS,TITLE,ANYEPIDEMICFAILUREWARRANTYANDANYIMPLIEDWARRANTIESOF
+MERCHANTABILITY,FITNESSFORAPARTICULARPURPOSE,ANDNON-INFRINGEMENTOFANYTHIRDPARTYINTELLECTUAL
+PROPERTYRIGHTS.
+TISHALLNOTBELIABLEFORANDSHALLNOTDEFENDORINDEMNIFYYOUAGAINSTANYCLAIM,INCLUDINGBUTNOT
+LIMITEDTOANYINFRINGEMENTCLAIMTHATRELATESTOORISBASEDONANYCOMBINATIONOFPRODUCTSEVENIF
+DESCRIBEDINTIRESOURCESOROTHERWISE.INNOEVENTSHALLTIBELIABLEFORANYACTUAL,DIRECT,SPECIAL,
+COLLATERAL,INDIRECT,PUNITIVE,INCIDENTAL,CONSEQUENTIALOREXEMPLARYDAMAGESINCONNECTIONWITHOR
+ARISINGOUTOFTIRESOURCESORUSETHEREOF,ANDREGARDLESSOFWHETHERTIHASBEENADVISEDOFTHE
+POSSIBILITYOFSUCHDAMAGES.
+YouagreetofullyindemnifyTIanditsrepresentativesagainstanydamages,costs,losses,and/orliabilitiesarisingoutofyournon-
+compliancewiththetermsandprovisionsofthisNotice.
+ThisNoticeappliestoTIResources.Additionaltermsapplytotheuseandpurchaseofcertaintypesofmaterials,TIproductsandservices.
+Theseinclude;withoutlimitation,TI’sstandardtermsforsemiconductorproductshttp://www.ti.com/sc/docs/stdterms.htm),evaluation
+modules,andsamples(http://www.ti.com/sc/docs/sampterms.htm).
+MailingAddress:TexasInstruments,PostOfficeBox655303,Dallas,Texas75265
+Copyright©2018,TexasInstrumentsIncorporated

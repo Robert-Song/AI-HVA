@@ -1,0 +1,82 @@
+{
+  "input": "C:\\Users\\think\\Desktop\\cs407\\AI-HVA\\03_preprocessed_netlist\\example2.net",
+  "component_count": 4,
+  "components": [
+    {
+      "ref": "Q301",
+      "value": "~",
+      "footprint": "",
+      "datasheet": "",
+      "lib": "lsf-kicad",
+      "name": "FDN537N",
+      "desc": "6.5A Id, 30V Vds,  Single N-Channel Power Trench MOSFET , 23mOhm Ron, -55 to 150 \u00c2\u00b0C",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Footprint": "",
+        "Datasheet": "",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "U304",
+      "value": "~",
+      "footprint": "",
+      "datasheet": "",
+      "lib": "Power_Management",
+      "name": "SiP32431DR3",
+      "desc": "10 pA, Ultra Low Leakage and Quiescent Current, Load Switch with Reverse Blocking, High Enable, SC-70-6",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Footprint": "",
+        "Datasheet": "",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "U307",
+      "value": "~",
+      "footprint": "",
+      "datasheet": "",
+      "lib": "74xGxx",
+      "name": "74AHC1G04",
+      "desc": "Single NOT Gate, Low-Voltage CMOS",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Footprint": "",
+        "Datasheet": "",
+        "Description": ""
+      }
+    },
+    {
+      "ref": "U309",
+      "value": "~",
+      "footprint": "",
+      "datasheet": "",
+      "lib": "74xGxx",
+      "name": "74LVC1G332",
+      "desc": "Single OR 3-Input Gate, Low-Voltage CMOS",
+      "tstamp": "",
+      "sheetpath": {
+        "names": "/",
+        "tstamps": "/"
+      },
+      "fields": {
+        "Footprint": "",
+        "Datasheet": "",
+        "Description": ""
+      }
+    }
+  ]
+}

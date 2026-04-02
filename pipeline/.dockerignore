@@ -1,0 +1,12 @@
+__pycache__
+*.pyc
+*.pyo
+.env
+.git
+.gitignore
+*.md
+domain_knowledge_db/
+component_store.json
+output/
+*.txt
+!requirements.txt
