@@ -137,8 +137,9 @@ ic = InfoCompressor()
 '''
 
 #Test case for US#20
-#os.chdir("./test/info_compress")
 '''
+os.chdir("./test/info_compress")
+#os.chdir("./test/info_compress")
 ic = InfoCompressor()
 adata = "ahahahah"
 bdata = "hehehehe"

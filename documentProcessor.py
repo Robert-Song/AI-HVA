@@ -7,6 +7,10 @@ import os
 import requests
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class DocumentProcessor:
     device = None
@@ -38,9 +42,9 @@ class DocumentProcessor:
         print("OCR initialized")
 
     def __process_image(self, image: Image.Image):
-        print("Processing image")
+        logger.info("Processing image")
         inputs = self.processor(text=self.prompt, images=image, return_tensors="pt").to(self.device, self.torch_dtype)
-        print("Inputs created")
+        logger.info("Inputs created")
         generated_ids = self.model.generate(
             #input_ids=inputs["input_ids"],
             pixel_values=inputs["pixel_values"],
@@ -54,7 +58,7 @@ class DocumentProcessor:
 
         #p_a = parsed_answer['<OCR>']
         p_a = generated_text
-        print("Parsed answer")
+        logger.info("Parsed answer")
         return p_a
     
     def process_document(self, document: str):
@@ -62,7 +66,7 @@ class DocumentProcessor:
         result = ""
         for image in docImageList:
             result += self.__process_image(image) + "\n"
-            print("Processed image")
+            logger.info("Processed image")
         return result
 
 if __name__ == "__main__":

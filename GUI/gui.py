@@ -1,15 +1,30 @@
+import sys
+import os
+import threading
+import json
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from tkinter import *
-from PIL import Image, ImageTk
-from tkinter import filedialog
+from tkinter import filedialog, ttk
 import shutil
 from pathlib import Path
 from info_compress import InfoCompressor
+import logging
+from combinedOCRProcessor import CombinedOCRProcessor
 from netlist_parser import full_process_netlist
 from map_connections import map_connections
 from isolate_hardware import extract_components_from_netlist
 from manual_folder import ManualFolder
 from combinedOCRProcessor import CombinedOCRProcessor
 import json
+
+logging.basicConfig(format="%(levelname)s: %(message)s")
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
+
+ic = InfoCompressor()
+cop = CombinedOCRProcessor()
+mf = ManualFolder()
 
 # Initializes root window
 root = Tk()
@@ -19,9 +34,6 @@ root.update_idletasks()
 x = (root.winfo_screenwidth() - root.winfo_reqwidth()) // 2
 y = (root.winfo_screenheight() - root.winfo_reqheight()) // 2
 root.geometry(f"+{x}+{y}")
-
-ic = InfoCompressor()
-mf = ManualFolder()
 
 # Brings the window into focus
 root.lift()
@@ -38,8 +50,8 @@ uploadlbl = Label(root, text="Upload a KiCad schematic or netlist file.")
 uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 
 # Load normal and hover state images for the upload button
-normalimg = PhotoImage(file="GUI/uploadnormal.png")
-hoverimg = PhotoImage(file="GUI/uploadhover.png")
+normalimg = PhotoImage(file="uploadnormal.png")
+hoverimg = PhotoImage(file="uploadhover.png")
 
 # Tracks which file is currently being shown on screen 2
 file_index = 0
@@ -82,11 +94,7 @@ def store_list(index=0, complist=[]):
                 dp = CombinedOCRProcessor()
                 for co in cole:
                     print(dp.process_document(co))
-                        
-                        
-
-        show_screen3()
-
+        show_screen_debug()
 
 # Screen 2: shows components for one file at a time, advancing on each continue click
 def show_screen2(index=0):
@@ -103,6 +111,7 @@ def show_screen2(index=0):
     elif Path(fp).suffix == ".net":
         complist = ic.essential_list_netlist(fp)
     comp_num = len(complist)
+
     # Each checkbox gets its own BooleanVar so they toggle independently
     checkbox_states = [BooleanVar() for _ in complist]
     for i, (comp, state) in enumerate(zip(complist, checkbox_states)):
@@ -124,11 +133,160 @@ def show_screen2(index=0):
     contbtn.grid(row=len(complist) + 2, column=0, pady=(0, 35))
 
 
-def show_screen3():
-    global dirbtn, dirlbl
-    # Remove all screen 1 widgets
+_CONFIG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config.json")
+
+def _load_config():
+    try:
+        with open(_CONFIG_PATH, "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def _save_config(data):
+    cfg = _load_config()
+    cfg.update(data)
+    with open(_CONFIG_PATH, "w") as f:
+        json.dump(cfg, f)
+
+debug_enabled = BooleanVar()
+debug_enabled.set(_load_config().get("debug_enabled", False))
+
+
+class DebugWindow(logging.Handler):
+    def __init__(self):
+        super().__init__()
+        self.win = Toplevel(root)
+        self.win.title("Debug Output")
+        self.win.geometry("600x400")
+
+        self.text = Text(self.win, state="disabled", bg="black", fg="lime",
+                         font=("Courier", 11), wrap="word")
+        scrollbar = Scrollbar(self.win, command=self.text.yview)
+        self.text.configure(yscrollcommand=scrollbar.set)
+
+        scrollbar.pack(side=RIGHT, fill=Y)
+        self.text.pack(fill=BOTH, expand=True)
+        self.win.lift()
+
+    def emit(self, record):
+        msg = self.format(record) + "\n"
+        self.text.configure(state="normal")
+        self.text.insert(END, msg)
+        self.text.configure(state="disabled")
+        self.text.see(END)
+
+
+def _apply_debug():
+    if debug_enabled.get():
+        handler = DebugWindow()
+        handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+        logging.getLogger().addHandler(handler)
+        logging.getLogger().setLevel(logging.DEBUG)
+    else:
+        logging.getLogger().setLevel(logging.WARNING)
+
+
+def show_screen_debug():
     for widget in root.winfo_children():
         widget.destroy()
+    Label(root, text="Debug Options").grid(row=0, column=0, pady=(25, 0), padx=100)
+    Checkbutton(root, text="Enable debug output", variable=debug_enabled).grid(row=1, column=0, pady=(10, 0))
+    Button(root, text="Continue", command=lambda: [
+        _save_config({"debug_enabled": debug_enabled.get()}),
+        _apply_debug(),
+        show_screen3()
+    ]).grid(row=2, column=0, pady=(10, 35))
+
+
+def show_screen4():
+    for widget in root.winfo_children():
+        if not isinstance(widget, Toplevel):
+            widget.destroy()
+    uploadlbl = Label(root, text="Upload a PDF file.")
+    uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
+
+    filebtn = Label(
+        root,
+        image=normalimg,
+        padx=70,
+        pady=70,
+        cursor="hand2",
+    )
+
+    # Keep a reference to prevent garbage collection
+    filebtn.image = normalimg
+    filebtn.grid(row=1, column=0, pady=25)
+
+    # Swap image on hover and trigger import on click
+    filebtn.bind("<Enter>", lambda e: filebtn.config(image=hoverimg))
+    filebtn.bind("<Leave>", lambda e: filebtn.config(image=normalimg))
+    filebtn.bind("<Button-1>", lambda e: import_pdf())
+
+
+_ocr_stopped = False
+_progress_bar = None
+
+
+def set_progress(value):
+    """Update the progress bar on screen 5. value should be 0-100.
+    Can be called from other modules: import GUI.gui as gui; gui.set_progress(50)
+    """
+    if _progress_bar is not None:
+        _progress_bar['value'] = value
+
+
+def import_pdf():
+    file_path = filedialog.askopenfilename(
+        title="Select a file",
+        filetypes=[("PDF Files", ["*.pdf"])]
+    )
+    # Keep root window in focus after dialog closes
+    root.lift()
+    root.focus_force()
+    contbtn = Button(root, text="Begin OCR", command=lambda: start_ocr(file_path))
+    contbtn.grid(row=3, column=0, pady=(0, 35))
+
+
+def start_ocr(file_path):
+    global _ocr_stopped
+    _ocr_stopped = False
+    show_screen5()
+
+    def run():
+        result = cop.process_document(file_path)
+        if not _ocr_stopped:
+            root.after(0, lambda: on_ocr_complete(result))
+
+    threading.Thread(target=run, daemon=True).start()
+
+
+def on_ocr_complete(result):
+    # TODO: handle OCR result and advance to next screen
+    pass
+
+
+def stop_ocr():
+    global _ocr_stopped
+    _ocr_stopped = True
+    show_screen4()
+
+
+def show_screen5():
+    global _progress_bar
+    for widget in root.winfo_children():
+        if not isinstance(widget, Toplevel):
+            widget.destroy()
+    Label(root, text="Processing...").grid(row=0, column=0, pady=(25, 0), padx=100)
+    _progress_bar = ttk.Progressbar(root, orient="horizontal", length=300, mode="determinate", maximum=100)
+    _progress_bar.grid(row=1, column=0, pady=(10, 0), padx=40)
+    Button(root, text="Stop Processing", fg="red", command=stop_ocr).grid(row=2, column=0, pady=(10, 35))
+
+
+def show_screen3():
+    global dirbtn, dirlbl
+    for widget in root.winfo_children():
+        if not isinstance(widget, Toplevel):
+            widget.destroy()
     # Prompt label
     exportlabel = Label(root, text="Choose a destination folder to export the output.")
     exportlabel.grid(row=0, column=0, pady=(25, 0), padx=50)
@@ -155,7 +313,7 @@ def directory_select():
         # Re-show choose directory button below the label so user can reselect
         dirbtn.grid(row=3, column=0, pady=0)
         # Export button to confirm and proceed
-        exportbtn = Button(root, text="Export")
+        exportbtn = Button(root, text="Continue", command=show_screen4)
         exportbtn.grid(row=4, column=0, pady=(0,35))
 
 
