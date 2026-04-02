@@ -1,17 +1,24 @@
 import json
 import os
+import pdfplumber
 
 from ocrCorrector import GenAIStudioAPI
 from documentProcessor import DocumentProcessor
 
 class CombinedOCRProcessor:
     def __init__(self):
-        self.ocrCorrector = GenAIStudioAPI()
-        self.documentProcessor = DocumentProcessor()
+        #self.ocrCorrector = GenAIStudioAPI()
+        #self.documentProcessor = DocumentProcessor()
+        pass
 
     def process_document(self, document: str):
-        result = self.documentProcessor.process_document(document)
-        response = self.ocrCorrector.send_request(result)
+        #result = self.documentProcessor.process_document(document)
+        #response = self.ocrCorrector.send_request(result)
+        response = ""
+        with pdfplumber.open(document) as pdf:
+            for pg in pdf.pages:
+                text = pg.extract_text()
+                response += text + '\n'
         return response
 
 

@@ -1,0 +1,22 @@
+[
+  {
+    "ref": "U307",
+    "value": "74AHC1G04",
+    "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+    "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+    "lib": "74xGxx",
+    "name": "74AHC1G04",
+    "desc": "Single NOT Gate, Low-Voltage CMOS",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Part Number": "74AHC1G04DBVRG4",
+      "Footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+      "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "Description": ""
+    }
+  }
+]

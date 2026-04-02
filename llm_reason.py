@@ -14,7 +14,7 @@ headers = {
 
 def check_reasoning(llm_reason: dict):
     versus = ""
-    with open("activator-isolate-prsd.net", "r") as f:
+    with open("isolate-prsd.net", "r") as f:
         jobj = json.load(f)
         #print(jobj)
         for j in jobj:
@@ -46,7 +46,7 @@ def check_reasoning(llm_reason: dict):
 
 def infer_components_and_relations():
     netlistfile = ""
-    nfiles = ["activator-isolate-prsd.net", "activator-connections-prsd.net"]
+    nfiles = ["prsd.net", "connections-prsd.net"]
     for nfile in nfiles:
         with open(nfile, "r") as f:
             netlistfile += nfile + '\n'
@@ -188,4 +188,4 @@ def infer_components_and_relations():
         raise Exception(f"Error: {response.status_code}, {response.text}")
 
 #infer_components_and_relations()
-check_reasoning({"74AHC1G04": "makes magic unicorns", "74LVC1G332": "logic gate"})
+#check_reasoning({"74AHC1G04": "makes magic unicorns", "74LVC1G332": "logic gate"})

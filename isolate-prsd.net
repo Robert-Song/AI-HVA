@@ -1,0 +1,42 @@
+[
+  {
+    "ref": "U307",
+    "value": "74AHC1G04",
+    "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+    "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+    "lib": "74xGxx",
+    "name": "74AHC1G04",
+    "desc": "Single NOT Gate, Low-Voltage CMOS",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Part Number": "74AHC1G04DBVRG4",
+      "Footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+      "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "U309",
+    "value": "74LVC1G332",
+    "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+    "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+    "lib": "74xGxx",
+    "name": "74LVC1G332",
+    "desc": "Single OR 3-Input Gate, Low-Voltage CMOS",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Part Number": "74LVC1G332DCKRE4",
+      "Footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "Description": ""
+    }
+  }
+]
