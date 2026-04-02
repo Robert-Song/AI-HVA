@@ -1,45 +1,5 @@
 [
   {
-    "ref": "Q301",
-    "value": "FDN337N",
-    "footprint": "Package_TO_SOT_SMD:SuperSOT-3",
-    "datasheet": "https://www.onsemi.com/pub/Collateral/FDN337N-D.pdf",
-    "lib": "lsf-kicad",
-    "name": "FDN537N",
-    "desc": "6.5A Id, 30V Vds,  Single N-Channel Power Trench MOSFET , 23mOhm Ron, -55 to 150 \u00c2\u00b0C",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Part Number": "FDN337N",
-      "Footprint": "Package_TO_SOT_SMD:SuperSOT-3",
-      "Datasheet": "https://www.onsemi.com/pub/Collateral/FDN337N-D.pdf",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U304",
-    "value": "SiP32431DR3",
-    "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
-    "datasheet": "http://www.vishay.com.hk/docs/66597/sip32431.pdf",
-    "lib": "Power_Management",
-    "name": "SiP32431DR3",
-    "desc": "10 pA, Ultra Low Leakage and Quiescent Current, Load Switch with Reverse Blocking, High Enable, SC-70-6",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Part Number": "SiP32431DR3",
-      "Footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
-      "Datasheet": "http://www.vishay.com.hk/docs/66597/sip32431.pdf",
-      "Description": ""
-    }
-  },
-  {
     "ref": "U307",
     "value": "74AHC1G04",
     "footprint": "Package_TO_SOT_SMD:TSOT-23-5",

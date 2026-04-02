@@ -156,8 +156,7 @@ ic = InfoCompressor()
 '''
 
 #Test case for US#20
-#os.chdir("./test/info_compress")
-'''
+os.chdir("./test/info_compress")
 ic = InfoCompressor()
 adata = "test content 1"
 bdata = "test content 2"
@@ -165,4 +164,3 @@ _, adata = ic.check_duplicate_file("test.txt", adata)
 _, adata = ic.check_duplicate_file("test2.txt", adata)
 _, adata = ic.check_duplicate_file("test.txt", bdata)
 _, bdata = ic.check_duplicate_file("test.txt", adata)
-'''
