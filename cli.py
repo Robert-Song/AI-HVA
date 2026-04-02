@@ -588,6 +588,7 @@ def cmd_run(args: list[str], session: Session) -> None:
         
 
     # --- RAG/LLM step (not yet integrated) ---
+    '''
     print()
     print(yellow("  ── RAG / LLM Analysis ─────────────────────────"))
     print(yellow("  ⚠  RAG analysis not yet integrated (Sprint 3)."))
@@ -597,6 +598,7 @@ def cmd_run(args: list[str], session: Session) -> None:
     print(yellow("       7. Use LLM to populate remaining STPA fields"))
     print(yellow("  ────────────────────────────────────────────────"))
     print()
+    '''
 
     os.chdir("pipeline")
     subprocess.run("python -m src.main -n ../prsd.net -s \"Run\" -p", shell=True, check=True)
