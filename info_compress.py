@@ -3,17 +3,16 @@ from kiutils.items.common import Effects
 import subprocess
 from kinparse import parse_netlist
 import os
-
-
+from cli import get_kicad_cli_path
 
 class InfoCompressor:
     def __init__(self):
         self.seen_files = {}
 
+
     def check_duplicate_file(self, filename, filecontent):
         valid = False
         replacement = filecontent
-        print(filename)
         if not filename in self.seen_files.keys():
             valid = True
         elif len(filecontent) != len(self.seen_files[filename]):
@@ -27,6 +26,7 @@ class InfoCompressor:
         del filecontent
         replacement = self.seen_files[filename]
         return valid, replacement
+
 
     def parse(self, filepath):
         sch = Schematic().from_file(filepath)
@@ -44,7 +44,7 @@ class InfoCompressor:
             sch.hierarchicalLabels[i].properties = newprop
         #sch.to_file("result.kicad_sch")
         return sch.to_sexpr()
-    
+   
     def convert(self, filepath, output):
         sch = Schematic().from_file(filepath)
         newl = []
@@ -70,7 +70,8 @@ class InfoCompressor:
             #print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
-        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
+        subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
+
 
     def convert_whitelist_kicad(self, filepath, whitelist, output):
         sch = Schematic().from_file(filepath)
@@ -91,29 +92,7 @@ class InfoCompressor:
             # print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
-        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
-
-    def convert_blacklist_kicad(self, filepath, blacklist, output):
-        sch = Schematic().from_file(filepath)
-        newl = []
-        for sl in sch.libSymbols:
-            if sl.entryName not in blacklist:
-                newl.append(sl)
-        sch.libSymbols = newl
-        for i in range(len(sch.schematicSymbols)):
-            newprop = []
-            #sch.schematicSymbols[i].properties = newprop
-        for i in range(len(sch.labels)):
-            newprop = []
-            # sch.labels[i].effects = Effects()
-            # print(sch.labels[i])
-        for i in range(len(sch.hierarchicalLabels)):
-            newprop = []
-            # print(sch.hierarchicalLabels[i])
-            #sch.hierarchicalLabels[i].properties = newprop
-        sch.to_file(output)
-        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
-    
+        subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
     def convert_whitelist_netlist(self, filepath, whitelist, output):
         sch = Schematic().from_file(filepath)
         newl = []
@@ -133,7 +112,8 @@ class InfoCompressor:
             # print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
-        subprocess.run(["/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli", "sch", "export", "netlist", output])
+        subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
+
 
     def essential_list_netlist(self, filepath):
         col = []
@@ -141,12 +121,13 @@ class InfoCompressor:
         for libb in parse_netlist(filepath).libparts:
             #print(libb.name + ": " + libb.desc + f" ({libb.docs})")
             if libb.name not in banned:
-                col.append((libb.name, libb.desc, libb.docs))
+                col.append((libb.name, libb.desc))
         return col
-    
+   
     def essential_list_kicad(self, filepath):
         self.convert(filepath, "result.kicad_sch")
         return self.essential_list_netlist("result.net")
+
 
 #Test case for US#5
 #os.chdir("./test/info_compress")
@@ -158,9 +139,10 @@ ic = InfoCompressor()
 #Test case for US#20
 '''
 os.chdir("./test/info_compress")
+#os.chdir("./test/info_compress")
 ic = InfoCompressor()
-adata = "test content 1"
-bdata = "test content 2"
+adata = "ahahahah"
+bdata = "hehehehe"
 _, adata = ic.check_duplicate_file("test.txt", adata)
 _, adata = ic.check_duplicate_file("test2.txt", adata)
 _, adata = ic.check_duplicate_file("test.txt", bdata)

@@ -1,0 +1,34 @@
+{
+  "known_refs": [
+    "Q301",
+    "U304",
+    "U307",
+    "U309"
+  ],
+  "metadata_by_ref": {
+    "Q301": {
+      "value": "FDN337N",
+      "footprint": "Package_TO_SOT_SMD:SuperSOT-3",
+      "lib": "lsf-kicad",
+      "name": "FDN537N"
+    },
+    "U304": {
+      "value": "SiP32431DR3",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "lib": "Power_Management",
+      "name": "SiP32431DR3"
+    },
+    "U307": {
+      "value": "74AHC1G04",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+      "lib": "74xGxx",
+      "name": "74AHC1G04"
+    },
+    "U309": {
+      "value": "74LVC1G332",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "lib": "74xGxx",
+      "name": "74LVC1G332"
+    }
+  }
+}

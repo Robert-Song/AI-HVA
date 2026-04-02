@@ -27,3 +27,4 @@ initialOCR/
 
 #documents
 *.pdf
+config.env
