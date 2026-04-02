@@ -1,0 +1,38 @@
+{
+  "known_refs": [
+    "Q301",
+    "U304",
+    "U307",
+    "U309"
+  ],
+  "metadata_by_ref": {
+    "Q301": {
+      "value": "FDN337N",
+      "footprint": "Package_TO_SOT_SMD:SuperSOT-3",
+      "lib": "lsf-kicad",
+      "name": "FDN537N",
+      "datasheet": "https://www.onsemi.com/pub/Collateral/FDN337N-D.pdf"
+    },
+    "U304": {
+      "value": "SiP32431DR3",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "lib": "Power_Management",
+      "name": "SiP32431DR3",
+      "datasheet": "http://www.vishay.com.hk/docs/66597/sip32431.pdf"
+    },
+    "U307": {
+      "value": "74AHC1G04",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
+      "lib": "74xGxx",
+      "name": "74AHC1G04",
+      "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+    },
+    "U309": {
+      "value": "74LVC1G332",
+      "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
+      "lib": "74xGxx",
+      "name": "74LVC1G332",
+      "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf"
+    }
+  }
+}

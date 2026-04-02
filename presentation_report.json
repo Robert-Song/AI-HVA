@@ -1,0 +1,11 @@
+{
+  "input": "03_preprocessed_netlist\\example3.net",
+  "db_path": "presentation_db.json",
+  "current_component_count": 4,
+  "new_components_count": 0,
+  "new_components": [],
+  "new_components_details": {},
+  "known_components_count": 4,
+  "removed_components": [],
+  "notification": "No new hardware detected."
+}

@@ -133,6 +133,7 @@ def extract_netlist_data(file_content):
     return data
 
 def build_stpa_json(raw_data):
+    print(raw_data)
     # transforms raw netlist data into the specific STPA JSON template.
     output = {
         "system_metadata": {},
@@ -303,6 +304,23 @@ def build_stpa_json(raw_data):
 
     return output
 
+def full_process_netlist(netlist_file, output_file):
+    try:
+        with open(netlist_file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        print(content)
+            
+        raw_extracted = extract_netlist_data(content)
+        stpa_output = build_stpa_json(raw_extracted)
+            
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(stpa_output, f, indent=2)
+            
+        print(f"Successfully processed '{netlist_file}' -> '{output_file}'")
+    except Exception as e:
+        print(f"Error processing '{netlist_file}': {e}")
+
 if __name__ == "__main__":
     import os
     import glob
@@ -332,6 +350,8 @@ if __name__ == "__main__":
         basename, _ = os.path.splitext(filename)
         output_file = os.path.join(output_dir, f"{basename}.json")
 
+        full_process_netlist(netlist_file, output_file)
+        '''
         try:
             with open(netlist_file, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -347,3 +367,4 @@ if __name__ == "__main__":
             print(f"Failed parsing '{netlist_file}': {e}")
         except Exception as e:
             print(f"Error processing '{netlist_file}': {e}")
+        '''
