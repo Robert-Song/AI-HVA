@@ -1,8 +1,12 @@
 import requests
 import json
 import pdfplumber
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
 url = "https://genai.rcac.purdue.edu/api/chat/completions"
-jwt_token_or_api_key = "sk-a3a93ca2995c4526ab43bf91b6cce823"
+jwt_token_or_api_key = os.getenv("JWT_TOKEN")
 headers = {
     "Authorization": f"Bearer {jwt_token_or_api_key}",
     "Content-Type": "application/json"
@@ -183,5 +187,5 @@ def infer_components_and_relations():
     else:
         raise Exception(f"Error: {response.status_code}, {response.text}")
 
-infer_components_and_relations()
-#check_reasoning({"74AHC1G04": "makes magic unicorns", "74LVC1G332": "logic gate"})
+#infer_components_and_relations()
+check_reasoning({"74AHC1G04": "makes magic unicorns", "74LVC1G332": "logic gate"})
