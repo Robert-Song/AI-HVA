@@ -1,0 +1,21 @@
+# STPA AI Pipeline Dependencies
+
+# Core
+pydantic>=2.0
+networkx
+
+# LLM Client (OpenAI-compatible API)
+# ── PROVIDER BLOCK: swap this section to change LLM provider ──
+openai>=1.0
+tiktoken
+# ── END PROVIDER BLOCK ──
+
+# Document Processing & Embeddings
+chromadb
+sentence-transformers
+
+# Configuration
+python-dotenv
+
+# Utilities
+json5

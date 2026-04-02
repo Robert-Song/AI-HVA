@@ -1,0 +1,379 @@
+DATA SHEET
+www.onsemi.com
+MOSFET – Single, N-Channel,
+(cid:2) VDS RDS(ON) MAX ID MAX
+POWERTRENCH
+30 V 23 m(cid:2) @ 10 V 6.5 A
+30 V, 6.5 A, 23 m(cid:2) 36 m(cid:2) @ 4.5 V
+FDN537N
+D
+General Description
+This N−Channel MOSFET is produced using onsemi advanced G
+® S
+POWERTRENCH process that has been optimized for r ,
+DS(on)
+switching performance and ruggedness. SOT−23/SUPERSOT(cid:2)−23, 3 LEAD, 1.4x2.9
+CASE 527AG
+Features
+• Max r = 23 m(cid:2) @ V = 10 V, I = 6.5 A
+DS(on) GS D
+• Max r = 36 m(cid:2) @ V = 4.5 V, I = 6.0 A MARKING DIAGRAM
+DS(on) GS D
+•
+High Performance Trench Technology for Extremely Low r
+DS(on)
+•
+High Power and Current Handling Capability in a Widely Used
+537M(cid:2)
+(cid:2)
+Surface Mount Package
+•
+Fast Switching Speed
+• 537 = Specific Device Code
+100% UIL Tested
+M = Month Code
+•
+This Device is Pb−Free and is RoHS Compliant (cid:2) = Pb−Free Package
+(Note: Microdot may be in either location)
+Application
+•
+Primary DC−DC Switch
+PIN ASSIGNMENT
+ABSOLUTE MAXIMUM RATINGS (TA = 25°C, unless otherwise noted)
+Symbol Parameter Value Unit D
+VDS Drain to Source Voltage 30 V
+VGS Gate to Source Voltage (Note 3) ±20 V
+ID Drain Current Continuous (Package 8.0 A
+limited) TC = 25°C
+Continuous (Note 1a) 6.5
+TA = 25°C G S
+Pulsed 25
+PD Power Dissipation (Note 1a) 1.5 W
+(Note 1b) 0.6 ORDERING INFORMATION
+TJ, TSTG Operating and Storage Junction −55 to 150 °C See detailed ordering and shipping information on page 5 of
+Temperature Range this data sheet.
+Stresses exceeding those listed in the Maximum Ratings table may damage the
+device. If any of these limits are exceeded, device functionality should not be
+assumed, damage may occur and reliability may be affected.
+THERMAL CHARACTERISTICS (TA = 25°C, unless otherwise noted)
+Symbol Parameter Max Unit
+R(cid:3)JA Thermal Resistance, Junction−to−Ambient 80 °C/W
+(Note 1a)
+Thermal Resistance, Junction−to−Ambient 180
+(Note 1b)
+© Semiconductor Components Industries, LLC, 2013 1 Publication Order Number:
+January, 2023 − Rev. 2 FDN537N/D
+FDN537N
+ELECTRICAL CHARACTERISTICS (TJ = 25°C unless otherwise noted)
+Symbol Parameter Test Conditions Min Typ Max Unit
+OFF CHARACTERISTICS
+BVDSS Drain to Source Breakdown Voltage ID = 250 (cid:4)A, VGS = 0 V 30 − − V
+(cid:5)BV Breakdown Voltage Temperature Coefficient ID = 250 (cid:4)A, referenced to 25(cid:3)C − 18 − mV/(cid:3)C
+DSS
+(cid:5)T
+J
+IDSS Zero Gate Voltage Drain Current VDS = 24 V, VGS = 0 V − − 1 (cid:4)A
+IGSS Gate to Source Leakage Current, Forward VGS = 20 V, VDS = 0 V − − 100 nA
+ON CHARACTERISTICS
+VGS(th) Gate to Source Threshold Voltage VGS = VDS, ID = 250 (cid:4)A 1.2 1.8 3.0 V
+(cid:5)V
+GS(th)
+Gate to Source Threshold Voltage ID = 250 (cid:4)A, referenced to 25(cid:3)C − −6 − mV/(cid:3)C
+Temperature Coefficient
+(cid:5)T
+J
+rDS(on) Static Drain to Source On Resistance VGS = 10 V, ID = 6.5 A − 19 23 m(cid:2)
+VGS = 4.5 V, ID = 6.0 A − 25 36
+VGS = 10 V, ID = 6.5 A, TJ = 125(cid:3)C − 25 30
+gFS Forward Transconductance VDD = 5 V, ID = 6.5 A − 24 − S
+DYNAMIC CHARACTERISTICS
+Ciss Input Capacitance VDS = 15 V, VGS = 0 V, f = 1 MHz − 360 465 pF
+Coss Output Capacitance − 143 180 pF
+Crss Reverse Transfer Capacitance − 22 35 pF
+Rg Gate Resistance − 1.0 − (cid:2)
+SWITCHING CHARACTERISTICS
+td(on) Turn−On Delay Time VDD = 15 V, ID = 6.5 A, − 5 10 ns
+tr Rise Time
+VGS = 10 V, RGEN = 6 (cid:2)
+− 1 10 ns
+td(off) Turn−Off Delay Time − 11 19 ns
+tf Fall Time − 1 10 ns
+Qg(TOT) Total Gate Charge VGS = 0 V to 10 V, VDD = 15 V, ID = 6.5 A − 6.0 8.4 nC
+VGS = 0 V to 4.5 V, VDD = 15 V, ID = 6.5 A − 3.0 4.2 nC
+Qgs Gate to Source Charge VDD = 15 V, ID = 6.5 A − 1.2 − nC
+Qgd Gate to Drain “Miller” Charge − 1.1 − nC
+DRAIN−SOURCE DIODE CHARACTERISTICS
+VSD Source to Drain Diode Forward Voltage VGS = 0 V, IS = 6.5 A (Note 2) − 0.86 1.2 V
+trr Reverse Recovery Time IF = 6.5 A, di/dt = 100 A/(cid:4)s − 14 22 ns
+Qrr Reverse Recovery Charge − 3 10 nC
+Product parametric performance is indicated in the Electrical Characteristics for the listed test conditions, unless otherwise noted. Product
+performance may not be indicated by the Electrical Characteristics if operated under different conditions.
+NOTES:
+1. RθJA is the sum of the junction−to−case and case−to−ambient thermal resistance where the case thermal reference is defined as the solder
+mounting surface of the drain pins. RθJC is guaranteed by design while RθCA is determined by the user’s board design.
+a) 80°C/W when mounted on b) 180°C/W when mounted on
+a 1 in2 pad of 2 oz copper a minimum pad
+www.onsemi.com
+2
+G DF DS SF SS
+G DF DS SF SS
+2. Pulse Test: Pulse Width < 300 μs, Duty Cycle < 2.0%.
+3. As an N−ch device, the negative VGS rating is for low duty cycle pulse occurrence only. No continuous rating is implied.
+FDN537N
+TYPICAL CHARACTERISTICS
+(TJ = 25°C unless otherwise noted)
+VDS, Drain to Source Voltage (V) ID, Drain Current (A)
+www.onsemi.com
+3
+)A(
+tnerruC
+niarD
+,DI
+6 10
+TJ, Junction Temperature ((cid:3)C) VGS, Gate to Source Voltage (V)
+VGS, Gate to Source Voltage (V)
+dezilamroN
+)A(
+tnerruC
+niarD
+,DI
+ecnatsiseR−nO
+ecruoS
+ot
+niarD
+2 4 8
+VSD, Body Diode Forward Voltage (V)
+)(cid:2)m(
+ecnatsiseR−nO
+ecruoS
+ot
+niarD
+,)no(SDr
+Figure 1. On Region Characteristics Figure 2. Normalized On−Resistance
+vs Drain Current and Gate Voltage
+Figure 3. Normalized On−Resistance Figure 4. On−Resistance
+vs Junction Temperature vs Gate to Source Voltage
+Figure 5. Transfer Characteristics Figure 6. Source to Drain Diode Forward Voltage
+vs Source Current
+dezilamroN
+ecnatsiseR−nO
+ecruoS
+ot
+niarD
+)A(
+tnerruC
+niarD
+esreveR
+,SI
+25 3.5
+VGS = 10 V VGS = 6 V
+VGS = 3.5 V
+VGS = 4.5 V 3.0
+20
+VGS = 4 V VGS = 4 V
+2.5
+15 PULSE DURATION = 80(cid:4)s
+DUTY CYCLE = 0.5% MAX
+2.0
+10
+VGS = 4.5 V
+VGS = 3.5 V 1.5
+VGS = 6 V
+5
+PULSE DURATION = 80(cid:4)s 1.0 VGS = 10 V
+DUTY CYCLE = 0.5% MAX
+0 0.5
+0 0.4 0.8 1.2 1.6 2.0 0 5 10 15 20 25
+1.5 80
+1.4
+ID = 6.5 A ID = 6.5 A PULSE DURATION = 80(cid:4)s
+VGS = 10 V DUTY CYCLE = 0.5% MAX
+1.3 60
+1.2
+1.1 40
+1.0
+TJ = 125°C
+0.9 20
+TJ = 25°C
+0.8
+0.7 0
+−75 −50 −25 0 25 50 75 100 125 150
+25 30
+PULSE DURATION = 80(cid:4)s VGS = 0 V
+DUTY CYCLE = 0.5% MAX 10
+20
+VDS = 5 V TJ = 150°C
+15 1
+TJ = 150°C TJ = 25°C
+10
+TJ = 25°C 0.1 TJ = −55°C
+5
+TJ = −55°C
+0 0.01
+1 2 3 4 5 0.2 0.4 0.6 0.8 1.0 1.2
+FDN537N
+TYPICAL CHARACTERISTICS (continued)
+(TJ = 25°C unless otherwise noted)
+Figure 7. Gate Charge Characteristics Figure 8. Capacitance vs Drain to Source Voltage
+Figure 9. Unclamped Inductive Switching
+Capability
+www.onsemi.com
+4
+)A(
+tnerruC
+niarD
+,DI
+tAV, Time in Avalanche (ms) TA, Ambient Temperature ((cid:3)C)
+Figure 10. Maximum Continuous Drain Current
+vs Ambient Temperature
+)A(
+tnerruC
+ehcnalavA
+,SAI
+VDS, Drain to Source Voltage (V)
+)Fp(
+ecnaticapaC
+Qg, Gate Charge (nC)
+)V(
+egatloV
+ecruoS
+ot
+etaG
+,SGV
+10 500
+ID = 6.5 A
+VDD = 10 V
+Ciss
+8
+VDD = 15 V
+6 100
+Coss
+VDD = 20 V
+4
+2
+f = 1 MHz
+VGS = 0 V Crss
+0 10
+0 1 2 3 4 5 6 0.1 1 10 30
+Figure 11. Forward Bias Safe Operating Area
+)W(
+rewoP
+tneisnarT
+kaeP
+,)kp(P
+VDS, Drain to Source Voltage (V) t, Pulse Width (s)
+Figure 12. Single Pulse Maximum
+Power Dissipation
+)A(
+tnerruC
+niarD
+,DI
+9 8
+8
+7 6
+6
+TJ = 25°C
+VGS = 10 V
+5 4
+TJ = 100°C
+4
+TJ = 125°C
+VGS = 4.5 V
+3 2
+2 R(cid:3)JA = 80°C/W
+1 0
+0.01 0.1 1 5 25 50 75 100 125 150
+30 200
+Single Pulse
+10 100 R(cid:3)JA = 180°C/W
+100(cid:4)s
+TA = 25°C
+1
+This Area is 1 ms 10
+Limited by rDS(ON)
+10 ms
+0.1 Single Pulse 100 ms
+TJ = Max Rated
+1 s
+R(cid:3)JA = 180°C/W 10 s
+TA = 25°C DC 1
+0.01 0.5
+0.01 0.1 1 10 100200 10 −4 10 −3 10 −2 10 −1 1 10 100 10 3
+FDN537N
+TYPICAL CHARACTERISTICS (continued)
+(TJ = 25°C unless otherwise noted)
+t, Rectangular Pulse Duration (s)
+Figure 13. Junction−to−Ambient Transient Thermal Response Curve
+www.onsemi.com
+5
+ecnatsiseR
+lamrehT
+dezilamroN
+,AJ(cid:3)Z
+2
+DUTY CYCLE−DESCENDING ORDER
+1
+D = 0.5
+0.2
+0.1 PDM
+0.1 0.05
+0.02
+0.01 t1
+t2
+NOTES:
+SINGLE PULSE
+0.01 R(cid:3)JA = 180 o C/W D PE U A T K Y T F J A C = T P O D R M : × D Z = (cid:3) J t A 1 / × t2 R(cid:3)JA + TA
+0.005
+10 −4 10 −3 10 −2 10 −1 1 10 100 1000
+PACKAGE MARKING AND ORDERING INFORMATION
+Device Device Marking Package Shipping†
+FDN537N 537 SOT−23/SUPERSOT−23, 3 LEAD, 1.4x2.9 3000 / Tape & Reel
+(Pb−Free, Halide Free)
+†For information on tape and reel specifications, including part orientation and tape sizes, please refer to our Tape and Reel Packaging
+Specifications Brochure, BRD8011/D.
+POWERTRENCH is a registered trademark of Semiconductor Components Industries, LLC dba “onsemi” or its affiliates and/or subsidiaries in the United
+States and/or other countries.
+SUPERSOT is a trademark of Semiconductor Components Industries, LLC dba “onsemi” or its affiliates and/or subsidiaries in the United States and/or other
+countries.
+MECHANICAL CASE OUTLINE
+PACKAGE DIMENSIONS
+SOT−23/SUPERSOT(cid:2)−23, 3 LEAD, 1.4x2.9
+CASE 527AG
+ISSUE A
+DATE 09 DEC 2019
+GENERIC
+MARKING DIAGRAM* XXX = Specific Device Code *This information is generic. Please refer to
+device data sheet for actual part marking.
+M = Month Code
+XXXM(cid:2) (cid:2) = Pb−Free Package Pb−Free indicator, “G” or microdot “(cid:2)”, may
+(cid:2) or may not be present. Some products may
+(Note: Microdot may be in either location) not follow the Generic Marking.
+Electronic versions are uncontrolled except when accessed directly from the Document Repository.
+DOCUMENT NUMBER: 98AON34319E
+Printed versions are uncontrolled except when stamped “CONTROLLED COPY” in red.
+DESCRIPTION: SOT−23/SUPERSOT−23, 3 LEAD, 1.4X2.9 PAGE 1 OF 1
+onsemi and are trademarks of Semiconductor Components Industries, LLC dba onsemi or its subsidiaries in the United States and/or other countries. onsemi reserves
+the right to make changes without further notice to any products herein. onsemi makes no warranty, representation or guarantee regarding the suitability of its products for any particular
+purpose, nor does onsemi assume any liability arising out of the application or use of any product or circuit, and specifically disclaims any and all liability, including without limitation
+special, consequential or incidental damages. onsemi does not convey any license under its patent rights nor the rights of others.
+© Semiconductor Components Industries, LLC, 2008 www.onsemi.com
+onsemi, , and other names, marks, and brands are registered and/or common law trademarks of Semiconductor Components Industries, LLC dba “onsemi” or its affiliates
+and/or subsidiaries in the United States and/or other countries. onsemi owns the rights to a number of patents, trademarks, copyrights, trade secrets, and other intellectual property.
+A listing of onsemi’s product/patent coverage may be accessed at www.onsemi.com/site/pdf/Patent−Marking.pdf. onsemi reserves the right to make changes at any time to any
+products or information herein, without notice. The information herein is provided “as−is” and onsemi makes no warranty, representation or guarantee regarding the accuracy of the
+information, product features, availability, functionality, or suitability of its products for any particular purpose, nor does onsemi assume any liability arising out of the application or use
+of any product or circuit, and specifically disclaims any and all liability, including without limitation special, consequential or incidental damages. Buyer is responsible for its products
+and applications using onsemi products, including compliance with all laws, regulations and safety requirements or standards, regardless of any support or applications information
+provided by onsemi. “Typical” parameters which may be provided in onsemi data sheets and/or specifications can and do vary in different applications and actual performance may
+vary over time. All operating parameters, including “Typicals” must be validated for each customer application by customer’s technical experts. onsemi does not convey any license
+under any of its intellectual property rights nor the rights of others. onsemi products are not designed, intended, or authorized for use as a critical component in life support systems
+or any FDA Class 3 medical devices or medical devices with a same or similar classification in a foreign jurisdiction or any devices intended for implantation in the human body. Should
+Buyer purchase or use onsemi products for any such unintended or unauthorized application, Buyer shall indemnify and hold onsemi and its officers, employees, subsidiaries, affiliates,
+and distributors harmless against all claims, costs, damages, and expenses, and reasonable attorney fees arising out of, directly or indirectly, any claim of personal injury or death
+associated with such unintended or unauthorized use, even if such claim alleges that onsemi was negligent regarding the design or manufacture of the part. onsemi is an Equal
+Opportunity/Affirmative Action Employer. This literature is subject to all applicable copyright laws and is not for resale in any manner.
+ADDITIONAL INFORMATION
+TECHNICAL PUBLICATIONS: ONLINE SUPPORT: www.onsemi.com/support
+Technical Library: www.onsemi.com/design/resources/technical−documentation For additional information, please contact your local Sales Representative at
+onsemi Website: www.onsemi.com www.onsemi.com/support/sales
+

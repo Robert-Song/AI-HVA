@@ -4,7 +4,7 @@ detect_new_hardware.py (Story 12)
 Detect newly added hardware by comparing parsed components from a KiCad .net file
 against a stored component database (JSON file).
 
-Usage: python detect_new_hardware.py <input_netlist> <output_json> <report_json>
+Usage: python detect_new_hardware.py <input_netlist> <component_db.json> <report.json>
 
 Author: Alex Kolyaskin 2-24-26
 """
