@@ -520,8 +520,9 @@ def cmd_runocr(args: list[str], session: Session) -> None:
         print(f"  Processing {cyan(ref)} ({desc}) ...")
         # In a full integration, we'd retrieve the PDF URL and pass it here.
         # For now we signal what would happen.
-        print(yellow(f"    → PDF retrieval + OCR for '{ref}' not yet fully wired. "
-                     "Stub complete."))
+        
+        #print(yellow(f"    → PDF retrieval + OCR for '{ref}' not yet fully wired. "
+        #             "Stub complete."))
 
     session.ocr_ran = True
     print(green("\n  ✓ OCR step complete (stub). Results would feed into RAG pipeline."))
@@ -558,6 +559,11 @@ def cmd_run(args: list[str], session: Session) -> None:
             if k in stpa["connection_pairs"]
         }
         print(f"  Applied exclusions: {', '.join(session.excluded)}")
+    ic = InfoCompressor()
+    prsd = "prsd.kicad_sch"
+    print(stpa["components"])
+
+    ic.convert_whitelist_kicad(session.input_path, stpa["components"], prsd)
 
     # --- Determine output path ---
     input_stem = Path(session.input_path).stem
@@ -579,8 +585,10 @@ def cmd_run(args: list[str], session: Session) -> None:
     except OSError as e:
         print(red(f"  Error writing output: {e}"))
         return
+        
 
     # --- RAG/LLM step (not yet integrated) ---
+    '''
     print()
     print(yellow("  ── RAG / LLM Analysis ─────────────────────────"))
     print(yellow("  ⚠  RAG analysis not yet integrated (Sprint 3)."))
@@ -590,6 +598,11 @@ def cmd_run(args: list[str], session: Session) -> None:
     print(yellow("       7. Use LLM to populate remaining STPA fields"))
     print(yellow("  ────────────────────────────────────────────────"))
     print()
+    '''
+
+    os.chdir("pipeline")
+    subprocess.run("python -m src.main -n ../prsd.net -s \"Run\" -p", shell=True, check=True)
+
     print(green("  ✓ Run complete. Pipeline output saved."))
 
 

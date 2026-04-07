@@ -16,6 +16,8 @@ from isolate_hardware import extract_components_from_netlist
 from manual_folder import ManualFolder
 from combinedOCRProcessor import CombinedOCRProcessor
 import json
+import subprocess
+from llm_reason import check_reasoning, infer_components_and_relations
 
 logging.basicConfig(format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -49,8 +51,8 @@ uploadlbl = Label(root, text="Upload a KiCad schematic or netlist file.")
 uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 
 # Load normal and hover state images for the upload button
-normalimg = PhotoImage(file="uploadnormal.png")
-hoverimg = PhotoImage(file="uploadhover.png")
+normalimg = PhotoImage(file="GUI/uploadnormal.png")
+hoverimg = PhotoImage(file="GUI/uploadhover.png")
 
 # Tracks which file is currently being shown on screen 2
 file_index = 0
@@ -174,14 +176,14 @@ def store_list(index=0, complist=[]):
             print(ec[1])
             sp = ec[1].split("/")
             if Path(ec[1]).suffix == ".kicad_sch":
-                prsd = sp[len(sp) - 1].split(".")[0] + "-prsd.kicad_sch"
+                prsd = "prsd.kicad_sch"
                 ic.convert_whitelist_kicad(ec[1], ec[0], prsd)
-                prsdfix = sp[len(sp) - 1].split(".")[0] + "-prsd.net"
+                prsdfix = "prsd.net"
                 mcresult = map_connections(prsdfix)
-                with open(sp[len(sp) - 1].split(".")[0] + "-connections-prsd.net", "w", encoding="utf-8") as f:
+                with open("connections-prsd.net", "w", encoding="utf-8") as f:
                     json.dump(mcresult, f, indent=2)
                 icresult = extract_components_from_netlist(prsdfix)
-                with open(sp[len(sp) - 1].split(".")[0] + "-isolate-prsd.net", "w", encoding="utf-8") as f:
+                with open("isolate-prsd.net", "w", encoding="utf-8") as f:
                     json.dump(icresult, f, indent=2)
                 full_process_netlist(prsdfix, sp[len(sp) - 1].split(".")[0] + "-final.json")
                 cole = []
@@ -192,9 +194,6 @@ def store_list(index=0, complist=[]):
                         with open(filename, "wb") as f:
                             f.write(result)
                         cole.append(filename)
-                dp = CombinedOCRProcessor()
-                for co in cole:
-                    print(dp.process_document(co))
         show_screen_debug()
 
 # Screen 2: shows components for one file at a time, advancing on each continue click
@@ -321,7 +320,8 @@ def show_screen4():
     # Swap image on hover and trigger import on click
     filebtn.bind("<Enter>", lambda e: filebtn.config(image=hoverimg))
     filebtn.bind("<Leave>", lambda e: filebtn.config(image=normalimg))
-    filebtn.bind("<Button-1>", lambda e: import_pdf())
+    
+    #filebtn.bind("<Button-1>", lambda e: import_pdf())
 
 
 _ocr_stopped = False
@@ -382,6 +382,19 @@ def show_screen5():
     _progress_bar.grid(row=1, column=0, pady=(10, 0), padx=40)
     Button(root, text="Stop Processing", fg="red", command=stop_ocr).grid(row=2, column=0, pady=(10, 35))
 
+def show_screen6():
+    global _progress_bar
+    for widget in root.winfo_children():
+        if not isinstance(widget, Toplevel):
+            widget.destroy()
+    Label(root, text="Processing...").grid(row=0, column=0, pady=(25, 0), padx=100)
+    _progress_bar = ttk.Progressbar(root, orient="horizontal", length=300, mode="determinate", maximum=100)
+    _progress_bar.grid(row=1, column=0, pady=(10, 0), padx=40)
+    Button(root, text="Stop Processing", fg="red", command=stop_ocr).grid(row=2, column=0, pady=(10, 35))
+    infer_components_and_relations()
+    os.chdir("pipeline")
+    subprocess.run("python -m src.main -n ../prsd.net -s \"Run\" -p", shell=True, check=True)
+
 
 def show_screen3():
     global dirbtn, dirlbl
@@ -414,7 +427,7 @@ def directory_select():
         # Re-show choose directory button below the label so user can reselect
         dirbtn.grid(row=3, column=0, pady=0)
         # Export button to confirm and proceed
-        exportbtn = Button(root, text="Continue", command=show_screen4)
+        exportbtn = Button(root, text="Continue", command=show_screen6)
         exportbtn.grid(row=4, column=0, pady=(0,35))
 
 

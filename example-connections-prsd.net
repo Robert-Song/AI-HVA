@@ -1,0 +1,41 @@
+{
+  "input": "prsd.net",
+  "essential_only": true,
+  "essential_component_count": 2,
+  "excluded_components": [],
+  "included_essential_component_count": 2,
+  "connections_count": 1,
+  "connections": [
+    {
+      "net": {
+        "name": "/BAT_SW",
+        "code": "1"
+      },
+      "a": {
+        "ref": "U307",
+        "pin": "5"
+      },
+      "b": {
+        "ref": "U309",
+        "pin": "5"
+      }
+    }
+  ],
+  "adjacency": {
+    "U307": [
+      "U309"
+    ],
+    "U309": [
+      "U307"
+    ]
+  },
+  "excluded_prefixes": [
+    "C",
+    "D",
+    "F",
+    "FB",
+    "L",
+    "R",
+    "TP"
+  ]
+}
