@@ -10,7 +10,6 @@ import shutil
 from pathlib import Path
 from info_compress import InfoCompressor
 import logging
-from combinedOCRProcessor import CombinedOCRProcessor
 from netlist_parser import full_process_netlist
 from map_connections import map_connections
 from isolate_hardware import extract_components_from_netlist
@@ -58,13 +57,115 @@ file_index = 0
 essential_components = []
 comp_num = 0
 checkbox_states = []  # BooleanVars for the current screen's checkboxes
+# Expected file headers for each supported KiCad format
+FILE_HEADERS = {
+    ".kicad_sch": "(kicad_sch",
+    ".net": "(export",
+}
+filelbl = None
+errorlbl = None
+contbtn = None
+
+def show_screen1():
+    # Persistent screen 1 status labels (created once, updated on each import attempt)
+    global errorlbl
+    global filelbl
+    global contbtn
+    errorlbl = Label(root, text="", fg="red")
+    errorlbl.grid(row=2, column=0)
+    filelbl = Label(root, text="")
+    filelbl.grid(row=2, column=0)
+    contbtn = Button(root, text="Continue", command=show_screen2)
+
+    # Screen 1: upload button using a label widget for custom image styling
+    filebtn = Label(
+        root,
+        image=normalimg,
+        padx=70,
+        pady=70,
+        cursor="hand2",
+    )
+    # Keep a reference to prevent garbage collection
+    filebtn.image = normalimg
+    filebtn.grid(row=1, column=0, pady=25)
+    # Swap image on hover and trigger import on click
+    filebtn.bind("<Enter>", lambda e: filebtn.config(image=hoverimg))
+    filebtn.bind("<Leave>", lambda e: filebtn.config(image=normalimg))
+    filebtn.bind("<Button-1>", lambda e: import_file())
+
+    root.mainloop()
+
+# Opens a file picker for KiCad netlists/schematics and copies them to the project root
+def import_file():
+    global file_paths
+    global filelbl
+    global errorlbl
+    global contbtn
+    global allvalid
+    file_paths = filedialog.askopenfilenames(
+        title="Select a file",
+        filetypes=[("KiCad Netlists/Schematics", ["*.net", "*.kicad_sch"])]
+    )
+    # Keep root window in focus after dialog closes
+    root.lift()
+    root.focus_force()
+    if file_paths:
+        # Split files into valid and invalid
+        valid = []
+        invalid = []
+        for fp in file_paths:
+            if validate_file(fp):
+                valid.append(fp)
+            else:
+                invalid.append(fp)
+        allvalid = True
+        errorlbl.destroy()        # Warn about any corrupted or unrecognized files
+        if invalid:
+            invalid_names = ", ".join(Path(fp).name for fp in invalid)
+            errorlbl = Label(root, text="Invalid or corrupted files: " + invalid_names, fg="red")
+            errorlbl.grid(row=2, column=0, pady=(0, 35))
+            allvalid = False
+        if not valid:
+            filelbl.destroy()
+            allvalid = False
+            contbtn.destroy()
+            return
+        # Display the names of all valid selected files
+        names = ", ".join(Path(fp).name for fp in valid)
+        filelbl.destroy()
+        # Copy each valid file to the project root directory
+        for fp in valid:
+            shutil.copy2(fp, "..")
+        if allvalid:
+            errorlbl.destroy()
+            filelbl = Label(root, text="Uploaded files: " + names)
+            filelbl.grid(row=2, column=0)
+            contbtn = Button(root, text="Continue", command=show_screen2)
+            contbtn.grid(row=3, column=0, pady=(0, 35))
+        else:
+            contbtn.destroy()
+
+def validate_file(fp):
+    suffix = Path(fp).suffix.lower()
+    expected = FILE_HEADERS.get(suffix)
+    if not expected:
+        return False
+    try:
+        with open(fp, "r", encoding="utf-8") as f:
+            content = f.read(len(expected))
+        if content != expected:
+            return False
+        else:
+            # Removed due to issues with reselection
+            #worked, content = ic.check_duplicate_file(fp, content)
+            return True
+    except (OSError, UnicodeDecodeError):
+        return False
 
 def store_list(index=0, complist=[]):
     checked = [comp[0] for comp, state in zip(complist, checkbox_states) if state.get()]
     needdatasheets = [(comp[0], comp[2]) for comp, state in zip(complist, checkbox_states) if state.get()]
-    unchecked = [comp[0] for comp, state in zip(complist, checkbox_states) if not state.get()]
     essential_components.append([checked, file_paths[index]])
-    #essential_components.append([unchecked, file_paths[index]])
     if index + 1 < len(file_paths):
         show_screen2(index+1)
     else:
@@ -317,110 +418,9 @@ def directory_select():
         exportbtn.grid(row=4, column=0, pady=(0,35))
 
 
-# Expected file headers for each supported KiCad format
-FILE_HEADERS = {
-    ".kicad_sch": "(kicad_sch",
-    ".net": "(export",
-}
-filelbl = None
-errorlbl = None
-contbtn = None
+
 # Returns True if the file is non-empty and starts with the expected header
-def validate_file(fp):
-    suffix = Path(fp).suffix.lower()
-    expected = FILE_HEADERS.get(suffix)
-    if not expected:
-        return False
-    try:
-        with open(fp, "r", encoding="utf-8") as f:
-            content = f.read(len(expected))
-        if content != expected:
-            return False
-        else:
-            worked, content = ic.check_duplicate_file(fp, content)
-            return worked
-    except (OSError, UnicodeDecodeError):
-        return False
-
-
-# Opens a file picker for KiCad netlists/schematics and copies them to the project root
-def import_file():
-    global file_paths
-    global filelbl
-    global errorlbl
-    global contbtn
-    global allvalid
-    file_paths = filedialog.askopenfilenames(
-        title="Select a file",
-        filetypes=[("KiCad Netlists/Schematics", ["*.net", "*.kicad_sch"])]
-    )
-    # Keep root window in focus after dialog closes
-    root.lift()
-    root.focus_force()
-    if file_paths:
-        # Split files into valid and invalid
-        valid = []
-        invalid = []
-        for fp in file_paths:
-            if validate_file(fp):
-                valid.append(fp)
-            else:
-                invalid.append(fp)
-        allvalid = True
-        errorlbl.destroy()        # Warn about any corrupted or unrecognized files
-        if invalid:
-            invalid_names = ", ".join(Path(fp).name for fp in invalid)
-            errorlbl = Label(root, text="Invalid or corrupted files: " + invalid_names, fg="red")
-            errorlbl.grid(row=2, column=0, pady=(0, 35))
-            allvalid = False
-        if not valid:
-            filelbl.destroy()
-            allvalid = False
-            contbtn.destroy()
-            return
-        # Display the names of all valid selected files
-        names = ", ".join(Path(fp).name for fp in valid)
-        filelbl.destroy()
-        if allvalid:
-            errorlbl.destroy()
-            filelbl = Label(root, text="Uploaded files: " + names)
-            filelbl.grid(row=2, column=0)
-        # Copy each valid file to the project root directory
-        for fp in valid:
-            shutil.copy2(fp, "..")
-        # Show continue button to advance to screen 2
-        if allvalid:
-            contbtn = Button(root, text="Continue", command=show_screen2)
-            contbtn.grid(row=3, column=0, pady=(0, 35))
-        else:
-            contbtn.destroy()
-
-
-# Persistent screen 1 status labels (created once, updated on each import attempt)
-errorlbl = Label(root, text="", fg="red")
-errorlbl.grid(row=2, column=0)
-filelbl = Label(root, text="")
-filelbl.grid(row=2, column=0)
-contbtn = Button(root, text="Continue", command=show_screen2)
 
 
 
-# Screen 1: upload button using a label widget for custom image styling
-filebtn = Label(
-    root,
-    image=normalimg,
-    padx=70,
-    pady=70,
-    cursor="hand2",
-)
-
-# Keep a reference to prevent garbage collection
-filebtn.image = normalimg
-filebtn.grid(row=1, column=0, pady=25)
-
-# Swap image on hover and trigger import on click
-filebtn.bind("<Enter>", lambda e: filebtn.config(image=hoverimg))
-filebtn.bind("<Leave>", lambda e: filebtn.config(image=normalimg))
-filebtn.bind("<Button-1>", lambda e: import_file())
-
-root.mainloop()
+show_screen1()
