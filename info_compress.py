@@ -57,7 +57,7 @@ class InfoCompressor:
                     break
             if allgood:
                 newl.append(sl)
-        sch.libSymbols = newl
+        #sch.libSymbols = newl
         for i in range(len(sch.schematicSymbols)):
             newprop = []
             #sch.schematicSymbols[i].properties = newprop
@@ -70,6 +70,8 @@ class InfoCompressor:
             #print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
+        #print(get_kicad_cli_path())
+        #print(get_kicad_cli_path(), "sch", "export", "netlist", output)
         subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
 
 
@@ -79,7 +81,7 @@ class InfoCompressor:
         for sl in sch.libSymbols:
             if sl.entryName in whitelist:
                 newl.append(sl)
-        sch.libSymbols = newl
+        #sch.libSymbols = newl
         for i in range(len(sch.schematicSymbols)):
             newprop = []
             #sch.schematicSymbols[i].properties = newprop
@@ -92,6 +94,7 @@ class InfoCompressor:
             # print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
+        
         subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
     def convert_whitelist_netlist(self, filepath, whitelist, output):
         sch = Schematic().from_file(filepath)
@@ -99,7 +102,7 @@ class InfoCompressor:
         for sl in sch.libSymbols:
             if sl.entryName in whitelist:
                 newl.append(sl)
-        sch.libSymbols = newl
+        #sch.libSymbols = newl
         for i in range(len(sch.schematicSymbols)):
             newprop = []
             #sch.schematicSymbols[i].properties = newprop
@@ -112,16 +115,21 @@ class InfoCompressor:
             # print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
-        subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
+        #print(get_kicad_cli_path(), "sch", "export", "netlist", output)
+        subprocess.call([get_kicad_cli_path(), "sch", "export", "netlist", output])
 
 
     def essential_list_netlist(self, filepath):
         col = []
-        banned = ["C", "R", "Fuse", "GND", "PWR_FLAG"]
+        banned = ["C", "R", "Fuse", "GND", "PWR_FLAG", "Signature"]
         for libb in parse_netlist(filepath).libparts:
-            #print(libb.name + ": " + libb.desc + f" ({libb.docs})")
-            if libb.name not in banned:
-                col.append((libb.name, libb.desc, libb.docs))
+            print(libb.name + ": " + libb.desc + f" ({libb.docs})")
+            desc = "?"
+            if libb.desc:
+                desc = libb.desc
+            if ("logo" not in libb.name.lower()) and (True or (libb.name not in banned and "~" not in libb.docs)):
+
+                col.append((libb.name, desc, libb.docs))
         return col
    
     def essential_list_kicad(self, filepath):

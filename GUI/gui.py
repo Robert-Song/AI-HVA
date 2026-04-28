@@ -47,6 +47,15 @@ root.title("AI-HVA")
 # Make column 0 expand to fill the window width, keeping widgets centered
 root.columnconfigure(0, weight=1)
 
+canvas = Canvas(root)
+#canvas.pack(side=LEFT, fill=BOTH, expand=True)
+
+scrollbar = Scrollbar(root, orient=VERTICAL, command=canvas.yview)
+#scrollbar.pack(side=RIGHT, fill=Y)
+
+canvas.configure(yscrollcommand=scrollbar.set)
+scrollable_frame = Frame(canvas)
+
 # Screen 1: label prompting the user to upload a file
 uploadlbl = Label(root, text="Upload a KiCad schematic or netlist file.")
 uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)

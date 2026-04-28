@@ -1,0 +1,1156 @@
+{
+  "system_metadata": {
+    "system_name": "prsd",
+    "netlist_source": "/Users/rileynoggle/Documents/CS407/AI-HVA/prsd.kicad_sch",
+    "analysis_date": "2026-04-28T09:41:57.159312"
+  },
+  "connection_pairs": {
+    "R1-R2": {
+      "endpoints": [
+        "R1",
+        "R2"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/ADC12_IN15"
+      ]
+    },
+    "JP3-UART_FTDI1": {
+      "endpoints": [
+        "JP3",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/RX1_FTDI"
+      ]
+    },
+    "JP3-UART_OBC_1": {
+      "endpoints": [
+        "JP3",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/RX1_OBC"
+      ]
+    },
+    "JP4-UART_FTDI1": {
+      "endpoints": [
+        "JP4",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/RX2_FTDI"
+      ]
+    },
+    "JP4-UART_OBC_1": {
+      "endpoints": [
+        "JP4",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/RX2_OBC"
+      ]
+    },
+    "JP6-UART_FTDI1": {
+      "endpoints": [
+        "JP6",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/RX3_FTDI"
+      ]
+    },
+    "JP1-UART_FTDI1": {
+      "endpoints": [
+        "JP1",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/TX1_FTDI"
+      ]
+    },
+    "JP1-UART_OBC_1": {
+      "endpoints": [
+        "JP1",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/TX1_OBC"
+      ]
+    },
+    "JP2-UART_FTDI1": {
+      "endpoints": [
+        "JP2",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/TX2_FTDI"
+      ]
+    },
+    "JP2-UART_OBC_1": {
+      "endpoints": [
+        "JP2",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/TX2_OBC"
+      ]
+    },
+    "JP5-UART_FTDI1": {
+      "endpoints": [
+        "JP5",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "/TX3_FTDI"
+      ]
+    },
+    "R2-SPI1": {
+      "endpoints": [
+        "R2",
+        "SPI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "R2-UART_1": {
+      "endpoints": [
+        "R2",
+        "UART_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "R2-UART_FTDI1": {
+      "endpoints": [
+        "R2",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "R2-UART_OBC_1": {
+      "endpoints": [
+        "R2",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "SPI1-UART_1": {
+      "endpoints": [
+        "SPI1",
+        "UART_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "SPI1-UART_FTDI1": {
+      "endpoints": [
+        "SPI1",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "SPI1-UART_OBC_1": {
+      "endpoints": [
+        "SPI1",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "UART_1-UART_FTDI1": {
+      "endpoints": [
+        "UART_1",
+        "UART_FTDI1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "UART_1-UART_OBC_1": {
+      "endpoints": [
+        "UART_1",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "UART_FTDI1-UART_OBC_1": {
+      "endpoints": [
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    }
+  },
+  "components": {
+    "H1": {
+      "component_id": "H1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "H2": {
+      "component_id": "H2",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "H3": {
+      "component_id": "H3",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "H4": {
+      "component_id": "H4",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "JP1": {
+      "component_id": "JP1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ]
+    },
+    "JP2": {
+      "component_id": "JP2",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ]
+    },
+    "JP3": {
+      "component_id": "JP3",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ]
+    },
+    "JP4": {
+      "component_id": "JP4",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ]
+    },
+    "JP5": {
+      "component_id": "JP5",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "UART_FTDI1"
+      ]
+    },
+    "JP6": {
+      "component_id": "JP6",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "UART_FTDI1"
+      ]
+    },
+    "LOGO1": {
+      "component_id": "LOGO1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "LOGO2": {
+      "component_id": "LOGO2",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "LOGO3": {
+      "component_id": "LOGO3",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "LOGO4": {
+      "component_id": "LOGO4",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "LOGO5": {
+      "component_id": "LOGO5",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "LOGO6": {
+      "component_id": "LOGO6",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "R1": {
+      "component_id": "R1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "R2"
+      ]
+    },
+    "R2": {
+      "component_id": "R2",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "R1",
+        "SPI1",
+        "UART_1",
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ]
+    },
+    "SPI1": {
+      "component_id": "SPI1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "R2",
+        "UART_1",
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ]
+    },
+    "UART_1": {
+      "component_id": "UART_1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "R2",
+        "SPI1",
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ]
+    },
+    "UART_FTDI1": {
+      "component_id": "UART_FTDI1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "JP1",
+        "JP2",
+        "JP3",
+        "JP4",
+        "JP5",
+        "JP6",
+        "R2",
+        "SPI1",
+        "UART_1",
+        "UART_OBC_1"
+      ]
+    },
+    "UART_OBC_1": {
+      "component_id": "UART_OBC_1",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "JP1",
+        "JP2",
+        "JP3",
+        "JP4",
+        "R2",
+        "SPI1",
+        "UART_1",
+        "UART_FTDI1"
+      ]
+    }
+  },
+  "connection_details": {
+    "R1-R2": {
+      "endpoints": [
+        "R1",
+        "R2"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/ADC12_IN15",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP3-UART_FTDI1": {
+      "endpoints": [
+        "JP3",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/RX1_FTDI",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP3-UART_OBC_1": {
+      "endpoints": [
+        "JP3",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/RX1_OBC",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP4-UART_FTDI1": {
+      "endpoints": [
+        "JP4",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/RX2_FTDI",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP4-UART_OBC_1": {
+      "endpoints": [
+        "JP4",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/RX2_OBC",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP6-UART_FTDI1": {
+      "endpoints": [
+        "JP6",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/RX3_FTDI",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP1-UART_FTDI1": {
+      "endpoints": [
+        "JP1",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/TX1_FTDI",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP1-UART_OBC_1": {
+      "endpoints": [
+        "JP1",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/TX1_OBC",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP2-UART_FTDI1": {
+      "endpoints": [
+        "JP2",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/TX2_FTDI",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP2-UART_OBC_1": {
+      "endpoints": [
+        "JP2",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/TX2_OBC",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "JP5-UART_FTDI1": {
+      "endpoints": [
+        "JP5",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "/TX3_FTDI",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "R2-SPI1": {
+      "endpoints": [
+        "R2",
+        "SPI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "R2-UART_1": {
+      "endpoints": [
+        "R2",
+        "UART_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "R2-UART_FTDI1": {
+      "endpoints": [
+        "R2",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "R2-UART_OBC_1": {
+      "endpoints": [
+        "R2",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "SPI1-UART_1": {
+      "endpoints": [
+        "SPI1",
+        "UART_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "SPI1-UART_FTDI1": {
+      "endpoints": [
+        "SPI1",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "SPI1-UART_OBC_1": {
+      "endpoints": [
+        "SPI1",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "UART_1-UART_FTDI1": {
+      "endpoints": [
+        "UART_1",
+        "UART_FTDI1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "UART_1-UART_OBC_1": {
+      "endpoints": [
+        "UART_1",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "UART_FTDI1-UART_OBC_1": {
+      "endpoints": [
+        "UART_FTDI1",
+        "UART_OBC_1"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    }
+  },
+  "graph_analysis": {
+    "component_centrality": {
+      "H1": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "H2": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "H3": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "H4": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "JP1": {
+        "degree": 0.0952,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "JP2": {
+        "degree": 0.0952,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "JP3": {
+        "degree": 0.0952,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "JP4": {
+        "degree": 0.0952,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "JP5": {
+        "degree": 0.0476,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "JP6": {
+        "degree": 0.0476,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "LOGO1": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "LOGO2": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "LOGO3": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "LOGO4": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "LOGO5": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "LOGO6": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "R1": {
+        "degree": 0.0476,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "R2": {
+        "degree": 0.2381,
+        "betweenness": 0.0476,
+        "is_hub": true
+      },
+      "SPI1": {
+        "degree": 0.1905,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "UART_1": {
+        "degree": 0.1905,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "UART_FTDI1": {
+        "degree": 0.4762,
+        "betweenness": 0.1429,
+        "is_hub": true
+      },
+      "UART_OBC_1": {
+        "degree": 0.381,
+        "betweenness": 0.0524,
+        "is_hub": true
+      }
+    },
+    "connection_criticality": {
+      "R1-R2": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": true,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP3-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP3-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP4-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP4-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP6-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": true,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP1-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP1-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP2-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP2-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "JP5-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": true,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "R2-SPI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "R2-UART_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "R2-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "R2-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "SPI1-UART_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "SPI1-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "SPI1-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "UART_1-UART_FTDI1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "UART_1-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "UART_FTDI1-UART_OBC_1": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      }
+    }
+  }
+}

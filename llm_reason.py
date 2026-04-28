@@ -54,19 +54,23 @@ def infer_components_and_relations():
 
     datasheetfile = ""
     dfiles = []
-    with open("activator-isolate-prsd.net", "r") as f:
+    with open("isolate-prsd.net", "r") as f:
             jobj = json.load(f)
             #print(jobj)
             for j in jobj:
                 if j["value"]:
                     dfiles.append("result/" + j["value"] + ".pdf")
     for dfile in dfiles:
-        with open(dfile, "r") as f:
-            datasheetfile += dfile + '\n'
-            with pdfplumber.open(dfile) as pdf:
-                for pg in pdf.pages:
-                    text = pg.extract_text()
-                    datasheetfile += text + '\n'
+        if os.path.exists(dfile):
+            with open(dfile, "r") as f:
+                datasheetfile += dfile + '\n'
+                try:
+                    with pdfplumber.open(dfile) as pdf:
+                        for pg in pdf.pages:
+                            text = pg.extract_text()
+                            datasheetfile += text + '\n'
+                except:
+                    datasheetfile += "N/A" + '\n'
 
     prompt = '''
     You are an electrical systems analyst.
@@ -163,7 +167,8 @@ def infer_components_and_relations():
     ### Datasheets:
     ''' + datasheetfile + '''
     '''
-    print(prompt)
+    with open("prompt.txt", "w") as f:
+        f.write(prompt)
 
     body = {
         "model": "gpt-oss:120b",

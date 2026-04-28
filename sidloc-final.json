@@ -1,0 +1,506 @@
+{
+  "system_metadata": {
+    "system_name": "prsd",
+    "netlist_source": "/Users/rileynoggle/Documents/CS407/AI-HVA/prsd.kicad_sch",
+    "analysis_date": "2026-04-18T22:34:17.573968"
+  },
+  "connection_pairs": {
+    "J101-J103": {
+      "endpoints": [
+        "J101",
+        "J103"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J101-J104": {
+      "endpoints": [
+        "J101",
+        "J104"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J101-J105": {
+      "endpoints": [
+        "J101",
+        "J105"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J101-NT101": {
+      "endpoints": [
+        "J101",
+        "NT101"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J103-J104": {
+      "endpoints": [
+        "J103",
+        "J104"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J103-J105": {
+      "endpoints": [
+        "J103",
+        "J105"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J103-NT101": {
+      "endpoints": [
+        "J103",
+        "NT101"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J104-J105": {
+      "endpoints": [
+        "J104",
+        "J105"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J104-NT101": {
+      "endpoints": [
+        "J104",
+        "NT101"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    },
+    "J105-NT101": {
+      "endpoints": [
+        "J105",
+        "NT101"
+      ],
+      "net_count": 1,
+      "net_names": [
+        "GND"
+      ]
+    }
+  },
+  "components": {
+    "J101": {
+      "component_id": "J101",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "J103",
+        "J104",
+        "J105",
+        "NT101"
+      ]
+    },
+    "J102": {
+      "component_id": "J102",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": []
+    },
+    "J103": {
+      "component_id": "J103",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "J101",
+        "J104",
+        "J105",
+        "NT101"
+      ]
+    },
+    "J104": {
+      "component_id": "J104",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "J101",
+        "J103",
+        "J105",
+        "NT101"
+      ]
+    },
+    "J105": {
+      "component_id": "J105",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "J101",
+        "J103",
+        "J104",
+        "NT101"
+      ]
+    },
+    "NT101": {
+      "component_id": "NT101",
+      "component_class": "<LLM: controller | actuator | sensor | ...>",
+      "functional_description": "<LLM: Context: >",
+      "safety_critical": "<LLM: boolean>",
+      "connected_to": [
+        "J101",
+        "J103",
+        "J104",
+        "J105"
+      ]
+    }
+  },
+  "connection_details": {
+    "J101-J103": {
+      "endpoints": [
+        "J101",
+        "J103"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J101-J104": {
+      "endpoints": [
+        "J101",
+        "J104"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J101-J105": {
+      "endpoints": [
+        "J101",
+        "J105"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J101-NT101": {
+      "endpoints": [
+        "J101",
+        "NT101"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J103-J104": {
+      "endpoints": [
+        "J103",
+        "J104"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J103-J105": {
+      "endpoints": [
+        "J103",
+        "J105"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J103-NT101": {
+      "endpoints": [
+        "J103",
+        "NT101"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J104-J105": {
+      "endpoints": [
+        "J104",
+        "J105"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J104-NT101": {
+      "endpoints": [
+        "J104",
+        "NT101"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    },
+    "J105-NT101": {
+      "endpoints": [
+        "J105",
+        "NT101"
+      ],
+      "physical_interface": "<LLM: I2C, SPI, GPIO...>",
+      "control_actions": [
+        {
+          "from": "<DET/LLM>",
+          "to": "<DET/LLM>",
+          "signal_name": "GND",
+          "action_type": "<LLM>",
+          "purpose": "<LLM>",
+          "timing_constraint": "<LLM>"
+        }
+      ],
+      "feedback_signals": [],
+      "source": [
+        "schematic_netlist"
+      ],
+      "notes": "<LLM>"
+    }
+  },
+  "graph_analysis": {
+    "component_centrality": {
+      "J101": {
+        "degree": 0.8,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "J102": {
+        "degree": 0.0,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "J103": {
+        "degree": 0.8,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "J104": {
+        "degree": 0.8,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "J105": {
+        "degree": 0.8,
+        "betweenness": 0.0,
+        "is_hub": false
+      },
+      "NT101": {
+        "degree": 0.8,
+        "betweenness": 0.0,
+        "is_hub": false
+      }
+    },
+    "connection_criticality": {
+      "J101-J103": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J101-J104": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J101-J105": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J101-NT101": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J103-J104": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J103-J105": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J103-NT101": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J104-J105": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J104-NT101": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      },
+      "J105-NT101": {
+        "control_signal_count": "<LLM>",
+        "feedback_signal_count": "<LLM>",
+        "is_bridge": false,
+        "connects_safety_critical": "<LLM>",
+        "analysis_priority": "<LLM>"
+      }
+    }
+  }
+}
