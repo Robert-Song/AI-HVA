@@ -13,6 +13,7 @@ headers = {
 }
 
 def check_reasoning(llm_reason: dict):
+    return
     versus = ""
     with open("isolate-prsd.net", "r") as f:
         jobj = json.load(f)
@@ -45,6 +46,7 @@ def check_reasoning(llm_reason: dict):
 
 
 def infer_components_and_relations():
+    return
     netlistfile = ""
     nfiles = ["prsd.net", "connections-prsd.net"]
     for nfile in nfiles:
