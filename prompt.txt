@@ -44,7 +44,7 @@
   "system_metadata": {
     "system_name": "prsd",
     "netlist_source": "/Users/rileynoggle/Documents/CS407/AI-HVA/prsd.kicad_sch",
-    "analysis_date": "2026-04-29T10:39:41.864212"
+    "analysis_date": "2026-05-01T08:49:51.564431"
   },
   "connection_pairs": {
     "R1-R2": {
@@ -7611,7 +7611,7 @@ everything that can go wrong and then see if it will lead to a UCA.
 (export (version "E")
   (design
     (source "/Users/rileynoggle/Documents/CS407/AI-HVA/prsd.kicad_sch")
-    (date "2026-04-29T10:39:40-0400")
+    (date "2026-05-01T08:49:50-0400")
     (tool "Eeschema 9.0.7")
     (sheet (number "1") (name "/") (tstamps "/")
       (title_block

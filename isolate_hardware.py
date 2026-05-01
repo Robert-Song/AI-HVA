@@ -73,6 +73,30 @@ def extract_components_from_netlist(net_path: str) -> List[Dict[str, Any]]:
 
     return [component_to_dict(p) for p in parts]
 
+def extract_components_from_netlist_with_whitelist(net_path: str, whitelist: list) -> List[Dict[str, Any]]:
+    """
+    Parse a KiCad .net file and extract all hardware components.
+
+    Returns:
+        A list of dictionaries, where each dictionary represents a component
+    """
+    try:
+        nlst = parse_netlist(net_path)
+    except ParseException as e:
+        raise NetlistParseError(f"Netlist parse error: {e}") from e
+    except Exception as e:
+        raise NetlistParseError(f"Unexpected parsing failure: {e}") from e
+
+    parts = getattr(nlst, "parts", None)
+    if parts is None:
+        raise NetlistParseError("Parsed netlist but found no component list (nlst.parts missing).")
+    newparts = []
+    for p in parts:
+        if p.name in whitelist:
+            newparts.append(p)
+
+    return [component_to_dict(p) for p in newparts]
+
 
 if __name__ == "__main__":
     args = sys.argv[1:]

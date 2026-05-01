@@ -79,9 +79,10 @@ class InfoCompressor:
         sch = Schematic().from_file(filepath)
         newl = []
         for sl in sch.libSymbols:
+            #print(sl)
             if sl.entryName in whitelist:
                 newl.append(sl)
-        #sch.libSymbols = newl
+        sch.libSymbols = newl
         for i in range(len(sch.schematicSymbols)):
             newprop = []
             #sch.schematicSymbols[i].properties = newprop
@@ -94,7 +95,7 @@ class InfoCompressor:
             # print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
         sch.to_file(output)
-        
+        #print(get_kicad_cli_path(), "sch", "export", "netlist", output)
         subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
     def convert_whitelist_netlist(self, filepath, whitelist, output):
         sch = Schematic().from_file(filepath)
@@ -123,6 +124,7 @@ class InfoCompressor:
         col = []
         banned = ["C", "R", "Fuse", "GND", "PWR_FLAG", "Signature"]
         for libb in parse_netlist(filepath).libparts:
+            print(libb)
             print(libb.name + ": " + libb.desc + f" ({libb.docs})")
             desc = "?"
             if libb.desc:
@@ -139,10 +141,10 @@ class InfoCompressor:
 
 #Test case for US#5
 #os.chdir("./test/info_compress")
-'''
-ic = InfoCompressor()
-(ic.essential_list_kicad("example.kicad_sch"))
-'''
+
+#ic = InfoCompressor()
+#ic.convert_whitelist_kicad("sidloc.kicad_sch", [], "test.kicad_sch")
+
 
 #Test case for US#20
 '''

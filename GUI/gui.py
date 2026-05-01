@@ -13,12 +13,13 @@ import logging
 from combinedOCRProcessor import CombinedOCRProcessor
 from netlist_parser import full_process_netlist
 from map_connections import map_connections
-from isolate_hardware import extract_components_from_netlist
+from isolate_hardware import extract_components_from_netlist, extract_components_from_netlist_with_whitelist
 from manual_folder import ManualFolder
 from combinedOCRProcessor import CombinedOCRProcessor
 import json
 import subprocess
 from llm_reason import check_reasoning, infer_components_and_relations
+from netlist_filter import filter_netlist_full
 
 logging.basicConfig(format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -96,6 +97,7 @@ def store_list(index=0, complist=[]):
                 with open("isolate-prsd.net", "w", encoding="utf-8") as f:
                     json.dump(icresult, f, indent=2)
                 full_process_netlist(prsdfix, sp[len(sp) - 1].split(".")[0] + "-final.json")
+                filter_netlist_full("result.net", ec[0], "filtered.net")
                 cole = []
                 for ds in needdatasheets:
                     result, error = mf.test_find_datasheet(ds[0], ds[1])
@@ -323,9 +325,17 @@ def show_screen6():
     _progress_bar = ttk.Progressbar(root, orient="horizontal", length=300, mode="determinate", maximum=100)
     _progress_bar.grid(row=1, column=0, pady=(10, 0), padx=40)
     Button(root, text="Stop Processing", fg="red", command=stop_ocr).grid(row=2, column=0, pady=(10, 35))
-    infer_components_and_relations()
+    #infer_components_and_relations()
+    #print(essential_components)
+    complist = ic.essential_list_netlist("prsd.net")
+    checked = [comp[0] for comp, state in zip(complist, checkbox_states) if state.get()]
+    #print(checked)
+    #filter_netlist_full("result.net", checked, "filtered.net")
+    #nf = extract_components_from_netlist_with_whitelist("prsd.net", checked)
+    #with open("prsd.json", "w") as f:
+    #    json.dump(nf, f)
     os.chdir("pipeline")
-    subprocess.run("python -m src.main -n ../prsd.net -s \"Run\" -p", shell=True, check=True)
+    subprocess.run("python -m src.main -n ../filtered.net -s \"Run\" -p", shell=True, check=True)
 
 
 def show_screen3():
