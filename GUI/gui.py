@@ -64,6 +64,8 @@ uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 normalimg = PhotoImage(file="GUI/uploadnormal.png")
 hoverimg = PhotoImage(file="GUI/uploadhover.png")
 
+selected_size = None
+
 # Tracks which file is currently being shown on screen 2
 file_index = 0
 essential_components = []
@@ -125,6 +127,28 @@ def show_screen2(index=0):
     for i, (comp, state) in enumerate(zip(complist, checkbox_states)):
         checkbox = Checkbutton(root, text=f"{comp[0]}: {comp[1]}", variable=state)
         checkbox.grid(column=0, row=i)
+
+    #sizes = (('Low-Level (all parts)', 'L'),
+    #        ('Mid-Level (basic components removed)', 'M'),
+    #        ('High-Level (only components with datasheets used)', 'H'))
+
+    # label
+    #label = ttk.Label(text="Choose an abstraction level")
+    #label.grid(row=0, column=0, pady=(25, 0), padx=100)
+
+    # radio buttons
+    #i = 1
+    #for size in sizes:
+    #    r = ttk.Radiobutton(
+    #        root,
+    #        text=size[0],
+    #        value=size[1],
+    #        variable=selected_size
+    #    )
+    #    r.grid(column=0, row=i)
+    #    i += 1
+    #    #r.pack(fill='x', padx=5, pady=5)
+        
 
     # Select/deselect all toggle
     def toggle_all():

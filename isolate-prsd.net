@@ -1,1338 +1,352 @@
 [
   {
-    "ref": "BOOT1",
-    "value": "TD-1183SN-1.5H(3x2.5)",
-    "footprint": "NxtPX4:3x2.5PushButton",
-    "datasheet": "~",
-    "lib": "Switch",
-    "name": "SW_Push",
-    "desc": "Push button switch, generic, two pins",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:3x2.5PushButton",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C1",
-    "value": "22uF(0805 35V 20%)",
-    "footprint": "Capacitor_SMD:C_0805_2012Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0805_2012Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C2",
-    "value": "10uF(0603 35V 20%)",
-    "footprint": "Capacitor_SMD:C_0603_1608Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C3",
-    "value": "22uF(0805 35V 20%)",
-    "footprint": "Capacitor_SMD:C_0805_2012Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0805_2012Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C4",
-    "value": "1uF(0402 35V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C5",
-    "value": "1uF(0402 16V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C6",
-    "value": "1uF(0402 16V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C7",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C8",
-    "value": "1uF(0402 35V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C9",
-    "value": "1uF(0402 16V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C10",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C11",
-    "value": "100nF(0201 16V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C12",
-    "value": "22uF(0805 35V 20%)",
-    "footprint": "Capacitor_SMD:C_0805_2012Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0805_2012Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C13",
-    "value": "22uF(0805 35V 20%)",
-    "footprint": "Capacitor_SMD:C_0805_2012Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0805_2012Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C14",
-    "value": "1uF(0402 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C15",
-    "value": "1uF(0402 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C16",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C17",
-    "value": "100nF(0201 25V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C18",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C19",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C20",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C21",
-    "value": "100nF(0201 25V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C22",
-    "value": "100nF(0201 10.0V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C23",
-    "value": "22uF(0603 16V)",
-    "footprint": "Capacitor_SMD:C_0603_1608Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C24",
-    "value": "22uF(0603 16V)",
-    "footprint": "Capacitor_SMD:C_0603_1608Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C26",
-    "value": "22uF(0603 16V)",
-    "footprint": "Capacitor_SMD:C_0603_1608Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C27",
-    "value": "2.2uF(0402 6.3V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C28",
-    "value": "2.2uF(0402 6.3V 10%)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C29",
-    "value": "4.7uF(0402 10V)",
-    "footprint": "Capacitor_SMD:C_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C30",
-    "value": "15pF(0201 10V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C31",
-    "value": "100nF(0201 6.3V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C32",
-    "value": "1uF(0201 6.3V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C33",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C34",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C35",
-    "value": "12.0pF(0201 10V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C36",
-    "value": "12.0pF(0201 10V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C37",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C38",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C39",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C40",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C41",
-    "value": "100.0nF(0201 10V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C42",
-    "value": "100.0nF(0201 10V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C43",
-    "value": "100nF(0201 10V 10%)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C44",
-    "value": "100.0nF(0201 10V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "C45",
-    "value": "100.0nF(0201 10V)",
-    "footprint": "Capacitor_SMD:C_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "C_Small",
-    "desc": "Unpolarized capacitor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Capacitor_SMD:C_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D1",
-    "value": "PESD12VV1BL",
-    "footprint": "NxtPX4:PESD12VV1BL_315",
-    "datasheet": "https://www.onsemi.com/pub/Collateral/ESD9B-D.PDF",
-    "lib": "Diode",
-    "name": "ESD9B5.0ST5G",
-    "desc": "ESD protection diode, 5.0Vrwm, SOD-923",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:PESD12VV1BL_315",
-      "Datasheet": "https://www.onsemi.com/pub/Collateral/ESD9B-D.PDF",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D2",
-    "value": "PESD5V0F1BL",
-    "footprint": "NxtPX4:PESD5V0F1BL",
-    "datasheet": "https://www.onsemi.com/pub/Collateral/ESD9B-D.PDF",
-    "lib": "Diode",
-    "name": "ESD9B5.0ST5G",
-    "desc": "ESD protection diode, 5.0Vrwm, SOD-923",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:PESD5V0F1BL",
-      "Datasheet": "https://www.onsemi.com/pub/Collateral/ESD9B-D.PDF",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D3",
-    "value": " SMF30CA(30V)",
-    "footprint": "Diode_SMD:D_SOD-123F",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "D_TVS",
-    "desc": "Bidirectional transient-voltage-suppression diode",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Diode_SMD:D_SOD-123F",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D4",
-    "value": "PESD5V0F1BL",
-    "footprint": "NxtPX4:PESD5V0F1BL",
-    "datasheet": "https://www.onsemi.com/pub/Collateral/ESD9B-D.PDF",
-    "lib": "Diode",
-    "name": "ESD9B5.0ST5G",
-    "desc": "ESD protection diode, 5.0Vrwm, SOD-923",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:PESD5V0F1BL",
-      "Datasheet": "https://www.onsemi.com/pub/Collateral/ESD9B-D.PDF",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D5",
-    "value": "DSS34(3A 500mV)",
-    "footprint": "Diode_SMD:D_SOD-123F",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "D_Schottky",
-    "desc": "Schottky diode",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Diode_SMD:D_SOD-123F",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D6",
-    "value": "BZX584C9V1",
-    "footprint": "Diode_SMD:D_SOD-523",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "D_Zener",
-    "desc": "Zener diode",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Diode_SMD:D_SOD-523",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D7",
-    "value": "DSS34(3A 500mV)",
-    "footprint": "Diode_SMD:D_SOD-123F",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "D_Schottky",
-    "desc": "Schottky diode",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Diode_SMD:D_SOD-123F",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D8",
-    "value": "LED_Blue(0201)",
-    "footprint": "LED_SMD:LED_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "LED_Small",
-    "desc": "Light emitting diode, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "LED_SMD:LED_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D9",
-    "value": "LED_Blue(0201)",
-    "footprint": "LED_SMD:LED_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "LED_Small",
-    "desc": "Light emitting diode, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "LED_SMD:LED_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D10",
-    "value": "LED_Blue(0201)",
-    "footprint": "LED_SMD:LED_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "LED_Small",
-    "desc": "Light emitting diode, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "LED_SMD:LED_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D11",
-    "value": "LED_Blue(0201)",
-    "footprint": "LED_SMD:LED_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "LED_Small",
-    "desc": "Light emitting diode, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "LED_SMD:LED_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D12",
-    "value": "LED_RED(0201)",
-    "footprint": "LED_SMD:LED_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "LED_Small",
-    "desc": "Light emitting diode, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "LED_SMD:LED_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D13",
-    "value": "LED_BLUE(0201)",
-    "footprint": "LED_SMD:LED_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "LED_Small",
-    "desc": "Light emitting diode, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "LED_SMD:LED_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "D14",
-    "value": "LED_Green(0201)",
-    "footprint": "LED_SMD:LED_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "LED_Small",
-    "desc": "Light emitting diode, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "LED_SMD:LED_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
     "ref": "H1",
-    "value": "MountingHole_Pad",
-    "footprint": "NxtPX4:M2MountingHole",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
     "datasheet": "~",
     "lib": "Mechanical",
-    "name": "MountingHole_Pad",
-    "desc": "Mounting Hole with connection",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:M2MountingHole",
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
     "ref": "H2",
-    "value": "MountingHole_Pad",
-    "footprint": "NxtPX4:M2MountingHole",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
     "datasheet": "~",
     "lib": "Mechanical",
-    "name": "MountingHole_Pad",
-    "desc": "Mounting Hole with connection",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:M2MountingHole",
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
     "ref": "H3",
-    "value": "MountingHole_Pad",
-    "footprint": "NxtPX4:M2MountingHole",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
     "datasheet": "~",
     "lib": "Mechanical",
-    "name": "MountingHole_Pad",
-    "desc": "Mounting Hole with connection",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:M2MountingHole",
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
     "ref": "H4",
-    "value": "MountingHole_Pad",
-    "footprint": "NxtPX4:M2MountingHole",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
     "datasheet": "~",
     "lib": "Mechanical",
-    "name": "MountingHole_Pad",
-    "desc": "Mounting Hole with connection",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:M2MountingHole",
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J1",
-    "value": "USB_C_Receptacle_USB2.0",
-    "footprint": "NxtPX4:USB_C_Small",
-    "datasheet": "https://www.usb.org/sites/default/files/documents/usb_type-c.zip",
-    "lib": "Connector",
-    "name": "USB_C_Receptacle_USB2.0",
-    "desc": "USB 2.0-only Type-C Receptacle connector",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:USB_C_Small",
-      "Datasheet": "https://www.usb.org/sites/default/files/documents/usb_type-c.zip",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "J2",
-    "value": "DJIO3",
-    "footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+    "ref": "JP1",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
     "datasheet": "~",
-    "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x06_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J3",
-    "value": "GPS",
-    "footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+    "ref": "JP2",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
     "datasheet": "~",
-    "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x06_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J4",
-    "value": "UART2",
-    "footprint": "NxtPX4:01x04_MP_sh1.0_Hori",
+    "ref": "JP3",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
     "datasheet": "~",
-    "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x04_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:01x04_MP_sh1.0_Hori",
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J5",
-    "value": "Upper computer connector",
-    "footprint": "NxtPX4:01x04_MP_sh1.0_Hori",
+    "ref": "JP4",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
     "datasheet": "~",
-    "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x04_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:01x04_MP_sh1.0_Hori",
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J6",
-    "value": "ESC",
-    "footprint": "NxtPX4:01x08_MP_sh1.0_Hori",
+    "ref": "JP5",
+    "value": "SolderJumper_2_Open",
+    "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
     "datasheet": "~",
-    "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x08_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "lib": "Jumper",
+    "name": "SolderJumper_2_Open",
+    "desc": "Solder Jumper, 2-pole, open",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:01x08_MP_sh1.0_Hori",
+      "Footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J7",
-    "value": "Upper computer connector",
-    "footprint": "NxtPX4:01x04_MP_sh1.0_Hori",
+    "ref": "JP6",
+    "value": "SolderJumper_2_Open",
+    "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
     "datasheet": "~",
-    "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x04_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "lib": "Jumper",
+    "name": "SolderJumper_2_Open",
+    "desc": "Solder Jumper, 2-pole, open",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:01x04_MP_sh1.0_Hori",
+      "Footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J8",
-    "value": "PWM_AUX",
-    "footprint": "NxtPX4:01x05_MP_sh1.0_Hori",
+    "ref": "LOGO1",
+    "value": "nush_logo",
+    "footprint": "cubesat_obc:nush",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "nush_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:nush",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO2",
+    "value": "galileo_logo",
+    "footprint": "cubesat_obc:logo",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "galileo_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:logo",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO3",
+    "value": "nush_logo",
+    "footprint": "cubesat_obc:nush",
+    "datasheet": "",
+    "lib": "",
+    "name": "nush_logo_1",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:nush",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO4",
+    "value": "galileo_logo",
+    "footprint": "cubesat_obc:logo",
+    "datasheet": "",
+    "lib": "",
+    "name": "galileo_logo_1",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:logo",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO5",
+    "value": "axes_logo",
+    "footprint": "cubesat_obc:axes",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "axes_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:axes",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO6",
+    "value": "axes_logo_inv",
+    "footprint": "cubesat_obc:axes_inv",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "axes_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:axes_inv",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "R1",
+    "value": "39k",
+    "footprint": "Resistor_SMD:R_0402_1005Metric",
+    "datasheet": "~",
+    "lib": "Device",
+    "name": "R",
+    "desc": "Resistor",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "YAG2089CT-ND",
+      "Footprint": "Resistor_SMD:R_0402_1005Metric",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "R2",
+    "value": "20k",
+    "footprint": "Resistor_SMD:R_0603_1608Metric",
+    "datasheet": "~",
+    "lib": "Device",
+    "name": "R",
+    "desc": "Resistor",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "YAG2114CT-ND",
+      "Footprint": "Resistor_SMD:R_0603_1608Metric",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "SPI1",
+    "value": "Conn_01x05_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
     "datasheet": "~",
     "lib": "Connector_Generic_MountingPin",
     "name": "Conn_01x05_MountingPin",
@@ -1343,1261 +357,68 @@
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:01x05_MP_sh1.0_Hori",
+      "Digikey Part Number": "WM26499CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J10",
-    "value": "Micro_SD_Card",
-    "footprint": "NxtPX4:TF-SMD_TF-021B-H265",
-    "datasheet": "http://katalog.we-online.de/em/datasheet/693072010801.pdf",
-    "lib": "Connector",
-    "name": "Micro_SD_Card",
-    "desc": "Micro SD Card Socket",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:TF-SMD_TF-021B-H265",
-      "Datasheet": "http://katalog.we-online.de/em/datasheet/693072010801.pdf",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "J11",
-    "value": "Debug",
-    "footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+    "ref": "UART_1",
+    "value": "Conn_01x05_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
     "datasheet": "~",
     "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x06_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "name": "Conn_01x05_MountingPin",
+    "desc": "Generic connectable mounting pin connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+      "Digikey Part Number": "WM26499CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "J12",
-    "value": "AuxGPIO",
-    "footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+    "ref": "UART_FTDI1",
+    "value": "Conn_01x08_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0871_1x08-1MP_P1.25mm_Horizontal",
     "datasheet": "~",
     "lib": "Connector_Generic_MountingPin",
-    "name": "Conn_01x06_MountingPin",
-    "desc": "Generic connectable mounting pin connector, single row, 01x06, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "name": "Conn_01x08_MountingPin",
+    "desc": "Generic connectable mounting pin connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "NxtPX4:1x06-1MP_P1.00mm_Horizontal",
+      "Digikey Part Number": "WM26501CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0871_1x08-1MP_P1.25mm_Horizontal",
       "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "L1",
-    "value": "10uH(0420)(78438357100)",
-    "footprint": "NxtPX4:Inductor_0420",
-    "datasheet": "78438357100/IHLP2020BZER100M01",
-    "lib": "Device",
-    "name": "L_Small",
-    "desc": "Inductor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:Inductor_0420",
-      "Datasheet": "78438357100/IHLP2020BZER100M01",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "L2",
-    "value": "10uH(0420)(78438357100)",
-    "footprint": "NxtPX4:Inductor_0420",
-    "datasheet": "78438357100/IHLP2020BZER100M01",
-    "lib": "Device",
-    "name": "L_Small",
-    "desc": "Inductor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:Inductor_0420",
-      "Datasheet": "78438357100/IHLP2020BZER100M01",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "Q1",
-    "value": "AP40P05",
-    "footprint": "Package_TO_SOT_SMD:SOT-23",
+    "ref": "UART_OBC_1",
+    "value": "Conn_01x05_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
     "datasheet": "~",
-    "lib": "Device",
-    "name": "Q_PMOS_GSD",
-    "desc": "P-MOSFET transistor, gate/source/drain",
+    "lib": "Connector_Generic_MountingPin",
+    "name": "Conn_01x05_MountingPin",
+    "desc": "Generic connectable mounting pin connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Footprint": "Package_TO_SOT_SMD:SOT-23",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R1",
-    "value": "5.1kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R2",
-    "value": "5.1kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R3",
-    "value": "1MR(0402 50V)",
-    "footprint": "Resistor_SMD:R_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R4",
-    "value": "100kR(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R5",
-    "value": "1MR(0402 50V)",
-    "footprint": "Resistor_SMD:R_0402_1005Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0402_1005Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R6",
-    "value": "100kR(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R7",
-    "value": "100kR(0201 50V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R8",
-    "value": "20R(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R9",
-    "value": "51kR(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R10",
-    "value": "20R(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R11",
-    "value": "7.68kR(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R12",
-    "value": "51kR(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R13",
-    "value": "41.2kR(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R14",
-    "value": "200.0kR(0201 50V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R15",
-    "value": "22.0kR(0201 50V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R16",
-    "value": "2.90k-4.02kR(0201 25V) / 3k for 12V",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R17",
-    "value": "41.2kR(0201 25V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R18",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R19",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R20",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R21",
-    "value": "20kR(0201 9V)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R23",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R24",
-    "value": "10.0kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R25",
-    "value": "10.0kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R26",
-    "value": "10.0kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R27",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R28",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R29",
-    "value": "10.0kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R30",
-    "value": "10.0kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R31",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R32",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R33",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R34",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R35",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R36",
-    "value": "10.0kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R37",
-    "value": "10.0kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "R38",
-    "value": "10kR(0201)",
-    "footprint": "Resistor_SMD:R_0201_0603Metric",
-    "datasheet": "~",
-    "lib": "Device",
-    "name": "R_Small",
-    "desc": "Resistor, small symbol",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Resistor_SMD:R_0201_0603Metric",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "TP1",
-    "value": "24V_TP",
-    "footprint": "NxtPX4:MiniTP",
-    "datasheet": "~",
-    "lib": "Connector",
-    "name": "TestPoint",
-    "desc": "test point",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:MiniTP",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "TP2",
-    "value": "3.3V_Core_TP",
-    "footprint": "NxtPX4:MiniTP",
-    "datasheet": "~",
-    "lib": "Connector",
-    "name": "TestPoint",
-    "desc": "test point",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:MiniTP",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "TP5",
-    "value": "3.3V_Peri_TP",
-    "footprint": "NxtPX4:MiniTP",
-    "datasheet": "~",
-    "lib": "Connector",
-    "name": "TestPoint",
-    "desc": "test point",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:MiniTP",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "TP9",
-    "value": "5V_System",
-    "footprint": "NxtPX4:MiniTP",
-    "datasheet": "~",
-    "lib": "Connector",
-    "name": "TestPoint",
-    "desc": "test point",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:MiniTP",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "TP12",
-    "value": "CAM_9V",
-    "footprint": "NxtPX4:MiniTP",
-    "datasheet": "~",
-    "lib": "Connector",
-    "name": "TestPoint",
-    "desc": "test point",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:MiniTP",
-      "Datasheet": "~",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U1",
-    "value": "MP9943GQ-Z",
-    "footprint": "NxtPX4:MP9943GQ-Z",
-    "datasheet": "https://www.monolithicpower.cn/cn/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP9943GQ-Z/document_id/865/",
-    "lib": "NxtPX4_Symbol",
-    "name": "MP9943GQ-Z",
-    "desc": "36V DCDC Buck",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:MP9943GQ-Z",
-      "Datasheet": "https://www.monolithicpower.cn/cn/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP9943GQ-Z/document_id/865/",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U2",
-    "value": "RT9013-33GB",
-    "footprint": "NxtPX4:RT9013-33GB",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "RT9013-33GB",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:RT9013-33GB",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U3",
-    "value": "RT9013-33GB",
-    "footprint": "NxtPX4:RT9013-33GB",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "RT9013-33GB",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:RT9013-33GB",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U4",
-    "value": "MP9943GQ-Z",
-    "footprint": "NxtPX4:MP9943GQ-Z",
-    "datasheet": "https://www.monolithicpower.cn/cn/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP9943GQ-Z/document_id/865/",
-    "lib": "NxtPX4_Symbol",
-    "name": "MP9943GQ-Z",
-    "desc": "36V DCDC Buck",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:MP9943GQ-Z",
-      "Datasheet": "https://www.monolithicpower.cn/cn/documentview/productdocument/index/version/2/document_type/Datasheet/lang/en/sku/MP9943GQ-Z/document_id/865/",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U5",
-    "value": "UAV_LOGO",
-    "footprint": "NxtPX4:Uav_logo",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "UAV_LOGO",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:Uav_logo",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U6",
-    "value": "Direction_Logo",
-    "footprint": "NxtPX4:Direction_Logo",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "Direction_Logo",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:Direction_Logo",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U8",
-    "value": "Signature",
-    "footprint": "NxtPX4:my_signature",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "Signature",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:my_signature",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U9",
-    "value": "high_voltage",
-    "footprint": "NxtPX4:high_voltage",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "High_Voltage_Logo",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:high_voltage",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U10",
-    "value": "Caution",
-    "footprint": "NxtPX4:Caution",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "Caution_Logo",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:Caution",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U11",
-    "value": "STM32H743VIH6",
-    "footprint": "NxtPX4:STM32H743VIHBGA100C80P10X10_800X800X110N",
-    "datasheet": "STM32H743VIH6",
-    "lib": "NxtPX4_Symbol",
-    "name": "STM32H743VIH6",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:STM32H743VIHBGA100C80P10X10_800X800X110N",
-      "Datasheet": "STM32H743VIH6",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U13",
-    "value": "SPL06",
-    "footprint": "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering",
-    "datasheet": "https://github.com/iNavFlight/inav/files/3364426/SPL06-001_datasheet.pdf",
-    "lib": "NxtPX4_Symbol",
-    "name": "SPL06",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Package_LGA:Bosch_LGA-8_2x2.5mm_P0.65mm_ClockwisePinNumbering",
-      "Datasheet": "https://github.com/iNavFlight/inav/files/3364426/SPL06-001_datasheet.pdf",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U14",
-    "value": "BMI088",
-    "footprint": "NxtPX4:BMI088",
-    "datasheet": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf",
-    "lib": "NxtPX4_Symbol",
-    "name": "BMI088",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:BMI088",
-      "Datasheet": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U15",
-    "value": "BMI088",
-    "footprint": "NxtPX4:BMI088",
-    "datasheet": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf",
-    "lib": "NxtPX4_Symbol",
-    "name": "BMI088",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:BMI088",
-      "Datasheet": "https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmi088-ds001.pdf",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U16",
-    "value": "W25Q128JVS",
-    "footprint": "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm",
-    "datasheet": "http://www.winbond.com/resource-files/w25q128jv_dtr%20revc%2003272018%20plus.pdf",
-    "lib": "Memory_Flash",
-    "name": "W25Q128JVS",
-    "desc": "128Mb Serial Flash Memory, Standard/Dual/Quad SPI, SOIC-8",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm",
-      "Datasheet": "http://www.winbond.com/resource-files/w25q128jv_dtr%20revc%2003272018%20plus.pdf",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U17",
-    "value": "UAV_LOGO",
-    "footprint": "NxtPX4:Dual_logo",
-    "datasheet": "",
-    "lib": "NxtPX4_Symbol",
-    "name": "Dual_Logo",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:Dual_logo",
-      "Datasheet": "",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "U19",
-    "value": "SN74LVC1G86DCKR",
-    "footprint": "DCK5",
-    "datasheet": "SN74LVC1G86DCKR",
-    "lib": "NxtPX4_Symbol",
-    "name": "SN74LVC1G86DCKR",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "DCK5",
-      "Datasheet": "SN74LVC1G86DCKR",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "Y1",
-    "value": "SG-210STF/ X1G004171002700",
-    "footprint": "Oscillator:Oscillator_SMD_Abracon_ASDMB-4Pin_2.5x2.0mm",
-    "datasheet": "https://www5.epsondevice.com/en/products/crystal_oscillator/sg210stf.html",
-    "lib": "NxtPX4_Symbol",
-    "name": "SG-210STF",
-    "desc": "Oscillation",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "Oscillator:Oscillator_SMD_Abracon_ASDMB-4Pin_2.5x2.0mm",
-      "Datasheet": "https://www5.epsondevice.com/en/products/crystal_oscillator/sg210stf.html",
-      "Description": ""
-    }
-  },
-  {
-    "ref": "Y2",
-    "value": "ABS07 (32.768kHZ)",
-    "footprint": "NxtPX4:LSE(2012)",
-    "datasheet": "~",
-    "lib": "NxtPX4_Symbol",
-    "name": "LSE-Oscillator",
-    "desc": "",
-    "tstamp": "",
-    "sheetpath": {
-      "names": "/",
-      "tstamps": "/"
-    },
-    "fields": {
-      "Footprint": "NxtPX4:LSE(2012)",
+      "Digikey Part Number": "WM26499CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
       "Datasheet": "~",
       "Description": ""
     }
