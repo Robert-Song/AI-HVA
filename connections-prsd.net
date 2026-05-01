@@ -1,32 +1,540 @@
 {
   "input": "prsd.net",
   "essential_only": true,
-  "essential_component_count": 2,
+  "essential_component_count": 20,
   "excluded_components": [],
-  "included_essential_component_count": 2,
-  "connections_count": 1,
+  "included_essential_component_count": 20,
+  "connections_count": 34,
   "connections": [
     {
       "net": {
-        "name": "/BAT_SW",
-        "code": "1"
+        "name": "/RX1_FTDI",
+        "code": "69"
       },
       "a": {
-        "ref": "U307",
-        "pin": "5"
+        "ref": "JP3",
+        "pin": "1"
       },
       "b": {
-        "ref": "U309",
+        "ref": "UART_FTDI1",
+        "pin": "4"
+      }
+    },
+    {
+      "net": {
+        "name": "/RX1_OBC",
+        "code": "70"
+      },
+      "a": {
+        "ref": "JP3",
+        "pin": "3"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "3"
+      }
+    },
+    {
+      "net": {
+        "name": "/RX2_FTDI",
+        "code": "71"
+      },
+      "a": {
+        "ref": "JP4",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "6"
+      }
+    },
+    {
+      "net": {
+        "name": "/RX2_OBC",
+        "code": "72"
+      },
+      "a": {
+        "ref": "JP4",
+        "pin": "3"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
         "pin": "5"
+      }
+    },
+    {
+      "net": {
+        "name": "/RX3_FTDI",
+        "code": "73"
+      },
+      "a": {
+        "ref": "JP6",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "8"
+      }
+    },
+    {
+      "net": {
+        "name": "/TX1_FTDI",
+        "code": "89"
+      },
+      "a": {
+        "ref": "JP1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "3"
+      }
+    },
+    {
+      "net": {
+        "name": "/TX1_OBC",
+        "code": "90"
+      },
+      "a": {
+        "ref": "JP1",
+        "pin": "3"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "2"
+      }
+    },
+    {
+      "net": {
+        "name": "/TX2_FTDI",
+        "code": "91"
+      },
+      "a": {
+        "ref": "JP2",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "5"
+      }
+    },
+    {
+      "net": {
+        "name": "/TX2_OBC",
+        "code": "92"
+      },
+      "a": {
+        "ref": "JP2",
+        "pin": "3"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "4"
+      }
+    },
+    {
+      "net": {
+        "name": "/TX3_FTDI",
+        "code": "93"
+      },
+      "a": {
+        "ref": "JP5",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "7"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "SPI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_FTDI1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_FTDI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_FTDI1",
+        "pin": "1"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "MP"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_FTDI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "1"
+      }
+    },
+    {
+      "net": {
+        "name": "GND",
+        "code": "106"
+      },
+      "a": {
+        "ref": "UART_FTDI1",
+        "pin": "MP"
+      },
+      "b": {
+        "ref": "UART_OBC_1",
+        "pin": "MP"
       }
     }
   ],
   "adjacency": {
-    "U307": [
-      "U309"
+    "JP3": [
+      "UART_FTDI1",
+      "UART_OBC_1"
     ],
-    "U309": [
-      "U307"
+    "UART_FTDI1": [
+      "JP1",
+      "JP2",
+      "JP3",
+      "JP4",
+      "JP5",
+      "JP6",
+      "SPI1",
+      "UART_1",
+      "UART_OBC_1"
+    ],
+    "UART_OBC_1": [
+      "JP1",
+      "JP2",
+      "JP3",
+      "JP4",
+      "SPI1",
+      "UART_1",
+      "UART_FTDI1"
+    ],
+    "JP4": [
+      "UART_FTDI1",
+      "UART_OBC_1"
+    ],
+    "JP6": [
+      "UART_FTDI1"
+    ],
+    "JP1": [
+      "UART_FTDI1",
+      "UART_OBC_1"
+    ],
+    "JP2": [
+      "UART_FTDI1",
+      "UART_OBC_1"
+    ],
+    "JP5": [
+      "UART_FTDI1"
+    ],
+    "SPI1": [
+      "UART_1",
+      "UART_FTDI1",
+      "UART_OBC_1"
+    ],
+    "UART_1": [
+      "SPI1",
+      "UART_FTDI1",
+      "UART_OBC_1"
     ]
   },
   "excluded_prefixes": [

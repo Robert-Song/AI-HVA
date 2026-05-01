@@ -37,7 +37,7 @@ def check_reasoning(llm_reason: dict):
     }
     response = requests.post(url, headers=headers, json=body)
     if response.status_code == 200:
-        #print(response.text)
+        print(response.text)
         jsonobj = json.loads(response.text)
         print(jsonobj["choices"][0]["message"]["content"])
     else:
@@ -51,119 +51,93 @@ def infer_components_and_relations():
         with open(nfile, "r") as f:
             netlistfile += nfile + '\n'
             netlistfile += f.read()
-
+    templatefile = ""
+    tpfile = "cubesat_obc-final.json"
+    with open(tpfile, "r") as f:
+            templatefile += tpfile + '\n'
+            templatefile += f.read()
     datasheetfile = ""
     dfiles = []
-    with open("activator-isolate-prsd.net", "r") as f:
+    with open("isolate-prsd.net", "r") as f:
             jobj = json.load(f)
             #print(jobj)
             for j in jobj:
                 if j["value"]:
                     dfiles.append("result/" + j["value"] + ".pdf")
     for dfile in dfiles:
-        with open(dfile, "r") as f:
-            datasheetfile += dfile + '\n'
-            with pdfplumber.open(dfile) as pdf:
+        if os.path.exists(dfile):
+            with open(dfile, "r") as f:
+                datasheetfile += dfile + '\n'
+                try:
+                    with pdfplumber.open(dfile) as pdf:
+                        for pg in pdf.pages:
+                            text = pg.extract_text()
+                            datasheetfile += text + '\n'
+                except:
+                    datasheetfile += "N/A" + '\n'
+    hfile = "STPA_Handbook.pdf"
+    handbookfile = ""
+    with open(hfile, "r") as f:
+        handbookfile += hfile + '\n'
+        try:
+            with pdfplumber.open(hfile) as pdf:
                 for pg in pdf.pages:
                     text = pg.extract_text()
-                    datasheetfile += text + '\n'
+                    handbookfile += text + '\n'
+        except:
+            handbookfile += "N/A" + '\n'
 
     prompt = '''
-    You are an electrical systems analyst.
+    <role>
+    You are a systems safety engineer writing a reference document for hardware analysts
+    performing STPA (System-Theoretic Process Analysis) on electronic hardware systems.
+    </role>
 
-    You are given:
-    1. A parsed netlist describing components and their connections
-    2. Datasheet excerpts for each component
+    <task>
+    Your task is to produce a component STPA role classification reference table for RF front-end circuits based on the list provided.
+    </task>
 
-    Your task is to infer:
-    - The FUNCTION of each component in the system
-    - The RELATIONSHIPS between components
-    - The SIGNAL TYPE of each connection:
-    (control signal, feedback, power, data)
-    - Any SAFETY CONCERNS or risks
+    <STRICT_RULES>
+    1. Every classification MUST be derivable from Leveson & Thomas, STPA Handbook
+    (MIT, 2018) attached. Specifically, apply the definitions of controller, actuator, sensor,
+    controlled_process, communication_channel, and passive from Chapter 2.
+    2. If a component type's role is genuinely context-dependent, say so explicitly with
+    a "Context-dependent" entry and explain BOTH possible roles and when each applies.
+    3. If you are uncertain about a component type's typical role, mark it with
+    "(NEEDS EXPERT REVIEW)" rather than guessing.
+    4. Do NOT fabricate component behavior. If you do not know the typical function of a
+    component type, omit it.
+    </STRICT_RULES>
 
-    ---
+    <format>
+    For each component type, produce:
+    - Component type name and common examples (part numbers or families)
+    - Typical STPA role (enum: controller | actuator | sensor | controlled_process |
+    communication_channel | passive)
+    - One-sentence reasoning grounded in Leveson's definition of that role
+    - Any exceptions or context-dependencies
 
-    ## Rules
+    Group by functional category (e.g., Power Components, RF Components,
+    Digital Logic, etc.)
 
-    - Base all conclusions ONLY on:
-    (a) the netlist connections
-    (b) the provided datasheets
-
-    - Do NOT assume missing components or invent functionality
-    - If uncertain, explicitly say "UNKNOWN" and explain why
-
-    - Prefer reasoning from:
-    pin names, voltage levels, typical usage in datasheets
-
-    
-    ## Required Output Format (STRICT JSON) DO NOT PRODUCE ANY OTHER OUTPUT. Your entire response will be parsed into JSON.
-    {
-    "components": [
-        {
-        "name": "...",
-        "inferred_role": "...",
-        "justification": "...",
-        "confidence": 0.0-1.0
-        }
-    ],
-    "connections": [
-        {
-        "from": "...",
-        "to": "...",
-        "signal_type": "control | feedback | power | data | unknown",
-        "justification": "...",
-        "confidence": 0.0-1.0
-        }
-    ],
-    "relationships": [
-        {
-        "description": "...",
-        "components": ["...", "..."],
-        "type": "dependency | regulation | amplification | conversion | protection",
-        "justification": "..."
-        }
-    ],
-    "safety_concerns": [
-        {
-        "issue": "...",
-        "components": ["..."],
-        "severity": "low | medium | high",
-        "reason": "..."
-        }
-    ]
-    }
-
-    ---
-
-    ## Reasoning Strategy (IMPORTANT)
-
-    Follow this process internally:
-
-    1. Identify power sources and ground references first
-    2. Identify ICs and their roles from datasheets
-    3. Classify connections by pin function:
-    - VCC/GND → power
-    - EN/CTRL → control
-    - OUT→IN loops → feedback
-    - digital buses → data
-    4. Look for common circuit patterns:
-    - voltage regulators
-    - amplifiers
-    - filters
-    - microcontroller + peripherals
-    5. Infer relationships ONLY after classifying signals
-
-    ---
+    End with a "Classification Guidelines" section covering:
+    - How to handle components that serve multiple roles in the same system
+    - Default tie-breaking rules when classification is ambiguous
+    </format>
 
     ## Input Data
 
+    ### Template:
+    ''' + templatefile + '''
+    ### STPA Handbook:
+    ''' + handbookfile + '''
     ### Netlist:
     ''' + netlistfile + '''
     ### Datasheets:
     ''' + datasheetfile + '''
     '''
-    print(prompt)
+    with open("prompt.txt", "w") as f:
+        f.write(prompt)
 
     body = {
         "model": "gpt-oss:120b",
@@ -176,7 +150,7 @@ def infer_components_and_relations():
     }
     response = requests.post(url, headers=headers, json=body)
     if response.status_code == 200:
-        #print(response.text)
+        print(response.text)
         jsonobj = json.loads(response.text)
         res = jsonobj["choices"][0]["message"]["content"]
         print(res)
@@ -184,6 +158,9 @@ def infer_components_and_relations():
         if len(mmres) >= 2:
             with open("llm_comp_analysis.json", "w", encoding="utf-8") as f:
                 f.write(mmres[1])
+        else:
+            with open("llm_comp_analysis.json", "w", encoding="utf-8") as f:
+                f.write(res)
     else:
         raise Exception(f"Error: {response.status_code}, {response.text}")
 
