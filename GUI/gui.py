@@ -3,7 +3,7 @@ import os
 import threading
 import json
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
+import tkinter as tk
 from tkinter import *
 from tkinter import filedialog, ttk
 import shutil
@@ -64,7 +64,7 @@ uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 normalimg = PhotoImage(file="uploadnormal.png")
 hoverimg = PhotoImage(file="uploadhover.png")
 
-selected_size = None
+selected_size = StringVar(value='L')
 
 # Tracks which file is currently being shown on screen 2
 file_index = 0
@@ -89,7 +89,7 @@ def show_screen1():
     errorlbl.grid(row=2, column=0)
     filelbl = Label(root, text="")
     filelbl.grid(row=2, column=0)
-    contbtn = Button(root, text="Continue", command=show_screen2)
+    contbtn = Button(root, text="Continue", command=show_pre_screen2)
 
     # Screen 1: upload button using a label widget for custom image styling
     filebtn = Label(
@@ -154,7 +154,7 @@ def import_file():
             errorlbl.destroy()
             filelbl = Label(root, text="Uploaded files: " + names)
             filelbl.grid(row=2, column=0)
-            contbtn = Button(root, text="Continue", command=show_screen2)
+            contbtn = Button(root, text="Continue", command=show_pre_screen2)
             contbtn.grid(row=3, column=0, pady=(0, 35))
         else:
             contbtn.destroy()
@@ -209,10 +209,48 @@ def store_list(index=0, complist=[]):
                         cole.append(filename)
         show_screen_debug()
 
+def show_pre_screen2(index=0):
+
+    global file_index, essential_components, comp_num, checkbox_states, selected_size
+    file_index = index
+
+    fp = file_paths[index]
+    for widget in root.winfo_children():
+        widget.destroy()
+
+
+    sizes = (('Low-Level (all parts)', 'L'),
+            ('Mid-Level (basic components removed)', 'M'),
+            ('High-Level (only components with datasheets used)', 'H'))
+
+    # label
+    label = ttk.Label(text="Choose an abstraction level")
+    label.grid(row=0, column=0, pady=(25, 0), padx=100)
+
+    selected_size.set('L')
+
+    # radio buttons
+    i = 1
+    for size in sizes:
+        r = ttk.Radiobutton(
+            root,
+            text=size[0],
+            value=size[1],
+            variable=selected_size
+        )
+        r.grid(column=0, row=i)
+        i += 1
+        #r.pack(fill='x', padx=5, pady=5)
+
+    # If there are more files, continue loads the next one; otherwise advance to screen 3
+
+    contbtn = Button(root, text="Continue", command=lambda: show_screen2())
+    contbtn.grid(row=5, column=0, pady=(0, 35))
+
 # Screen 2: shows components for one file at a time, advancing on each continue click
 def show_screen2(index=0):
 
-    global file_index, essential_components, comp_num, checkbox_states
+    global file_index, essential_components, comp_num, checkbox_states, selected_size
     file_index = index
 
     fp = file_paths[index]
@@ -220,9 +258,9 @@ def show_screen2(index=0):
         widget.destroy()
 
     if Path(fp).suffix == ".kicad_sch":
-        complist = ic.essential_list_kicad(fp)
+        complist = ic.essential_list_kicad(fp, selected_size.get())
     elif Path(fp).suffix == ".net":
-        complist = ic.essential_list_netlist(fp)
+        complist = ic.essential_list_netlist(fp, selected_size.get())
     comp_num = len(complist)
 
     # Each checkbox gets its own BooleanVar so they toggle independently
