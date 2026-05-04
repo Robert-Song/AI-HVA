@@ -120,23 +120,31 @@ class InfoCompressor:
         subprocess.call([get_kicad_cli_path(), "sch", "export", "netlist", output])
 
 
-    def essential_list_netlist(self, filepath):
+    def essential_list_netlist(self, filepath, mode='L'):
         col = []
         banned = ["C", "R", "Fuse", "GND", "PWR_FLAG", "Signature"]
         for libb in parse_netlist(filepath).libparts:
-            print(libb)
-            print(libb.name + ": " + libb.desc + f" ({libb.docs})")
             desc = "?"
             if libb.desc:
                 desc = libb.desc
-            if ("logo" not in libb.name.lower()) and (True or (libb.name not in banned and "~" not in libb.docs)):
-
+            if mode == 'L':
                 col.append((libb.name, desc, libb.docs))
+            elif mode == 'M':
+                if ("logo" not in libb.name.lower()) and (True or (libb.name not in banned and "~" not in libb.docs)):
+                    col.append((libb.name, desc, libb.docs))
+            elif mode == 'H':
+                if ("logo" not in libb.name.lower()) and ((libb.name not in banned and "~" not in libb.docs)):
+                    col.append((libb.name, desc, libb.docs))
+
+            #print(libb.name + ": " + libb.desc + f" ({libb.docs})")
+            
+            #if ("logo" not in libb.name.lower()) and (True or (libb.name not in banned and "~" not in libb.docs)):
+            #    col.append((libb.name, desc, libb.docs))
         return col
    
-    def essential_list_kicad(self, filepath):
+    def essential_list_kicad(self, filepath, mode='L'):
         self.convert(filepath, "result.kicad_sch")
-        return self.essential_list_netlist("result.net")
+        return self.essential_list_netlist("result.net", mode)
 
 
 #Test case for US#5
