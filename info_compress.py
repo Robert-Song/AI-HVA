@@ -10,6 +10,10 @@ class InfoCompressor:
         self.seen_files = {}
 
 
+    def read_schematic(self, filepath):
+        return Schematic().from_file(filepath, encoding="utf-8")
+
+
     def check_duplicate_file(self, filename, filecontent):
         valid = False
         replacement = filecontent
@@ -29,7 +33,7 @@ class InfoCompressor:
 
 
     def parse(self, filepath):
-        sch = Schematic().from_file(filepath)
+        sch = self.read_schematic(filepath)
         sch.libSymbols = []
         for i in range(len(sch.schematicSymbols)):
             newprop = []
@@ -46,7 +50,7 @@ class InfoCompressor:
         return sch.to_sexpr()
    
     def convert(self, filepath, output):
-        sch = Schematic().from_file(filepath)
+        sch = self.read_schematic(filepath)
         newl = []
         banned = ["C", "R", "Fuse", "GND", "PWR_FLAG"]
         for sl in sch.libSymbols:
@@ -69,14 +73,14 @@ class InfoCompressor:
             newprop = []
             #print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
-        sch.to_file(output)
+        sch.to_file(output, encoding="utf-8")
         #print(get_kicad_cli_path())
         #print(get_kicad_cli_path(), "sch", "export", "netlist", output)
         subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
 
 
     def convert_whitelist_kicad(self, filepath, whitelist, output):
-        sch = Schematic().from_file(filepath)
+        sch = self.read_schematic(filepath)
         newl = []
         for sl in sch.libSymbols:
             #print(sl)
@@ -94,11 +98,11 @@ class InfoCompressor:
             newprop = []
             # print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
-        sch.to_file(output)
+        sch.to_file(output, encoding="utf-8")
         #print(get_kicad_cli_path(), "sch", "export", "netlist", output)
         subprocess.run([get_kicad_cli_path(), "sch", "export", "netlist", output])
     def convert_whitelist_netlist(self, filepath, whitelist, output):
-        sch = Schematic().from_file(filepath)
+        sch = self.read_schematic(filepath)
         newl = []
         for sl in sch.libSymbols:
             if sl.entryName in whitelist:
@@ -115,7 +119,7 @@ class InfoCompressor:
             newprop = []
             # print(sch.hierarchicalLabels[i])
             #sch.hierarchicalLabels[i].properties = newprop
-        sch.to_file(output)
+        sch.to_file(output, encoding="utf-8")
         #print(get_kicad_cli_path(), "sch", "export", "netlist", output)
         subprocess.call([get_kicad_cli_path(), "sch", "export", "netlist", output])
 

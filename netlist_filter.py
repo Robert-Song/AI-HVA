@@ -83,7 +83,7 @@ def rebuild_tree(tree, new_components, new_nets):
     return new_tree
 
 def write_netlist(tree, output_file):
-    with open(output_file, "w") as f:
+    with open(output_file, "w", encoding="utf-8") as f:
         f.write(sexpdata.dumps(tree))
 
 def filter_netlist_full(oldnetlist, whitelist, output):
@@ -95,4 +95,5 @@ def filter_netlist_full(oldnetlist, whitelist, output):
     new_tree = rebuild_tree(tree, new_components, new_nets)
     write_netlist(new_tree, output)
 
-filter_netlist_full("result.net", ["SolderJumper_2_Open"], "filtered2.net")
+if __name__ == "__main__":
+    filter_netlist_full("result.net", ["SolderJumper_2_Open"], "filtered2.net")
