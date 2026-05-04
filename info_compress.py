@@ -128,22 +128,17 @@ class InfoCompressor:
         col = []
         banned = ["C", "R", "Fuse", "GND", "PWR_FLAG", "Signature"]
         for libb in parse_netlist(filepath).libparts:
-            desc = "?"
-            if libb.desc:
-                desc = libb.desc
+            desc = libb.desc if libb.desc else "?"
+            footprint = next((f[1] for f in libb.fields if len(f) > 1 and f[0] == "Footprint"), "")
+            entry = (libb.name, desc, libb.docs, libb.lib, libb.pins, footprint)
             if mode == 'L':
-                col.append((libb.name, desc, libb.docs))
+                col.append(entry)
             elif mode == 'M':
-                if ("logo" not in libb.name.lower()) and (True or (libb.name not in banned and "~" not in libb.docs)):
-                    col.append((libb.name, desc, libb.docs))
+                if "logo" not in libb.name.lower():
+                    col.append(entry)
             elif mode == 'H':
-                if ("logo" not in libb.name.lower()) and ((libb.name not in banned and "~" not in libb.docs)):
-                    col.append((libb.name, desc, libb.docs))
-
-            #print(libb.name + ": " + libb.desc + f" ({libb.docs})")
-            
-            #if ("logo" not in libb.name.lower()) and (True or (libb.name not in banned and "~" not in libb.docs)):
-            #    col.append((libb.name, desc, libb.docs))
+                if "logo" not in libb.name.lower() and libb.name not in banned and "~" not in libb.docs:
+                    col.append(entry)
         return col
    
     def essential_list_kicad(self, filepath, mode='L'):
