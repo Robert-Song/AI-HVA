@@ -987,6 +987,8 @@ def _run_pipeline_thread(session: Session, stpa: dict, output_path: str,
         with session._pipeline_lock:
             session._pipeline_running = False
             session._pipeline_proc = None
+        sys.stdout.write(f"\n{cyan('ai-hva')}> ")
+        sys.stdout.flush()
 
 
 def cmd_run(args: list[str], session: Session) -> None:
