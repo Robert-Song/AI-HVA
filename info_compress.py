@@ -119,9 +119,9 @@ class InfoCompressor:
         col = []
         banned = ["C", "R", "Fuse", "GND", "PWR_FLAG"]
         for libb in parse_netlist(filepath).libparts:
-            #print(libb.name + ": " + libb.desc + f" ({libb.docs})")
             if libb.name not in banned:
-                col.append((libb.name, libb.desc, libb.docs))
+                footprint = next((f[1] for f in libb.fields if len(f) > 1 and f[0] == "Footprint"), "")
+                col.append((libb.name, libb.desc, libb.docs, libb.lib, libb.pins, footprint))
         return col
    
     def essential_list_kicad(self, filepath):

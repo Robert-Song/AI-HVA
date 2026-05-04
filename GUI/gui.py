@@ -51,8 +51,8 @@ uploadlbl = Label(root, text="Upload a KiCad schematic or netlist file.")
 uploadlbl.grid(row=0, column=0, pady=(25, 0), padx=100)
 
 # Load normal and hover state images for the upload button
-normalimg = PhotoImage(file="GUI/uploadnormal.png")
-hoverimg = PhotoImage(file="GUI/uploadhover.png")
+normalimg = PhotoImage(file="uploadnormal.png")
+hoverimg = PhotoImage(file="uploadhover.png")
 
 # Tracks which file is currently being shown on screen 2
 file_index = 0
@@ -167,15 +167,19 @@ def validate_file(fp):
 def store_list(index=0, complist=[]):
     checked = [comp[0] for comp, state in zip(complist, checkbox_states) if state.get()]
     needdatasheets = [(comp[0], comp[2]) for comp, state in zip(complist, checkbox_states) if state.get()]
+    print(f"checked: {checked}")
+    print("\n")
+    print(f"needdata: {needdatasheets}")
     essential_components.append([checked, file_paths[index]])
+    print(f"ec: {essential_components}")
     if index + 1 < len(file_paths):
         show_screen2(index+1)
     else:
         print(essential_components)
         for ec in essential_components:
-            print(ec[1])
-            sp = ec[1].split("/")
-            if Path(ec[1]).suffix == ".kicad_sch":
+            stem = Path(ec[1]).stem
+            suffix = Path(ec[1]).suffix
+            if suffix == ".kicad_sch":
                 prsd = "prsd.kicad_sch"
                 ic.convert_whitelist_kicad(ec[1], ec[0], prsd)
                 prsdfix = "prsd.net"
@@ -185,12 +189,13 @@ def store_list(index=0, complist=[]):
                 icresult = extract_components_from_netlist(prsdfix)
                 with open("isolate-prsd.net", "w", encoding="utf-8") as f:
                     json.dump(icresult, f, indent=2)
-                full_process_netlist(prsdfix, sp[len(sp) - 1].split(".")[0] + "-final.json")
+                full_process_netlist(prsdfix, stem + "-final.json")
                 cole = []
                 for ds in needdatasheets:
                     result, error = mf.test_find_datasheet(ds[0], ds[1])
                     if error == None:
-                        filename = "result/" + ds[0] + ".pdf"
+                        os.makedirs("../result", exist_ok=True)
+                        filename = "../result/" + ds[0] + ".pdf"
                         with open(filename, "wb") as f:
                             f.write(result)
                         cole.append(filename)
@@ -216,7 +221,9 @@ def show_screen2(index=0):
     checkbox_states = [BooleanVar() for _ in complist]
     for i, (comp, state) in enumerate(zip(complist, checkbox_states)):
         checkbox = Checkbutton(root, text=f"{comp[0]}: {comp[1]}", variable=state)
-        checkbox.grid(column=0, row=i)
+        checkbox.grid(column=0, row=i, sticky="w")
+        btn = Button(root, text="Details", command=lambda c=comp: show_component_details(c))
+        btn.grid(column=1, row=i, padx=(4, 0))
 
     # Select/deselect all toggle
     def toggle_all():
@@ -432,8 +439,240 @@ def directory_select():
 
 
 
-# Returns True if the file is non-empty and starts with the expected header
+def sort_treeview(tree, col, reverse):
+    items = [(tree.set(k, col), k) for k in tree.get_children("")]
+    try:
+        items.sort(key=lambda t: int(t[0]), reverse=reverse)
+    except ValueError:
+        items.sort(key=lambda t: t[0].lower(), reverse=reverse)
+    for i, (_, k) in enumerate(items):
+        tree.move(k, "", i)
+    tree.heading(col, command=lambda: sort_treeview(tree, col, not reverse))
 
+
+def _build_summary(data, system_name):
+    components = data.get("components", {})
+    nets = data.get("nets", {})
+
+    prefix_labels = {
+        "R": "Resistors", "C": "Capacitors", "L": "Inductors",
+        "U": "ICs / Modules", "Q": "Transistors", "D": "Diodes",
+        "J": "Connectors", "SW": "Switches", "F": "Fuses",
+        "Y": "Crystals / Oscillators", "TP": "Test Points",
+    }
+    prefix_counts = {}
+    for ref in components:
+        prefix = "".join(c for c in ref if c.isalpha())
+        prefix_counts[prefix] = prefix_counts.get(prefix, 0) + 1
+
+    conn_count = {}
+    for nodes in nets.values():
+        for node in nodes:
+            ref = node.get("ref", "")
+            conn_count[ref] = conn_count.get(ref, 0) + 1
+
+    top_hubs = sorted(conn_count.items(), key=lambda x: x[1], reverse=True)[:5]
+    power_nets = [n for n in nets if any(p in n.upper() for p in ("VCC", "VDD", "GND", "PWR", "3V3", "5V", "12V", "24V"))]
+
+    lines = [
+        f"System: {system_name}",
+        "",
+        "Overview",
+        "--------",
+        f"Total components:  {len(components)}",
+        f"Total nets:        {len(nets)}",
+        "",
+    ]
+
+    if prefix_counts:
+        lines.append("Component breakdown:")
+        for prefix, count in sorted(prefix_counts.items(), key=lambda x: -x[1]):
+            label = prefix_labels.get(prefix, f"{prefix} components")
+            lines.append(f"  {label}: {count}")
+        lines.append("")
+
+    if top_hubs:
+        lines.append("Most connected components:")
+        for ref, count in top_hubs:
+            val = components.get(ref, {}).get("value", "")
+            desc = components.get(ref, {}).get("raw_desc", "")
+            detail = f" — {desc}" if desc else (f" ({val})" if val else "")
+            lines.append(f"  {ref}{detail}: {count} pins")
+        lines.append("")
+
+    if power_nets:
+        lines.append("Power rails detected:")
+        for net in sorted(power_nets):
+            node_refs = sorted(set(n.get("ref", "") for n in nets[net]))
+            lines.append(f"  {net}: {', '.join(node_refs)}")
+
+    return "\n".join(lines)
+
+
+class SchematicDetailWindow:
+    def __init__(self, parent, data, system_name):
+        self.win = Toplevel(parent)
+        self.win.title(f"Schematic Details — {system_name}")
+        self.win.geometry("900x620")
+        self.win.attributes("-topmost", True)
+        self.win.lift()
+        self.win.focus_force()
+
+        notebook = ttk.Notebook(self.win)
+        notebook.pack(fill=BOTH, expand=True, padx=10, pady=10)
+
+        # --- Details tab ---
+        details_frame = Frame(notebook)
+        notebook.add(details_frame, text="Details")
+
+        meta = data.get("metadata", {})
+        comp_count = len(data.get("components", {}))
+        net_count = len(data.get("nets", {}))
+        meta_text = f"System: {system_name}   |   Components: {comp_count}   |   Nets: {net_count}"
+        if meta.get("date"):
+            meta_text += f"   |   Date: {meta['date']}"
+        Label(details_frame, text=meta_text, anchor="w").pack(fill=X, padx=8, pady=(8, 4))
+
+        # BOM table
+        Label(details_frame, text="Bill of Materials", font=("TkDefaultFont", 10, "bold"), anchor="w").pack(fill=X, padx=8)
+        bom_frame = Frame(details_frame)
+        bom_frame.pack(fill=BOTH, expand=True, padx=8, pady=(0, 6))
+
+        bom_cols = ("Ref", "Value", "Description", "Pins")
+        bom_tree = ttk.Treeview(bom_frame, columns=bom_cols, show="headings", height=8)
+        bom_vsb = Scrollbar(bom_frame, orient=VERTICAL, command=bom_tree.yview)
+        bom_tree.configure(yscrollcommand=bom_vsb.set)
+        bom_vsb.pack(side=RIGHT, fill=Y)
+        bom_tree.pack(fill=BOTH, expand=True)
+
+        col_widths = {"Ref": 80, "Value": 130, "Description": 380, "Pins": 60}
+        for col in bom_cols:
+            bom_tree.heading(col, text=col, command=lambda c=col: sort_treeview(bom_tree, c, False))
+            bom_tree.column(col, width=col_widths[col])
+
+        conn_count = {}
+        for nodes in data.get("nets", {}).values():
+            for node in nodes:
+                ref = node.get("ref", "")
+                conn_count[ref] = conn_count.get(ref, 0) + 1
+
+        for ref, details in sorted(data.get("components", {}).items()):
+            bom_tree.insert("", END, values=(
+                ref,
+                details.get("value", ""),
+                details.get("raw_desc", ""),
+                conn_count.get(ref, 0),
+            ))
+
+        # Net table
+        Label(details_frame, text="Net List", font=("TkDefaultFont", 10, "bold"), anchor="w").pack(fill=X, padx=8)
+        net_frame = Frame(details_frame)
+        net_frame.pack(fill=BOTH, expand=True, padx=8, pady=(0, 6))
+
+        net_cols = ("Net Name", "Components", "Pin Count")
+        net_tree = ttk.Treeview(net_frame, columns=net_cols, show="headings", height=8)
+        net_vsb = Scrollbar(net_frame, orient=VERTICAL, command=net_tree.yview)
+        net_tree.configure(yscrollcommand=net_vsb.set)
+        net_vsb.pack(side=RIGHT, fill=Y)
+        net_tree.pack(fill=BOTH, expand=True)
+
+        net_tree.column("Net Name", width=200)
+        net_tree.column("Components", width=500)
+        net_tree.column("Pin Count", width=80)
+        for col in net_cols:
+            net_tree.heading(col, text=col, command=lambda c=col: sort_treeview(net_tree, c, False))
+
+        for net_name, nodes in sorted(data.get("nets", {}).items()):
+            refs = sorted(set(n.get("ref", "") for n in nodes))
+            net_tree.insert("", END, values=(net_name, ", ".join(refs), len(nodes)))
+
+        # --- Summary tab ---
+        summary_frame = Frame(notebook)
+        notebook.add(summary_frame, text="Summary")
+
+        summary_text = Text(summary_frame, wrap="word", state="disabled",
+                            font=("TkDefaultFont", 11), padx=10, pady=10)
+        summary_vsb = Scrollbar(summary_frame, command=summary_text.yview)
+        summary_text.configure(yscrollcommand=summary_vsb.set)
+        summary_vsb.pack(side=RIGHT, fill=Y)
+        summary_text.pack(fill=BOTH, expand=True)
+
+        summary = _build_summary(data, system_name)
+        summary_text.configure(state="normal")
+        summary_text.insert(END, summary)
+        summary_text.configure(state="disabled")
+
+
+def show_component_details(comp):
+    name = comp[0]
+    desc = comp[1] if len(comp) > 1 else ""
+    docs = comp[2] if len(comp) > 2 else ""
+    lib  = comp[3] if len(comp) > 3 else ""
+    pins = comp[4] if len(comp) > 4 else []
+    footprint = comp[5] if len(comp) > 5 else ""
+
+    win = Toplevel(root)
+    win.title(f"Details — {name}")
+    win.attributes("-topmost", True)
+    win.lift()
+    win.focus_force()
+
+    pad = {"padx": 12, "pady": 3, "sticky": "w"}
+    row = 0
+
+    Label(win, text="Component", font=("TkDefaultFont", 10, "bold")).grid(
+        row=row, column=0, columnspan=2, padx=12, pady=(12, 4), sticky="w")
+    row += 1
+
+    fields = [
+        ("Name", name),
+        ("Library", lib),
+        ("Description", desc),
+        ("Footprint", footprint),
+        ("Datasheet", docs),
+    ]
+    for label, value in fields:
+        if value:
+            Label(win, text=label + ":").grid(row=row, column=0, **pad)
+            Label(win, text=value, wraplength=360, justify="left").grid(row=row, column=1, **pad)
+            row += 1
+
+    if pins:
+        Label(win, text="Pins", font=("TkDefaultFont", 10, "bold")).grid(
+            row=row, column=0, columnspan=2, padx=12, pady=(10, 4), sticky="w")
+        row += 1
+
+        pin_frame = Frame(win)
+        pin_frame.grid(row=row, column=0, columnspan=2, padx=12, pady=(0, 4), sticky="ew")
+        pin_cols = ("Pin", "Name", "Type")
+        pin_tree = ttk.Treeview(pin_frame, columns=pin_cols, show="headings",
+                                height=min(len(pins), 10))
+        pin_vsb = Scrollbar(pin_frame, orient=VERTICAL, command=pin_tree.yview)
+        pin_tree.configure(yscrollcommand=pin_vsb.set)
+        pin_vsb.pack(side=RIGHT, fill=Y)
+        pin_tree.pack(fill=BOTH, expand=True)
+        pin_tree.column("Pin",  width=50,  anchor="center")
+        pin_tree.column("Name", width=120)
+        pin_tree.column("Type", width=120)
+        for col in pin_cols:
+            pin_tree.heading(col, text=col)
+        for pin in pins:
+            pin_tree.insert("", END, values=(pin[0], pin[1], pin[2] if len(pin) > 2 else ""))
+        row += 1
+
+    Button(win, text="Close", command=win.destroy).grid(
+        row=row, column=0, columnspan=2, pady=(8, 12))
+
+
+def open_detail_window(net_file, system_name):
+    try:
+        from netlist_parser import extract_netlist_data
+        with open(net_file, "r", encoding="utf-8") as f:
+            content = f.read()
+        data = extract_netlist_data(content)
+        SchematicDetailWindow(root, data, system_name)
+    except Exception as e:
+        logger.warning(f"Could not open detail window: {e}")
 
 
 show_screen1()
