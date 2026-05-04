@@ -74,6 +74,17 @@ def get_kicad_cli_path() -> str:
     default = _KICAD_CLI_DEFAULTS.get(system, "kicad-cli")
     if system == "Windows":
         default = default.format(username=os.environ.get("USERNAME", "user"))
+        if os.path.isfile(default):
+            return default
+        candidates = []
+        for base in (
+            Path(os.environ.get("ProgramFiles", r"C:\Program Files")),
+            Path(os.environ.get("LOCALAPPDATA", "")) / "Programs",
+        ):
+            if base:
+                candidates.extend(base.glob(r"KiCad\*\bin\kicad-cli.exe"))
+        if candidates:
+            return str(max(candidates, key=lambda p: p.stat().st_mtime))
     return default
 
 
