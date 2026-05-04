@@ -6,7 +6,7 @@ def get_prefix(ref):
     return match.group(0) if match else ""
 
 def parse_netlist(file_path):
-    with open(file_path, "r") as f:
+    with open(file_path, "r", encoding="utf-8") as f:
         return sexpdata.loads(f.read())
         
 def find_section(tree, name):
