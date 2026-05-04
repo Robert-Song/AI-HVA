@@ -5,10 +5,24 @@ load_dotenv()
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '')
 LLM_BASE_URL = os.getenv('LLM_BASE_URL', 'https://api.openai.com/v1')
+
+EXTRACTION_API_KEY = os.getenv('EXTRACTION_API_KEY', OPENAI_API_KEY)
+EXTRACTION_BASE_URL = os.getenv('EXTRACTION_BASE_URL', LLM_BASE_URL)
 EXTRACTION_MODEL = os.getenv('EXTRACTION_MODEL', 'gpt-4o-mini')
+
+ANALYSIS_API_KEY = os.getenv('ANALYSIS_API_KEY', OPENAI_API_KEY)
+ANALYSIS_BASE_URL = os.getenv('ANALYSIS_BASE_URL', LLM_BASE_URL)
 ANALYSIS_MODEL = os.getenv('ANALYSIS_MODEL', 'gpt-4o')
+
+EMBEDDING_API_KEY = os.getenv('EMBEDDING_API_KEY', OPENAI_API_KEY)
+EMBEDDING_BASE_URL = os.getenv('EMBEDDING_BASE_URL', LLM_BASE_URL)
+
 EMBEDDING_BACKEND = os.getenv('EMBEDDING_BACKEND', 'minilm')
-EMBEDDING_MODELS = {'minilm': {'name': 'all-MiniLM-L6-v2', 'dimension': 384, 'instruction_prefix': False}, 'qwen3': {'name': 'Qwen/Qwen3-Embedding-0.6B', 'dimension': 1024, 'instruction_prefix': True}}
+EMBEDDING_MODELS = {
+    'minilm': {'name': 'all-MiniLM-L6-v2', 'dimension': 384, 'instruction_prefix': False, 'type': 'local'}, 
+    'qwen3': {'name': 'Qwen/Qwen3-Embedding-0.6B', 'dimension': 1024, 'instruction_prefix': True, 'type': 'local'},
+    'server': {'name': os.getenv('EMBEDDING_MODEL_NAME', 'qwen3-embedding:8b-q8_0'), 'dimension': 1024, 'instruction_prefix': False, 'type': 'server'}
+}
 
 def get_embedding_config() -> dict:
     return EMBEDDING_MODELS.get(EMBEDDING_BACKEND, EMBEDDING_MODELS['minilm'])

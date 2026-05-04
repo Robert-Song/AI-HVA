@@ -8,13 +8,23 @@ def planning_user_prompt(system_name: str, netlist_file: str, components: dict, 
         footprint = comp.get('footprint', '')
         comp_lines.append(f'  {cid} | {part} | {value} | {footprint}')
     comp_table = '\n'.join(comp_lines)
+    
+    power_keywords = {'GND', 'VCC', 'VDD', 'VSS', '+3V3', '+5V', 'VBAT'}
+    
     pair_lines = []
     for pid, pair in connection_pairs.items():
         ep = pair['endpoints']
-        nets = ', '.join(pair['net_names'])
-        pair_lines.append(f"  {pid} | {ep[0]} | {ep[1]} | {pair['net_count']} | {nets}")
+        nets = pair['net_names']
+        
+        # Heuristic: if all nets connecting these two components are just power/ground, skip sending to LLM to save tokens
+        if all(any(kw in n.upper() for kw in power_keywords) for n in nets):
+            continue
+            
+        nets_str = ', '.join(nets)
+        pair_lines.append(f"  {pid} | {ep[0]} | {ep[1]} | {pair['net_count']} | {nets_str}")
+    
     pair_table = '\n'.join(pair_lines)
-    return f'System name: {system_name}\nNetlist source: {netlist_file}\n\n## Components\n{comp_table}\n\n## Connection Pairs\n{pair_table}\n\n## Domain Knowledge\n{domain_knowledge}'
+    return f'System name: {system_name}\nNetlist source: {netlist_file}\n\n## Components\n{comp_table}\n\n## Connection Pairs (excluding Power/GND only pairs)\n{pair_table}\n\n## Domain Knowledge\n{domain_knowledge}'
 TASK_I_SYSTEM_PROMPT = 'You are a systems safety engineer classifying a hardware component for STPA analysis.\n\nGiven the component\'s datasheet information and its connections in the circuit, determine:\n\n1. component_class: One of: controller, actuator, sensor, controlled_process, communication_channel, passive\n   - controller: Makes decisions, sends commands (MCUs, FPGAs, logic ICs with decision-making)\n   - actuator: Receives commands and acts on the physical process (motor drivers, switches, MOSFETs, power regulators when commanded)\n   - sensor: Measures physical quantities and reports to controllers (ADCs, temperature sensors, voltage monitors)\n   - controlled_process: The physical process being controlled (the load, the motor, the heating element)\n   - communication_channel: Carries signals between other components (bus transceivers, level shifters, optocouplers)\n   - passive: Support components not actively participating in control (decoupling, filtering — should mostly be caught by planning pass)\n\n2. functional_description: 1-2 sentences explaining what this component does in the system context. Reference its specific role, not just generic datasheet description.\n\n3. safety_critical: true if failure could lead to system hazards or mission loss. Consider: Does this component control power to critical systems? Does it provide the only feedback path for a safety-relevant measurement? Is it in a safety interlock chain?\n\nReturn JSON:\n{\n  "component_class": "<enum value>",\n  "functional_description": "<string>",\n  "safety_critical": <boolean>\n}'
 
 def task_i_user_prompt(component_id: str, part_number: str, connections_text: str, component_docs: str, domain_knowledge: str) -> str:

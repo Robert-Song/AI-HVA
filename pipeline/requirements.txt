@@ -13,6 +13,7 @@ tiktoken
 # Document Processing & Embeddings
 chromadb
 sentence-transformers
+pdfplumber
 
 # Configuration
 python-dotenv

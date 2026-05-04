@@ -40,12 +40,22 @@ class DomainKnowledgeStore:
         return self._embedding_model
 
     def _embed_texts(self, texts: list[str], is_query: bool=False) -> list[list[float]]:
-        model = self._get_embedding_model()
         if self.embedding_config.get('instruction_prefix'):
             if is_query:
                 texts = [f'Instruct: Retrieve documents about hardware safety analysis\nQuery: {t}' for t in texts]
             else:
                 texts = [f'Instruct: Represent this document for retrieval\nDocument: {t}' for t in texts]
+                
+        if self.embedding_config.get('type') == 'server':
+            from src.llm.client import _get_client
+            client = _get_client("embedding")
+            response = client.embeddings.create(
+                model=self.embedding_config['name'],
+                input=texts
+            )
+            return [data.embedding for data in response.data]
+
+        model = self._get_embedding_model()
         embeddings = model.encode(texts, show_progress_bar=False)
         return embeddings.tolist()
 

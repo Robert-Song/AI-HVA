@@ -1,41 +1,425 @@
 [
   {
-    "ref": "U307",
-    "value": "74AHC1G04",
-    "footprint": "Package_TO_SOT_SMD:TSOT-23-5",
-    "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
-    "lib": "74xGxx",
-    "name": "74AHC1G04",
-    "desc": "Single NOT Gate, Low-Voltage CMOS",
+    "ref": "H1",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+    "datasheet": "~",
+    "lib": "Mechanical",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Part Number": "74AHC1G04DBVRG4",
-      "Footprint": "Package_TO_SOT_SMD:TSOT-23-5",
-      "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+      "Datasheet": "~",
       "Description": ""
     }
   },
   {
-    "ref": "U309",
-    "value": "74LVC1G332",
-    "footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
-    "datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
-    "lib": "74xGxx",
-    "name": "74LVC1G332",
-    "desc": "Single OR 3-Input Gate, Low-Voltage CMOS",
+    "ref": "H2",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+    "datasheet": "~",
+    "lib": "Mechanical",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
     "tstamp": "",
     "sheetpath": {
       "names": "/",
       "tstamps": "/"
     },
     "fields": {
-      "Part Number": "74LVC1G332DCKRE4",
-      "Footprint": "Package_TO_SOT_SMD:SOT-363_SC-70-6",
-      "Datasheet": "http://www.ti.com/lit/sg/scyt129e/scyt129e.pdf",
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "H3",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+    "datasheet": "~",
+    "lib": "Mechanical",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "H4",
+    "value": "MountingHole",
+    "footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+    "datasheet": "~",
+    "lib": "Mechanical",
+    "name": "MountingHole",
+    "desc": "Mounting Hole without connection",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "JP1",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+    "datasheet": "~",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "JP2",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+    "datasheet": "~",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "JP3",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+    "datasheet": "~",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "JP4",
+    "value": "SolderJumper_3_Bridged12",
+    "footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+    "datasheet": "~",
+    "lib": "Jumper",
+    "name": "SolderJumper_3_Bridged12",
+    "desc": "3-pole Solder Jumper, pins 1+2 closed/bridged",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "Jumper:SolderJumper-3_P1.3mm_Bridged12_RoundedPad1.0x1.5mm_NumberLabels",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "JP5",
+    "value": "SolderJumper_2_Open",
+    "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+    "datasheet": "~",
+    "lib": "Jumper",
+    "name": "SolderJumper_2_Open",
+    "desc": "Solder Jumper, 2-pole, open",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "JP6",
+    "value": "SolderJumper_2_Open",
+    "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+    "datasheet": "~",
+    "lib": "Jumper",
+    "name": "SolderJumper_2_Open",
+    "desc": "Solder Jumper, 2-pole, open",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO1",
+    "value": "nush_logo",
+    "footprint": "cubesat_obc:nush",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "nush_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:nush",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO2",
+    "value": "galileo_logo",
+    "footprint": "cubesat_obc:logo",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "galileo_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:logo",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO3",
+    "value": "nush_logo",
+    "footprint": "cubesat_obc:nush",
+    "datasheet": "",
+    "lib": "",
+    "name": "nush_logo_1",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:nush",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO4",
+    "value": "galileo_logo",
+    "footprint": "cubesat_obc:logo",
+    "datasheet": "",
+    "lib": "",
+    "name": "galileo_logo_1",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:logo",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO5",
+    "value": "axes_logo",
+    "footprint": "cubesat_obc:axes",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "axes_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:axes",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "LOGO6",
+    "value": "axes_logo_inv",
+    "footprint": "cubesat_obc:axes_inv",
+    "datasheet": "",
+    "lib": "cubesat_obc_lib",
+    "name": "axes_logo",
+    "desc": "",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Footprint": "cubesat_obc:axes_inv",
+      "Datasheet": "",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "R1",
+    "value": "39k",
+    "footprint": "Resistor_SMD:R_0402_1005Metric",
+    "datasheet": "~",
+    "lib": "Device",
+    "name": "R",
+    "desc": "Resistor",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "YAG2089CT-ND",
+      "Footprint": "Resistor_SMD:R_0402_1005Metric",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "R2",
+    "value": "20k",
+    "footprint": "Resistor_SMD:R_0603_1608Metric",
+    "datasheet": "~",
+    "lib": "Device",
+    "name": "R",
+    "desc": "Resistor",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "YAG2114CT-ND",
+      "Footprint": "Resistor_SMD:R_0603_1608Metric",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "SPI1",
+    "value": "Conn_01x05_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
+    "datasheet": "~",
+    "lib": "Connector_Generic_MountingPin",
+    "name": "Conn_01x05_MountingPin",
+    "desc": "Generic connectable mounting pin connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "WM26499CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "UART_1",
+    "value": "Conn_01x05_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
+    "datasheet": "~",
+    "lib": "Connector_Generic_MountingPin",
+    "name": "Conn_01x05_MountingPin",
+    "desc": "Generic connectable mounting pin connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "WM26499CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "UART_FTDI1",
+    "value": "Conn_01x08_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0871_1x08-1MP_P1.25mm_Horizontal",
+    "datasheet": "~",
+    "lib": "Connector_Generic_MountingPin",
+    "name": "Conn_01x08_MountingPin",
+    "desc": "Generic connectable mounting pin connector, single row, 01x08, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "WM26501CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0871_1x08-1MP_P1.25mm_Horizontal",
+      "Datasheet": "~",
+      "Description": ""
+    }
+  },
+  {
+    "ref": "UART_OBC_1",
+    "value": "Conn_01x05_Female",
+    "footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
+    "datasheet": "~",
+    "lib": "Connector_Generic_MountingPin",
+    "name": "Conn_01x05_MountingPin",
+    "desc": "Generic connectable mounting pin connector, single row, 01x05, script generated (kicad-library-utils/schlib/autogen/connector/)",
+    "tstamp": "",
+    "sheetpath": {
+      "names": "/",
+      "tstamps": "/"
+    },
+    "fields": {
+      "Digikey Part Number": "WM26499CT-ND",
+      "Footprint": "Connector_Molex:Molex_PicoBlade_53261-0571_1x05-1MP_P1.25mm_Horizontal",
+      "Datasheet": "~",
       "Description": ""
     }
   }
