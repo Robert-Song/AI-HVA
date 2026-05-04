@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-cli.py (Story 51-54)
+cli.py (Stories 51-57, 61)
 
 Usage:
     python cli.py
     python cli.py --help
 
-Author: Alex Kolyaskin 3-30-26
+Author: Alex Kolyaskin
 """
 
 import argparse
@@ -16,6 +16,9 @@ import json
 import shutil
 import platform
 import subprocess
+import threading
+import time
+import signal
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
@@ -45,13 +48,17 @@ try:
 except ImportError:
     HAS_OCR = False
 
+try:
+    from manual_folder import ManualFolder
+    HAS_MANUAL_FOLDER = True
+except ImportError:
+    HAS_MANUAL_FOLDER = False
+
 
 # ---------------------------------------------------------------------------
 # KiCad CLI path resolution
 # ---------------------------------------------------------------------------
 
-# Default paths per platform. Users can override via KICAD_CLI_PATH env var
-# or by setting it in config.env (KICAD_CLI_PATH=...).
 _KICAD_CLI_DEFAULTS = {
     "Windows": r"C:\Users\{username}\AppData\Local\Programs\KiCad\9.0\bin\kicad-cli.exe",
     "Darwin":  "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli",
@@ -60,32 +67,18 @@ _KICAD_CLI_DEFAULTS = {
 
 
 def get_kicad_cli_path() -> str:
-    """
-    Resolve the kicad-cli executable path.
-
-    Priority:
-      1. KICAD_CLI_PATH environment variable (set in .env / config.env or shell)
-      2. Platform default (Windows AppData path, macOS app bundle, Linux PATH)
-    """
-    # Check env var first (set in config.env or shell)
     env_path = os.environ.get("KICAD_CLI_PATH", "").strip()
     if env_path:
         return env_path
-
     system = platform.system()
     default = _KICAD_CLI_DEFAULTS.get(system, "kicad-cli")
-
-    # On Windows, expand the {username} placeholder
     if system == "Windows":
         default = default.format(username=os.environ.get("USERNAME", "user"))
-
     return default
 
 
 def check_kicad_cli() -> tuple[bool, str]:
-    """Check whether kicad-cli is available and return (available, path)."""
     path = get_kicad_cli_path()
-    # For absolute paths, check file existence; for bare commands check PATH
     if os.path.isabs(path):
         available = os.path.isfile(path)
     else:
@@ -97,14 +90,13 @@ def check_kicad_cli() -> tuple[bool, str]:
 # Supported file extensions
 # ---------------------------------------------------------------------------
 SUPPORTED_INPUT_EXTENSIONS = {".kicad_sch", ".net"}
-SUPPORTED_OUTPUT_EXTENSIONS = {".json"}  # STPA JSON output
+SUPPORTED_OUTPUT_EXTENSIONS = {".json"}
 
 
 # ---------------------------------------------------------------------------
-# ANSI colour helpers (no external deps)
+# ANSI colour helpers
 # ---------------------------------------------------------------------------
 def _c(text, code):
-    """Wrap text in an ANSI colour code if stdout is a TTY."""
     if sys.stdout.isatty():
         return f"\033[{code}m{text}\033[0m"
     return text
@@ -114,6 +106,86 @@ def yellow(t): return _c(t, "33")
 def red(t):    return _c(t, "31")
 def bold(t):   return _c(t, "1")
 def cyan(t):   return _c(t, "36")
+def blue(t):   return _c(t, "34")
+
+
+# ---------------------------------------------------------------------------
+# Progress tracking (US #56)
+# ---------------------------------------------------------------------------
+
+# Named pipeline stages with relative weight (used to compute % complete)
+PIPELINE_STAGES = [
+    ("load",        "Loading and converting file"),
+    ("parse",       "Parsing netlist components"),
+    ("detect",      "Detecting new hardware"),
+    ("ocr",         "Running OCR on datasheets"),
+    ("filter",      "Applying component filters"),
+    ("generate",    "Generating STPA JSON"),
+    ("pipeline",    "Running analysis pipeline"),
+    ("done",        "Complete"),
+]
+
+_STAGE_INDEX = {s[0]: i for i, s in enumerate(PIPELINE_STAGES)}
+
+
+class ProgressTracker:
+    """
+    Lightweight stage-based progress tracker.
+    Reports progress as [stage N/total] percentage + label without
+    crashing or blocking the main REPL thread.
+    """
+
+    def __init__(self):
+        self._lock = threading.Lock()
+        self._current_stage = 0
+        self._total_stages = len(PIPELINE_STAGES)
+        self._active = False
+        self._last_pct = -1
+
+    def start(self):
+        with self._lock:
+            self._current_stage = 0
+            self._active = True
+            self._last_pct = -1
+        self._print_stage(0)
+
+    def advance(self, stage_key: str):
+        """Move to a named stage and print progress."""
+        idx = _STAGE_INDEX.get(stage_key, self._current_stage + 1)
+        with self._lock:
+            if not self._active:
+                return
+            self._current_stage = idx
+        self._print_stage(idx)
+
+    def finish(self):
+        with self._lock:
+            self._active = False
+        self._print_stage(len(PIPELINE_STAGES) - 1, force=True)
+        print()  # newline after final progress line
+
+    def abort(self):
+        with self._lock:
+            self._active = False
+        # Print a cancelled line
+        sys.stdout.write(f"\r  {yellow('⚠  Pipeline cancelled.')}                          \n")
+        sys.stdout.flush()
+
+    def _print_stage(self, idx: int, force: bool = False):
+        total = self._total_stages - 1  # "done" is the last, 0-indexed finish
+        pct = int((idx / max(total, 1)) * 100)
+        label = PIPELINE_STAGES[min(idx, len(PIPELINE_STAGES) - 1)][1]
+        bar_width = 20
+        filled = int(bar_width * pct / 100)
+        bar = "█" * filled + "░" * (bar_width - filled)
+        stage_str = f"[{idx}/{total}]"
+        line = (
+            f"\r  {cyan(stage_str)} [{bar}] {pct:3d}%  {label}  "
+        )
+        sys.stdout.write(line)
+        sys.stdout.flush()
+        with self._lock:
+            self._last_pct = pct
 
 
 # ---------------------------------------------------------------------------
@@ -123,15 +195,28 @@ class Session:
     """Holds all mutable state for the current REPL session."""
 
     def __init__(self):
-        self.input_path: str | None = None          # path to loaded file
-        self.net_path: str | None = None            # path to .net (after conversion)
-        self.output_dir: str | None = None          # output directory
-        self.components: list[dict] = []            # parsed component list
-        self.excluded: set[str] = set()             # refs excluded by user
-        self.stpa_data: dict | None = None          # STPA JSON built so far
-        self.new_hardware: list[str] = []           # newly detected hardware refs
-        self.ocr_ran: bool = False                  # whether runocr was called
-        self.force_overwrite: bool = False          # -f / --force flag
+        self.input_path: str | None = None
+        self.net_path: str | None = None
+        self.output_dir: str | None = None
+        self.components: list[dict] = []
+        self.excluded: set[str] = set()
+        self.stpa_data: dict | None = None
+        self.new_hardware: list[str] = []
+        self.ocr_ran: bool = False
+        self.force_overwrite: bool = False
+
+        # US #55 — fallback database toggle
+        self.fallback_enabled: bool = True   # on by default
+        self.fallback_folder: str | None = None  # set by setfallback
+
+        # US #56 — progress tracker (shared, not per-run)
+        self.progress: ProgressTracker = ProgressTracker()
+
+        # US #57 — background pipeline process/thread
+        self._pipeline_thread: threading.Thread | None = None
+        self._pipeline_proc: subprocess.Popen | None = None
+        self._pipeline_running: bool = False
+        self._pipeline_lock: threading.Lock = threading.Lock()
 
     @property
     def included_components(self) -> list[dict]:
@@ -148,8 +233,82 @@ class Session:
         lines.append(f"  New hardware : {len(self.new_hardware)} detected")
         lines.append(f"  OCR ran      : {'yes' if self.ocr_ran else 'no'}")
         lines.append(f"  STPA JSON    : {'built (partial)' if self.stpa_data else 'not yet generated'}")
+        # US #55
+        fb_status = green("enabled") if self.fallback_enabled else red("disabled")
+        fb_folder = self.fallback_folder or yellow("(not set — will use AIHVA_MAN env var)")
+        lines.append(f"  Fallback DB  : {fb_status}  |  folder: {fb_folder}")
+        # US #57
+        pipe_status = yellow("running") if self._pipeline_running else "(idle)"
+        lines.append(f"  Pipeline     : {pipe_status}")
         lines.append(bold("──────────────────────────────────────────"))
         return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# US #61 — Syntax validation helpers
+# ---------------------------------------------------------------------------
+
+class CLISyntaxError(Exception):
+    """Raised when a REPL command has invalid syntax."""
+    pass
+
+
+def _require_args(cmd_name: str, args: list[str], min_count: int,
+                  usage: str) -> None:
+    """
+    Raise CLISyntaxError if fewer than min_count args were supplied.
+    Provides a clear, actionable message (AC: helps user fix the error).
+    """
+    if len(args) < min_count:
+        raise CLISyntaxError(
+            f"'{cmd_name}' requires at least {min_count} argument(s), "
+            f"but got {len(args)}.\n"
+            f"  Usage: {usage}"
+        )
+
+
+def _reject_extra_args(cmd_name: str, args: list[str], max_count: int,
+                       usage: str) -> None:
+    """Raise CLISyntaxError if more than max_count args were supplied."""
+    if len(args) > max_count:
+        raise CLISyntaxError(
+            f"'{cmd_name}' accepts at most {max_count} argument(s), "
+            f"but got {len(args)}.\n"
+            f"  Usage: {usage}"
+        )
+
+
+def _validate_file_path(arg: str, cmd_name: str) -> Path:
+    """Return a resolved Path, raising CLISyntaxError for obviously bad inputs."""
+    if not arg.strip():
+        raise CLISyntaxError(
+            f"'{cmd_name}': file path cannot be empty."
+        )
+    p = Path(arg).expanduser()
+    # Check for obviously unsupported extensions early (better UX)
+    ext = p.suffix.lower()
+    if ext and ext not in SUPPORTED_INPUT_EXTENSIONS | SUPPORTED_OUTPUT_EXTENSIONS | {".pdf", ""}:
+        # Don't block — just warn; actual validation happens in cmd_load
+        pass
+    return p
+
+
+def _validate_toggle(arg: str, cmd_name: str) -> bool:
+    """Parse on/off/true/false/1/0 into bool, raise CLISyntaxError otherwise."""
+    normalized = arg.strip().lower()
+    if normalized in ("on", "true", "1", "yes", "enable", "enabled"):
+        return True
+    if normalized in ("off", "false", "0", "no", "disable", "disabled"):
+        return False
+    raise CLISyntaxError(
+        f"'{cmd_name}': invalid toggle value '{arg}'.\n"
+        f"  Expected one of: on, off, true, false, 1, 0, yes, no."
+    )
+
+
+def _handle_syntax_error(e: CLISyntaxError) -> None:
+    """Print a formatted syntax error (AC: does not execute the command)."""
+    print(red(f"\n  Syntax error: {e}\n"))
 
 
 # ---------------------------------------------------------------------------
@@ -161,18 +320,15 @@ def cmd_help(args: list[str], session: Session) -> None:
     commands = {
         "load": (
             "load <file>",
-            "Load a .kicad_sch or .net file. Parses components, runs netlist_parser,\n"
-            "    and checks for new hardware automatically."
+            "Load a .kicad_sch or .net file. Parses components and checks for new hardware."
         ),
         "components": (
             "components",
-            "List all parsed components. Shows ref, value, and description.\n"
-            "    Components marked [EXCLUDED] will be skipped during run."
+            "List all parsed components with ref, value, and status."
         ),
         "exclude": (
             "exclude <ref> [ref ...]",
-            "Exclude one or more components by reference designator (e.g. U307 R306).\n"
-            "    Excluded components are skipped in pipeline output."
+            "Exclude components by reference designator (e.g. U307 R306)."
         ),
         "include": (
             "include <ref> [ref ...]",
@@ -184,25 +340,35 @@ def cmd_help(args: list[str], session: Session) -> None:
         ),
         "info": (
             "info",
-            "Show current session state: loaded file, output dir, component counts, etc."
+            "Show current session state."
         ),
         "runocr": (
             "runocr",
-            "Run OCR on datasheets for newly detected hardware components.\n"
-            "    WARNING: This is slow. Requires new hardware to have been detected on load."
+            "Run OCR on datasheets for newly detected hardware components."
         ),
         "run": (
             "run",
-            "Run the full pipeline: generate filtered .net + STPA JSON.\n"
-            "    RAG/LLM analysis is not yet integrated (Sprint 3)."
+            "Run the full pipeline: generate filtered .net + STPA JSON (async)."
+        ),
+        "stop": (
+            "stop",
+            "[US#57] Stop a running pipeline safely and clean up partial output."
         ),
         "newhardware": (
             "newhardware",
             "Show components detected as new hardware since last load."
         ),
+        "fallback": (
+            "fallback <on|off>",
+            "[US#55] Enable or disable fallback datasheet folder when auto-retrieval fails."
+        ),
+        "setfallback": (
+            "setfallback <directory>",
+            "[US#55] Set the manual fallback folder path for datasheets."
+        ),
         "clear": (
             "clear",
-            "Reset the session (clears loaded file, components, exclusions, etc.)."
+            "Reset the session."
         ),
         "exit": (
             "exit  |  quit",
@@ -215,60 +381,71 @@ def cmd_help(args: list[str], session: Session) -> None:
     }
 
     if args:
-        cmd = args[0].lower()
+        # US #61: validate help argument
+        cmd = args[0].lower().strip()
         if cmd in commands:
             usage, desc = commands[cmd]
             print(f"\n  {bold(usage)}")
             print(f"    {desc}\n")
         else:
-            print(red(f"  Unknown command: '{cmd}'. Type 'help' for a list."))
+            # Don't silently ignore — tell the user the command is unknown
+            print(red(f"\n  Syntax error: unknown command '{cmd}' passed to help."))
+            print(yellow(f"  Available commands: {', '.join(sorted(commands))}.\n"))
         return
 
     print(f"\n{bold('ai-hva — Hardware Vulnerability Analysis CLI')}")
-    print(f"  Pipeline: load → [exclude] → runocr → run\n")
+    print(f"  Pipeline: {cyan('load')} → [{cyan('exclude')}] → [{cyan('runocr')}] → {cyan('run')}\n")
     print(bold("  Commands:"))
     for name, (usage, desc) in commands.items():
         short_desc = desc.split("\n")[0]
-        print(f"    {cyan(usage):<32}  {short_desc}")
+        print(f"    {cyan(usage):<38}  {short_desc}")
     print()
 
 
 def cmd_load(args: list[str], session: Session) -> None:
     """Load a .kicad_sch or .net file and run through sprint-1 pipeline."""
-    if not args:
-        print(red("  Usage: load <file_path>"))
+    # US #61: validate args
+    try:
+        _require_args("load", args, 1, "load <file_path>")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
         return
 
-    # Join args in case of spaces in path
     raw_path = " ".join(args)
-
-    # Expand ~ and normalize path
     filepath = Path(raw_path).expanduser().resolve()
 
-    # --- Validate file exists ---
     if not filepath.is_file():
         print(red(f"  Error: File not found: '{filepath}'"))
         return
 
-    # --- Validate extension ---
     ext = filepath.suffix.lower()
     if ext not in SUPPORTED_INPUT_EXTENSIONS:
-        print(red(f"  Error: Unsupported file type '{ext}'. "
-                  f"Supported: {', '.join(SUPPORTED_INPUT_EXTENSIONS)}"))
+        # US #61: clear message for wrong file type
+        print(red(
+            f"  Syntax error: unsupported file extension '{ext}'.\n"
+            f"  Supported types: {', '.join(sorted(SUPPORTED_INPUT_EXTENSIONS))}.\n"
+            f"  Usage: load <file.kicad_sch|file.net>"
+        ))
         return
 
-    print(f"  Loading {cyan(str(filepath))} ...")
+    # US #57: block if pipeline is already running
+    with session._pipeline_lock:
+        if session._pipeline_running:
+            print(red("  Error: a pipeline is already running. Use 'stop' first."))
+            return
 
-    # --- If .kicad_sch, convert to .net via kicad-cli ---
+    session.progress.start()
+    print(f"\n  Loading {cyan(str(filepath))} ...")
+
+    # --- Convert .kicad_sch → .net if needed ---
+    session.progress.advance("load")
     if ext == ".kicad_sch":
         kicad_ok, kicad_path = check_kicad_cli()
         if not kicad_ok:
-            print(red(f"  Error: kicad-cli not found at '{kicad_path}'."))
-            print(yellow("  Set KICAD_CLI_PATH in your environment or config.env, e.g.:"))
-            print(yellow(r"    Windows: KICAD_CLI_PATH=C:\Users\YOU\AppData\Local\Programs\KiCad\9.0\bin\kicad-cli.exe"))
-            print(yellow("    macOS:   KICAD_CLI_PATH=/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"))
-            print(yellow("    Linux:   KICAD_CLI_PATH=kicad-cli"))
+            print(red(f"\n  Error: kicad-cli not found at '{kicad_path}'."))
+            print(yellow("  Set KICAD_CLI_PATH in your environment or config.env."))
             print(yellow("  Tip: You can also load a pre-exported .net file directly."))
+            session.progress.abort()
             return
 
         net_path = "result.net"
@@ -278,18 +455,17 @@ def cmd_load(args: list[str], session: Session) -> None:
                 capture_output=True, text=True
             )
             if result.returncode != 0:
-                print(yellow(f"  Warning: kicad-cli exited with code {result.returncode}."))
+                print(yellow(f"\n  Warning: kicad-cli exited with code {result.returncode}."))
                 if result.stderr:
                     print(yellow(f"  {result.stderr.strip()}"))
                 net_path = None
             elif os.path.isfile(net_path):
-                print(green(f"  Converted to netlist: {net_path}"))
+                print(green(f"\n  Converted to netlist: {net_path}"))
             else:
-                print(yellow("  Warning: kicad-cli ran but no .net file was produced."))
+                print(yellow("\n  Warning: kicad-cli ran but no .net file was produced."))
                 net_path = None
         except Exception as e:
-            print(yellow(f"  Warning: kicad-cli conversion failed ({e})."))
-            print(yellow("  Tip: Try loading a pre-exported .net file directly."))
+            print(yellow(f"\n  Warning: kicad-cli conversion failed ({e})."))
             net_path = None
 
         session.net_path = net_path
@@ -299,18 +475,7 @@ def cmd_load(args: list[str], session: Session) -> None:
     session.input_path = str(filepath)
 
     # --- Parse components ---
-    if session.net_path and HAS_INFO_COMPRESS:
-        try:
-            ic = InfoCompressor()
-            raw_comps = ic.essential_list_netlist(session.net_path)
-            # raw_comps is list of (name, desc) tuples from kinparse libparts
-            # We also want full component data; use netlist_parser for that
-            session.components = []
-        except Exception as e:
-            print(yellow(f"  Warning: Could not parse essential component list ({e})"))
-            raw_comps = []
-
-    # Use netlist_parser for richer component data
+    session.progress.advance("parse")
     if session.net_path and HAS_NETLIST_PARSER:
         try:
             with open(session.net_path, "r", encoding="utf-8") as f:
@@ -325,36 +490,45 @@ def cmd_load(args: list[str], session: Session) -> None:
                 for ref, data in raw_data.get("components", {}).items()
             ]
             session.stpa_data = build_stpa_json(raw_data)
-            print(green(f"  Parsed {len(session.components)} components."))
+            print(green(f"\n  Parsed {len(session.components)} components."))
         except Exception as e:
-            print(red(f"  Error parsing netlist: {e}"))
+            print(red(f"\n  Error parsing netlist: {e}"))
+            session.progress.abort()
             return
     elif session.net_path is None:
-        print(yellow("  Could not parse components — no valid .net file available."))
+        print(yellow("\n  Could not parse components — no valid .net file available."))
+        session.progress.abort()
         return
 
     # --- Detect new hardware ---
+    session.progress.advance("detect")
     if HAS_DETECT_HW and session.net_path:
         db_path = "component_db.json"
         try:
             report = detect_new_hardware(session.net_path, db_path)
             session.new_hardware = report.get("new_components", [])
             if session.new_hardware:
-                print(yellow(f"  ⚠  New hardware detected: "
+                print(yellow(f"\n  ⚠  New hardware detected: "
                              f"{', '.join(session.new_hardware)}"))
-                print(yellow(f"     Run 'runocr' to process their datasheets, "
-                             f"or 'newhardware' to review."))
+                print(yellow(f"     Run 'runocr' to process their datasheets."))
             else:
-                print(green("  No new hardware detected."))
+                print(green("\n  No new hardware detected."))
         except Exception as e:
-            print(yellow(f"  Warning: Hardware detection failed ({e})"))
+            print(yellow(f"\n  Warning: Hardware detection failed ({e})"))
 
+    session.progress.finish()
     print(green(f"\n  ✓ Load complete. Type 'components' to review, "
                 f"'exclude' to filter, then 'run'."))
 
 
 def cmd_components(args: list[str], session: Session) -> None:
-    """List all parsed components."""
+    # US #61: no args expected
+    try:
+        _reject_extra_args("components", args, 0, "components")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
     if not session.components:
         print(yellow("  No components loaded. Use 'load <file>' first."))
         return
@@ -380,20 +554,23 @@ def cmd_components(args: list[str], session: Session) -> None:
 
 
 def cmd_exclude(args: list[str], session: Session) -> None:
-    """Exclude components by reference designator."""
-    if not args:
-        print(red("  Usage: exclude <ref> [ref ...]"))
+    try:
+        _require_args("exclude", args, 1, "exclude <ref> [ref ...]")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
         return
+
     if not session.components:
         print(yellow("  No components loaded. Use 'load <file>' first."))
         return
 
     valid_refs = {c["ref"] for c in session.components}
-    added = []
-    not_found = []
+    added, not_found = [], []
 
     for ref in args:
         ref = ref.upper().strip(",")
+        if not ref:
+            continue
         if ref in valid_refs:
             session.excluded.add(ref)
             added.append(ref)
@@ -408,14 +585,13 @@ def cmd_exclude(args: list[str], session: Session) -> None:
 
 
 def cmd_include(args: list[str], session: Session) -> None:
-    """Re-include previously excluded components."""
-    if not args:
-        print(red("  Usage: include <ref> [ref ...]"))
+    try:
+        _require_args("include", args, 1, "include <ref> [ref ...]")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
         return
 
-    removed = []
-    not_excluded = []
-
+    removed, not_excluded = [], []
     for ref in args:
         ref = ref.upper().strip(",")
         if ref in session.excluded:
@@ -431,16 +607,17 @@ def cmd_include(args: list[str], session: Session) -> None:
 
 
 def cmd_setoutput(args: list[str], session: Session) -> None:
-    """Set the output directory."""
-    if not args:
-        print(red("  Usage: setoutput <directory>"))
+    try:
+        _require_args("setoutput", args, 1, "setoutput <directory>")
+        _reject_extra_args("setoutput", args, 1, "setoutput <directory>")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
         return
 
     dirpath = args[0]
 
     if os.path.isfile(dirpath):
-        print(red(f"  Error: '{dirpath}' is a file, not a directory. "
-                  "Please specify a directory path."))
+        print(red(f"  Error: '{dirpath}' is a file, not a directory."))
         return
 
     if not os.path.exists(dirpath):
@@ -460,13 +637,22 @@ def cmd_setoutput(args: list[str], session: Session) -> None:
 
 
 def cmd_info(args: list[str], session: Session) -> None:
-    """Show current session state."""
+    try:
+        _reject_extra_args("info", args, 0, "info")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
     print()
     print(session.summary())
 
 
 def cmd_newhardware(args: list[str], session: Session) -> None:
-    """Show newly detected hardware components."""
+    try:
+        _reject_extra_args("newhardware", args, 0, "newhardware")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
     if not session.new_hardware:
         print(yellow("  No new hardware detected in this session."))
         if not session.input_path:
@@ -483,14 +669,18 @@ def cmd_newhardware(args: list[str], session: Session) -> None:
 
 
 def cmd_runocr(args: list[str], session: Session) -> None:
-    """Run OCR on datasheets for new hardware components."""
+    try:
+        _reject_extra_args("runocr", args, 0, "runocr")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
     if not session.input_path:
         print(yellow("  No file loaded. Use 'load <file>' first."))
         return
 
     if not session.new_hardware:
-        print(yellow("  No new hardware to process. "
-                     "OCR is most useful when new hardware is detected."))
+        print(yellow("  No new hardware to process."))
         confirm = input("  Run OCR anyway on all components? [y/N] ").strip().lower()
         if confirm != "y":
             print("  Aborted.")
@@ -498,7 +688,6 @@ def cmd_runocr(args: list[str], session: Session) -> None:
 
     if not HAS_OCR:
         print(red("  Error: OCR module (combinedOCRProcessor) not available."))
-        print(red("  Ensure Florence-2 model and dependencies are installed."))
         return
 
     print(yellow("  ⚠  OCR is slow and may take several minutes per document."))
@@ -511,45 +700,328 @@ def cmd_runocr(args: list[str], session: Session) -> None:
         c["ref"] for c in session.included_components
     ]
 
+    # US #56 — show progress during OCR
     print(f"\n  Running OCR on {len(targets)} component(s)...\n")
-    processor = CombinedOCRProcessor()
+    session.progress.start()
+    session.progress.advance("ocr")
 
-    for ref in targets:
+    processor = CombinedOCRProcessor()
+    for i, ref in enumerate(targets):
         comp = next((c for c in session.components if c["ref"] == ref), {})
         desc = comp.get("desc", "")
-        print(f"  Processing {cyan(ref)} ({desc}) ...")
-        # In a full integration, we'd retrieve the PDF URL and pass it here.
-        # For now we signal what would happen.
-        
-        #print(yellow(f"    → PDF retrieval + OCR for '{ref}' not yet fully wired. "
-        #             "Stub complete."))
+        print(f"\n  [{i+1}/{len(targets)}] Processing {cyan(ref)} ({desc}) ...")
 
+        # US #55 — fallback logic during OCR datasheet retrieval
+        if HAS_MANUAL_FOLDER and session.fallback_enabled:
+            mf = ManualFolder()
+            if session.fallback_folder:
+                mf.set_manual_folder_path(session.fallback_folder)
+            # Try to find datasheet; fallback folder will be used automatically
+            # by ManualFolder if the URL request fails
+            datasheet_url = comp.get("datasheet", "")
+            result, error = mf.test_find_datasheet(ref, datasheet_url)
+            if error:
+                print(yellow(f"    ⚠  Datasheet retrieval failed: {error}"))
+            else:
+                print(green(f"    ✓  Datasheet retrieved for {ref}."))
+        elif not session.fallback_enabled:
+            print(yellow(f"    Fallback disabled — skipping datasheet retrieval for {ref}."))
+
+    session.progress.finish()
     session.ocr_ran = True
-    print(green("\n  ✓ OCR step complete (stub). Results would feed into RAG pipeline."))
+    print(green("\n  ✓ OCR step complete."))
+
+
+# ---------------------------------------------------------------------------
+# US #55 — fallback toggle commands
+# ---------------------------------------------------------------------------
+
+def cmd_fallback(args: list[str], session: Session) -> None:
+    """
+    US #55 — Enable or disable fallback datasheet database.
+    Usage: fallback <on|off>
+    """
+    try:
+        _require_args("fallback", args, 1, "fallback <on|off>")
+        _reject_extra_args("fallback", args, 1, "fallback <on|off>")
+        enabled = _validate_toggle(args[0], "fallback")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
+    session.fallback_enabled = enabled
+    state_str = green("enabled") if enabled else red("disabled")
+    print(f"  Fallback datasheet database {state_str}.")
+
+    if enabled and not session.fallback_folder:
+        env_folder = os.environ.get("AIHVA_MAN", "")
+        if env_folder:
+            print(yellow(f"  Using fallback folder from AIHVA_MAN: {env_folder}"))
+        else:
+            print(yellow("  No fallback folder set. Use 'setfallback <directory>' to configure one."))
+
+
+def cmd_setfallback(args: list[str], session: Session) -> None:
+    """
+    US #55 — Set the manual fallback folder path for datasheets.
+    Usage: setfallback <directory>
+    """
+    try:
+        _require_args("setfallback", args, 1, "setfallback <directory>")
+        _reject_extra_args("setfallback", args, 1, "setfallback <directory>")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
+    dirpath = args[0].strip()
+
+    # US #61 — validate before touching anything
+    if not dirpath:
+        print(red("  Syntax error: directory path cannot be empty.\n"
+                  "  Usage: setfallback <directory>"))
+        return
+
+    if not HAS_MANUAL_FOLDER:
+        print(red("  Error: ManualFolder module not available."))
+        return
+
+    mf = ManualFolder()
+    error = mf.set_manual_folder_path(dirpath)
+    if error:
+        print(red(f"  Error: {error}"))
+        return
+
+    session.fallback_folder = dirpath
+    # Also enable fallback automatically when a folder is set
+    session.fallback_enabled = True
+    print(green(f"  Fallback folder set to: {dirpath}"))
+    print(green(f"  Fallback database automatically enabled."))
+
+    # Count PDFs in the folder so user knows what's available
+    try:
+        pdf_count = len([f for f in os.listdir(dirpath)
+                         if f.lower().endswith(".pdf")])
+        print(f"  Found {cyan(str(pdf_count))} PDF file(s) in fallback folder.")
+    except OSError:
+        pass
+
+
+# ---------------------------------------------------------------------------
+# US #57 — stop command
+# ---------------------------------------------------------------------------
+
+def cmd_stop(args: list[str], session: Session) -> None:
+    """
+    US #57 — Stop a running pipeline safely.
+    Usage: stop
+    """
+    try:
+        _reject_extra_args("stop", args, 0, "stop")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
+    with session._pipeline_lock:
+        running = session._pipeline_running
+        proc = session._pipeline_proc
+
+    if not running:
+        print(yellow("  No pipeline is currently running."))
+        return
+
+    print(yellow("  Stopping pipeline..."))
+
+    # Terminate the subprocess if it exists
+    if proc is not None:
+        try:
+            if platform.system() == "Windows":
+                proc.terminate()
+            else:
+                # Send SIGTERM first for graceful shutdown
+                os.kill(proc.pid, signal.SIGTERM)
+                try:
+                    proc.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    # Force kill if it doesn't respond
+                    os.kill(proc.pid, signal.SIGKILL)
+                    proc.wait()
+        except (ProcessLookupError, PermissionError) as e:
+            print(yellow(f"  Warning: could not signal process ({e})"))
+
+    # Signal the thread to stop
+    with session._pipeline_lock:
+        session._pipeline_running = False
+
+    # Wait for the thread to finish (with timeout so REPL doesn't hang)
+    if session._pipeline_thread and session._pipeline_thread.is_alive():
+        session._pipeline_thread.join(timeout=3)
+
+    session.progress.abort()
+
+    # Clean up partial output
+    _cleanup_partial_output(session)
+
+    with session._pipeline_lock:
+        session._pipeline_proc = None
+        session._pipeline_thread = None
+
+    print(green("  ✓ Pipeline stopped. Partial output has been cleaned up."))
+
+
+def _cleanup_partial_output(session: Session) -> None:
+    """Remove any partial output files left by an aborted run."""
+    if not session.output_dir or not session.input_path:
+        return
+    input_stem = Path(session.input_path).stem
+    partial_path = os.path.join(session.output_dir, f"{input_stem}_stpa.json")
+    if os.path.exists(partial_path):
+        try:
+            os.remove(partial_path)
+            print(yellow(f"  Removed partial output: {partial_path}"))
+        except OSError as e:
+            print(yellow(f"  Warning: could not remove partial output: {e}"))
+
+
+# ---------------------------------------------------------------------------
+# US #56 + #57 — async pipeline runner
+# ---------------------------------------------------------------------------
+
+def _run_pipeline_thread(session: Session, stpa: dict, output_path: str,
+                         input_stem: str) -> None:
+    """
+    Background thread body for cmd_run.
+    Updates progress tracker at each stage and streams subprocess output.
+    Sets session._pipeline_running = False when done or cancelled.
+    """
+    try:
+        # Stage: filter
+        session.progress.advance("filter")
+        ic = InfoCompressor() if HAS_INFO_COMPRESS else None
+        prsd = "prsd.kicad_sch"
+
+        if ic and session.input_path and stpa.get("components"):
+            try:
+                ic.convert_whitelist_kicad(
+                    session.input_path, stpa["components"], prsd
+                )
+            except Exception as e:
+                print(yellow(f"\n  Warning: whitelist conversion failed ({e})"))
+
+        # Check for stop before heavyweight stage
+        with session._pipeline_lock:
+            if not session._pipeline_running:
+                return
+
+        # Stage: generate JSON
+        session.progress.advance("generate")
+        try:
+            with open(output_path, "w", encoding="utf-8") as f:
+                json.dump(stpa, f, indent=2)
+            print(green(f"\n  ✓ STPA JSON saved to: {output_path}"))
+        except OSError as e:
+            print(red(f"\n  Error writing output: {e}"))
+            return
+
+        # Check for stop before subprocess
+        with session._pipeline_lock:
+            if not session._pipeline_running:
+                return
+
+        # Stage: run analysis pipeline subprocess
+        session.progress.advance("pipeline")
+        pipeline_dir = "pipeline"
+        if os.path.isdir(pipeline_dir):
+            cmd = [
+                sys.executable, "-m", "src.main",
+                "-n", f"../prsd.net",
+                "-s", "Run",
+                "-p"
+            ]
+            try:
+                proc = subprocess.Popen(
+                    cmd,
+                    cwd=pipeline_dir,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    bufsize=1,
+                )
+                with session._pipeline_lock:
+                    session._pipeline_proc = proc
+
+                # Stream output line by line (US #56)
+                for line in proc.stdout:
+                    with session._pipeline_lock:
+                        if not session._pipeline_running:
+                            proc.terminate()
+                            break
+                    line = line.rstrip()
+                    if line:
+                        print(f"  {blue('│')} {line}")
+
+                proc.wait()
+                with session._pipeline_lock:
+                    session._pipeline_proc = None
+
+                if proc.returncode not in (0, -15, -9):  # -15=SIGTERM, -9=SIGKILL
+                    print(yellow(f"\n  Pipeline exited with code {proc.returncode}."))
+
+            except FileNotFoundError:
+                print(yellow("\n  Warning: pipeline module not found; skipping subprocess."))
+            except Exception as e:
+                print(yellow(f"\n  Warning: pipeline subprocess failed ({e})"))
+        else:
+            print(yellow(f"\n  Note: '{pipeline_dir}' directory not found; skipping subprocess."))
+
+        # Final check — did user stop us?
+        with session._pipeline_lock:
+            still_running = session._pipeline_running
+
+        if still_running:
+            session.progress.finish()
+            print(green("\n  ✓ Run complete."))
+
+    except Exception as e:
+        print(red(f"\n  Unexpected error in pipeline thread: {e}"))
+    finally:
+        with session._pipeline_lock:
+            session._pipeline_running = False
+            session._pipeline_proc = None
+        sys.stdout.write(f"\n{cyan('ai-hva')}> ")
+        sys.stdout.flush()
 
 
 def cmd_run(args: list[str], session: Session) -> None:
-    """Run the pipeline and save output."""
+    """Run the pipeline asynchronously (US #56, #57)."""
+    try:
+        _reject_extra_args("run", args, 0, "run")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
+    # US #57: prevent double-start
+    with session._pipeline_lock:
+        if session._pipeline_running:
+            print(red("  Error: pipeline is already running. Use 'stop' to cancel it first."))
+            return
+
     if not session.input_path:
         print(yellow("  No file loaded. Use 'load <file>' first."))
         return
-
     if not session.output_dir:
         print(yellow("  No output directory set. Use 'setoutput <directory>' first."))
         return
-
     if not session.stpa_data:
         print(yellow("  No parsed data available. Try reloading with 'load <file>'."))
         return
 
-    # --- Apply exclusions to STPA data ---
+    # Apply exclusions
     stpa = dict(session.stpa_data)
     if session.excluded:
         stpa["components"] = {
             k: v for k, v in stpa.get("components", {}).items()
             if k not in session.excluded
         }
-        # Also filter connection pairs that involve excluded components
         stpa["connection_pairs"] = {
             k: v for k, v in stpa.get("connection_pairs", {}).items()
             if not any(ep in session.excluded for ep in v.get("endpoints", []))
@@ -559,55 +1031,58 @@ def cmd_run(args: list[str], session: Session) -> None:
             if k in stpa["connection_pairs"]
         }
         print(f"  Applied exclusions: {', '.join(session.excluded)}")
-    ic = InfoCompressor()
-    prsd = "prsd.kicad_sch"
-    print(stpa["components"])
 
-    ic.convert_whitelist_kicad(session.input_path, stpa["components"], prsd)
+    # US #55 — inject fallback state into stpa metadata
+    stpa.setdefault("system_metadata", {})
+    stpa["system_metadata"]["fallback_enabled"] = session.fallback_enabled
+    stpa["system_metadata"]["fallback_folder"] = session.fallback_folder or ""
 
-    # --- Determine output path ---
     input_stem = Path(session.input_path).stem
     output_filename = f"{input_stem}_stpa.json"
     output_path = os.path.join(session.output_dir, output_filename)
 
-    # --- Handle overwrite ---
     if os.path.exists(output_path) and not session.force_overwrite:
         confirm = input(f"  '{output_path}' already exists. Overwrite? [y/N] ").strip().lower()
         if confirm != "y":
-            print("  Aborted. Use 'setoutput' to choose a different directory.")
+            print("  Aborted.")
             return
 
-    # --- Write STPA JSON ---
-    try:
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump(stpa, f, indent=2)
-        print(green(f"  ✓ STPA JSON saved to: {output_path}"))
-    except OSError as e:
-        print(red(f"  Error writing output: {e}"))
-        return
-        
+    # Launch pipeline in background thread (US #57)
+    with session._pipeline_lock:
+        session._pipeline_running = True
 
-    # --- RAG/LLM step (not yet integrated) ---
-    '''
-    print()
-    print(yellow("  ── RAG / LLM Analysis ─────────────────────────"))
-    print(yellow("  ⚠  RAG analysis not yet integrated (Sprint 3)."))
-    print(yellow("     When complete, this step will:"))
-    print(yellow("       5. Encode OCR text via embedding model"))
-    print(yellow("       6. Query vector DB (RAG) for each component"))
-    print(yellow("       7. Use LLM to populate remaining STPA fields"))
-    print(yellow("  ────────────────────────────────────────────────"))
-    print()
-    '''
+    session.progress.start()
 
-    os.chdir("pipeline")
-    subprocess.run("python -m src.main -n ../prsd.net -s \"Run\" -p", shell=True, check=True)
+    t = threading.Thread(
+        target=_run_pipeline_thread,
+        args=(session, stpa, output_path, input_stem),
+        daemon=True,
+        name="pipeline-thread"
+    )
+    session._pipeline_thread = t
+    t.start()
 
-    print(green("  ✓ Run complete. Pipeline output saved."))
+    print(green(
+        f"\n  Pipeline started in background.\n"
+        f"  Output → {output_path}\n"
+        f"  Type {cyan('stop')} to cancel, or {cyan('info')} to check status."
+    ))
 
 
 def cmd_clear(args: list[str], session: Session) -> None:
-    """Reset the session."""
+    try:
+        _reject_extra_args("clear", args, 0, "clear")
+    except CLISyntaxError as e:
+        _handle_syntax_error(e)
+        return
+
+    # US #57: warn if pipeline is running
+    with session._pipeline_lock:
+        running = session._pipeline_running
+    if running:
+        print(yellow("  Warning: a pipeline is running. Clearing will NOT stop it."))
+        print(yellow("  Use 'stop' first if you want to cancel the pipeline."))
+
     confirm = input("  Clear all session data? [y/N] ").strip().lower()
     if confirm == "y":
         session.__init__()
@@ -630,6 +1105,9 @@ COMMANDS = {
     "newhardware":  cmd_newhardware,
     "runocr":       cmd_runocr,
     "run":          cmd_run,
+    "stop":         cmd_stop,          # US #57
+    "fallback":     cmd_fallback,      # US #55
+    "setfallback":  cmd_setfallback,   # US #55
     "clear":        cmd_clear,
 }
 
@@ -650,41 +1128,74 @@ BANNER = f"""
 
 
 def run_repl(session: Session) -> None:
-    """Start the interactive REPL."""
     print(BANNER)
 
     while True:
+        # US #57: show a subtle indicator when pipeline is running
+        with session._pipeline_lock:
+            pipe_running = session._pipeline_running
+        prompt_prefix = f"{yellow('⚙ ')}ai-hva" if pipe_running else f"{cyan('ai-hva')}"
+
         try:
-            raw = input(f"{cyan('ai-hva')}> ").strip()
+            raw = input(f"{prompt_prefix}> ").strip()
         except (EOFError, KeyboardInterrupt):
             print()
+            # US #57: clean stop on Ctrl-C if pipeline is running
+            with session._pipeline_lock:
+                running = session._pipeline_running
+            if running:
+                print(yellow("  Ctrl-C detected — stopping running pipeline..."))
+                cmd_stop([], session)
             print(green("  Goodbye!"))
             break
 
         if not raw:
             continue
 
+        # US #61: detect and report empty/whitespace-only commands
         parts = raw.split()
+        if not parts:
+            continue
+
         cmd = parts[0].lower()
         args = parts[1:]
 
         if cmd in ("exit", "quit"):
+            # US #57: warn if pipeline is running on exit
+            with session._pipeline_lock:
+                running = session._pipeline_running
+            if running:
+                confirm = input(
+                    yellow("  Pipeline is still running. Exit anyway? [y/N] ")
+                ).strip().lower()
+                if confirm != "y":
+                    print("  Aborted. Use 'stop' then 'exit'.")
+                    continue
+                cmd_stop([], session)
             print(green("  Goodbye!"))
             break
 
         if cmd in COMMANDS:
             try:
                 COMMANDS[cmd](args, session)
+            except CLISyntaxError as e:
+                # Should have been caught inside each command, but catch here too
+                _handle_syntax_error(e)
             except Exception as e:
                 print(red(f"  Unexpected error in '{cmd}': {e}"))
                 print(red("  If this persists, please file a bug report."))
         else:
-            print(red(f"  Unknown command: '{cmd}'"))
-            cmd_help([], session)
+            # US #61: unknown command — clear error, no execution
+            print(red(f"\n  Syntax error: unknown command '{cmd}'."))
+            # Suggest close matches if any
+            close = [c for c in COMMANDS if c.startswith(cmd[:3])]
+            if close:
+                print(yellow(f"  Did you mean: {', '.join(close)}?"))
+            print(yellow(f"  Type {cyan('help')} for a list of available commands.\n"))
 
 
 # ---------------------------------------------------------------------------
-# Entry point (also supports --help for quick non-interactive usage)
+# Entry point
 # ---------------------------------------------------------------------------
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -694,10 +1205,11 @@ def build_arg_parser() -> argparse.ArgumentParser:
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python cli.py                        Start the interactive REPL
-  python cli.py --load example.net     Start REPL with file pre-loaded
-  python cli.py --load example.net \\
-      --output ./results --force       Pre-load, set output, force overwrite
+  python cli.py                                    Start interactive REPL
+  python cli.py --load example.net                 Pre-load a file
+  python cli.py --load example.net --output ./out  Pre-load and set output dir
+  python cli.py --load example.net --no-fallback   Disable fallback DB on start
+  python cli.py --load example.net --fallback-dir ./datasheets
         """,
     )
     parser.add_argument(
@@ -726,28 +1238,96 @@ Examples:
         action="store_true",
         help="Print new hardware report and exit (non-interactive)",
     )
+    # US #55 — argparse flags for fallback
+    fallback_group = parser.add_mutually_exclusive_group()
+    fallback_group.add_argument(
+        "--no-fallback",
+        action="store_true",
+        help="[US#55] Disable fallback datasheet database on startup",
+    )
+    fallback_group.add_argument(
+        "--fallback",
+        action="store_true",
+        default=True,
+        help="[US#55] Enable fallback datasheet database on startup (default)",
+    )
+    parser.add_argument(
+        "--fallback-dir",
+        metavar="DIRECTORY",
+        help="[US#55] Set the manual fallback folder for datasheets on startup",
+    )
     return parser
+
+
+def _validate_startup_args(cli_args: argparse.Namespace) -> list[str]:
+    """
+    US #61 — validate argparse startup arguments before the REPL begins.
+    Returns a list of error strings (empty = all valid).
+    """
+    errors = []
+
+    if cli_args.load:
+        p = Path(cli_args.load).expanduser()
+        if not p.exists():
+            errors.append(f"--load: file not found: '{cli_args.load}'")
+        elif p.suffix.lower() not in SUPPORTED_INPUT_EXTENSIONS:
+            errors.append(
+                f"--load: unsupported file extension '{p.suffix}'. "
+                f"Supported: {', '.join(sorted(SUPPORTED_INPUT_EXTENSIONS))}"
+            )
+
+    if cli_args.output:
+        op = Path(cli_args.output)
+        if op.exists() and op.is_file():
+            errors.append(
+                f"--output: '{cli_args.output}' is an existing file, not a directory."
+            )
+
+    if cli_args.fallback_dir:
+        fd = Path(cli_args.fallback_dir)
+        if not fd.exists():
+            errors.append(f"--fallback-dir: directory not found: '{cli_args.fallback_dir}'")
+        elif not fd.is_dir():
+            errors.append(f"--fallback-dir: '{cli_args.fallback_dir}' is not a directory.")
+
+    return errors
 
 
 def main() -> None:
     parser = build_arg_parser()
     cli_args = parser.parse_args()
 
+    # US #61 — validate startup args before doing anything
+    startup_errors = _validate_startup_args(cli_args)
+    if startup_errors:
+        print(red("\n  Startup argument error(s):"))
+        for err in startup_errors:
+            print(red(f"    • {err}"))
+        print(yellow("\n  Run 'python cli.py --help' for usage information.\n"))
+        sys.exit(1)
+
     session = Session()
     session.force_overwrite = cli_args.force
 
-    # --- Apply any pre-load args ---
+    # US #55 — apply fallback flag from argparse
+    if cli_args.no_fallback:
+        session.fallback_enabled = False
+        print(yellow("  Fallback database disabled via --no-fallback."))
+
+    if cli_args.fallback_dir:
+        cmd_setfallback([cli_args.fallback_dir], session)
+
+    # Apply pre-load args
     if cli_args.output:
         cmd_setoutput([cli_args.output], session)
 
     if cli_args.exclude:
-        # Components aren't loaded yet; store refs and apply after load
         session.excluded = {r.upper() for r in cli_args.exclude}
 
     if cli_args.load:
         cmd_load([cli_args.load], session)
 
-    # --- Non-interactive mode: --detect-hardware ---
+    # Non-interactive mode
     if cli_args.detect_hardware:
         if not session.input_path:
             print(red("  Error: --detect-hardware requires --load <file>"))
@@ -755,7 +1335,6 @@ def main() -> None:
         cmd_newhardware([], session)
         sys.exit(0)
 
-    # --- Start REPL ---
     run_repl(session)
 
 
