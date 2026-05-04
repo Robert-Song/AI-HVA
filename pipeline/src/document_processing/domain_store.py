@@ -25,10 +25,28 @@ class DomainKnowledgeStore:
     @property
     def collection(self) -> chromadb.Collection:
         if self._collection is None:
-            if EMBEDDING_BACKEND == 'minilm':
-                self._collection = self.client.get_or_create_collection(name=DOMAIN_KB_COLLECTION, metadata={'hnsw:space': 'cosine'})
-            else:
-                self._collection = self.client.get_or_create_collection(name=DOMAIN_KB_COLLECTION, metadata={'hnsw:space': 'cosine'})
+            self._collection = self.client.get_or_create_collection(name=DOMAIN_KB_COLLECTION, metadata=self._collection_metadata())
+        return self._collection
+
+    def _collection_metadata(self, dimension: Optional[int]=None) -> dict:
+        metadata = {
+            'hnsw:space': 'cosine',
+            'embedding_backend': EMBEDDING_BACKEND,
+            'embedding_model': self.embedding_config['name'],
+        }
+        if dimension is not None:
+            metadata['embedding_dimension'] = dimension
+        return metadata
+
+    def _recreate_collection(self, dimension: int) -> chromadb.Collection:
+        try:
+            self.client.delete_collection(name=DOMAIN_KB_COLLECTION)
+        except Exception:
+            pass
+        self._collection = self.client.create_collection(
+            name=DOMAIN_KB_COLLECTION,
+            metadata=self._collection_metadata(dimension),
+        )
         return self._collection
 
     def _get_embedding_model(self):
@@ -67,7 +85,11 @@ class DomainKnowledgeStore:
         logger.info(f'Indexing {len(chunks)} chunks into domain knowledge store')
         texts = [c['text'] for c in chunks]
         embeddings = self._embed_texts(texts, is_query=False)
-        self.collection.add(ids=[c['chunk_id'] for c in chunks], documents=texts, metadatas=[{'source_id': c['source_id'], 'section_title': c['section_title'], 'source_type': c['source_type']} for c in chunks], embeddings=embeddings)
+        if not embeddings:
+            logger.warning('No embeddings generated for domain knowledge chunks')
+            return 0
+        collection = self._recreate_collection(len(embeddings[0]))
+        collection.add(ids=[c['chunk_id'] for c in chunks], documents=texts, metadatas=[{'source_id': c['source_id'], 'section_title': c['section_title'], 'source_type': c['source_type']} for c in chunks], embeddings=embeddings)
         logger.info(f"Indexed {len(chunks)} chunks into '{DOMAIN_KB_COLLECTION}'")
         return len(chunks)
 
