@@ -14,14 +14,14 @@ import argparse
 import json
 import logging
 import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from src.config import (
-    COMPONENT_STORE_PATH,
-    DATASHEET_DIR,
     DOMAIN_CORPUS_DIR,
     DOMAIN_KB_PATH,
     OUTPUT_DIR,
+    PARALLEL_SLOTS,
 )
 
 logger = logging.getLogger("stpa_pipeline")
@@ -91,6 +91,10 @@ def setup_logging(verbose: bool = False, production: bool = False) -> None:
 def run_pipeline(
     netlist_path: str,
     system_name: str,
+    ignored_parts: list[str] | None = None,
+    enable_subgrouping: bool = False,
+    max_connection_hops: int = 0,
+    output_dir: str = "",
     skip_phase_2a: bool = False,
     skip_phase_2b: bool = False,
     production: bool = False,
@@ -101,6 +105,10 @@ def run_pipeline(
     Args:
         netlist_path: Path to the netlist file (.net or .json).
         system_name: Name of the system being analyzed.
+        ignored_parts: Component reference designators to remove or bridge.
+        enable_subgrouping: If True, ask planning to form functional blocks.
+        max_connection_hops: Major-component path depth through passive parts.
+        output_dir: Optional directory for the final STPA JSON.
         skip_phase_2a: If True, load existing component store instead of rebuilding.
         skip_phase_2b: If True, skip domain knowledge index rebuild.
         production: If True, show only start/end messages and a progress bar.
@@ -122,31 +130,39 @@ def run_pipeline(
     from src.analysis.task_v import run_task_v
     from src.analysis.task_vi import compile_notes
     from src.assembly.stpa_assembler import assemble_stpa_json, save_stpa_json
+    from src.runtime_paths import component_store_path, datasheet_dirs
 
     if production:
         print(f"STPA Pipeline starting: \"{system_name}\"")
         print(f"  Netlist: {netlist_path}")
+
+    _, run_datasheet_dir = datasheet_dirs(netlist_path, system_name, output_dir)
+    run_component_store_path = component_store_path(netlist_path, system_name, output_dir)
 
     # --- Phase 1: Load netlist ---
     logger.info("=" * 60)
     logger.info("PHASE 1: Loading netlist data")
     logger.info("=" * 60)
 
-    netlist_data = load_netlist(netlist_path)
+    netlist_data = load_netlist(
+        netlist_path,
+        ignored_parts=ignored_parts,
+        max_connection_hops=max_connection_hops,
+    )
 
     # --- Phase 2A: Component document store (CAG) ---
     logger.info("=" * 60)
     logger.info("PHASE 2A: Component Document Store")
     logger.info("=" * 60)
 
-    if skip_phase_2a and Path(COMPONENT_STORE_PATH).exists():
-        logger.info(f"Loading existing component store from {COMPONENT_STORE_PATH}")
-        component_store = load_store(COMPONENT_STORE_PATH)
+    if skip_phase_2a and Path(run_component_store_path).exists():
+        logger.info(f"Loading existing component store from {run_component_store_path}")
+        component_store = load_store(str(run_component_store_path))
     else:
         component_store = build_component_store(
-            netlist_data["components"], DATASHEET_DIR
+            netlist_data["components"], str(run_datasheet_dir)
         )
-        save_store(component_store, COMPONENT_STORE_PATH)
+        save_store(component_store, str(run_component_store_path))
 
     # --- Phase 2B: Domain knowledge store (RAG) ---
     logger.info("=" * 60)
@@ -182,6 +198,7 @@ def run_pipeline(
         netlist_file=netlist_path,
         netlist_data=netlist_data,
         domain_store=domain_store,
+        enable_subgrouping=enable_subgrouping,
     )
 
     if planning_output is None:
@@ -231,13 +248,21 @@ def run_pipeline(
     task_v_results = {}
     notes = {}
 
-    for i, pair_id in enumerate(planning_output.connection_pairs_to_analyze):
+    def process_pair(i: int, pair_id: str) -> dict:
         logger.info(
             f"\n{'-' * 40}\n"
             f"Connection pair [{i+1}/{len(planning_output.connection_pairs_to_analyze)}]: "
             f"{pair_id}\n"
             f"{'-' * 40}"
         )
+        pair_result = {
+            "pair_id": pair_id,
+            "task_ii": None,
+            "task_iii": None,
+            "task_iv": [],
+            "task_v": [],
+            "notes": "",
+        }
 
         # Task II: Signal identification
         task_ii = run_task_ii(
@@ -247,17 +272,12 @@ def run_pipeline(
             component_store=component_store,
             domain_store=domain_store,
         )
-        progress.update(f"Task II: {pair_id}")
 
         if task_ii is None:
             logger.warning(f"Skipping remaining tasks for {pair_id} (Task II failed)")
-            # Still count remaining tasks for this pair
-            progress.update(f"Task III: {pair_id} (skipped)")
-            progress.update(f"Task IV: {pair_id} (skipped)")
-            progress.update(f"Task V: {pair_id} (skipped)")
-            continue
+            return pair_result
 
-        task_ii_results[pair_id] = task_ii
+        pair_result["task_ii"] = task_ii
 
         # Task III: Control vs feedback classification
         task_iii = run_task_iii(
@@ -268,15 +288,12 @@ def run_pipeline(
             component_store=component_store,
             domain_store=domain_store,
         )
-        progress.update(f"Task III: {pair_id}")
 
         if task_iii is None:
             logger.warning(f"Skipping Tasks IV/V for {pair_id} (Task III failed)")
-            progress.update(f"Task IV: {pair_id} (skipped)")
-            progress.update(f"Task V: {pair_id} (skipped)")
-            continue
+            return pair_result
 
-        task_iii_results[pair_id] = task_iii
+        pair_result["task_iii"] = task_iii
 
         # Task IV: Control action details
         control_actions = run_task_iv(
@@ -287,8 +304,7 @@ def run_pipeline(
             component_store=component_store,
             domain_store=domain_store,
         )
-        task_iv_results[pair_id] = control_actions
-        progress.update(f"Task IV: {pair_id}")
+        pair_result["task_iv"] = control_actions
 
         # Task V: Feedback signal details
         feedback_signals = run_task_v(
@@ -299,8 +315,7 @@ def run_pipeline(
             component_store=component_store,
             domain_store=domain_store,
         )
-        task_v_results[pair_id] = feedback_signals
-        progress.update(f"Task V: {pair_id}")
+        pair_result["task_v"] = feedback_signals
 
         # Task VI: Notes compilation (no LLM call, not counted in progress)
         pair_notes = compile_notes(
@@ -310,8 +325,29 @@ def run_pipeline(
             task_iv_actions=control_actions,
             task_v_signals=feedback_signals,
         )
-        if pair_notes:
-            notes[pair_id] = pair_notes
+        pair_result["notes"] = pair_notes or ""
+        return pair_result
+
+    with ThreadPoolExecutor(max_workers=max(1, PARALLEL_SLOTS)) as executor:
+        futures = [
+            executor.submit(process_pair, i, pair_id)
+            for i, pair_id in enumerate(planning_output.connection_pairs_to_analyze)
+        ]
+        for future in as_completed(futures):
+            pair_result = future.result()
+            pair_id = pair_result["pair_id"]
+            if pair_result["task_ii"] is not None:
+                task_ii_results[pair_id] = pair_result["task_ii"]
+            if pair_result["task_iii"] is not None:
+                task_iii_results[pair_id] = pair_result["task_iii"]
+            task_iv_results[pair_id] = pair_result["task_iv"]
+            task_v_results[pair_id] = pair_result["task_v"]
+            if pair_result["notes"]:
+                notes[pair_id] = pair_result["notes"]
+            progress.update(f"Task II: {pair_id}")
+            progress.update(f"Task III: {pair_id}")
+            progress.update(f"Task IV: {pair_id}")
+            progress.update(f"Task V: {pair_id}")
 
     # --- Phase 4: Assembly ---
     stpa = assemble_stpa_json(
@@ -328,7 +364,7 @@ def run_pipeline(
     )
 
     # Save output
-    output_path = save_stpa_json(stpa, system_name)
+    output_path = save_stpa_json(stpa, system_name, output_dir=output_dir)
     progress.update("Assembly complete")
 
     logger.info(f"\n{'=' * 60}")
@@ -360,7 +396,7 @@ def main():
     parser.add_argument(
         "--skip-2a",
         action="store_true",
-        help="Skip Phase 2A rebuild — use existing component_store.json",
+        help="Skip Phase 2A rebuild — use this hardware run's existing component_store.json",
     )
     parser.add_argument(
         "--skip-2b",
@@ -377,6 +413,27 @@ def main():
         action="store_true",
         help="Enable debug logging",
     )
+    parser.add_argument(
+        "--ignored-parts",
+        default="",
+        help="Comma-separated component refs to ignore with topology bridging",
+    )
+    parser.add_argument(
+        "--subgrouping",
+        action="store_true",
+        help="Enable functional sub-grouping instructions in the planning pass",
+    )
+    parser.add_argument(
+        "--max-hops",
+        type=int,
+        default=0,
+        help="Maximum passive intermediate components between major endpoints (0-10)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default="",
+        help="Directory for final STPA JSON output",
+    )
 
     args = parser.parse_args()
     setup_logging(verbose=args.verbose, production=args.production)
@@ -384,6 +441,10 @@ def main():
     run_pipeline(
         netlist_path=args.netlist,
         system_name=args.system,
+        ignored_parts=[p.strip() for p in args.ignored_parts.split(",") if p.strip()],
+        enable_subgrouping=args.subgrouping,
+        max_connection_hops=args.max_hops,
+        output_dir=args.output_dir,
         skip_phase_2a=args.skip_2a,
         skip_phase_2b=args.skip_2b,
         production=args.production,

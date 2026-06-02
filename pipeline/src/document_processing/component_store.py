@@ -1,8 +1,10 @@
 import json
 import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Optional
+from src.config import PARALLEL_SLOTS
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -52,27 +54,36 @@ def build_component_store(components: dict, datasheet_dir: str) -> dict[str, Com
     from src.document_processing.section_extractor import extract_sections
     store: dict[str, ComponentSections] = {}
     ds_dir = Path(datasheet_dir)
-    for comp_id, comp_data in components.items():
+    def process_component(comp_id: str, comp_data: dict) -> tuple[str, Optional[ComponentSections]]:
         part_number = comp_data.get('part_number', comp_data.get('value', ''))
         if not part_number:
             logger.warning(f'{comp_id}: No part number found, skipping')
-            continue
+            return comp_id, None
         datasheet_url = comp_data.get('datasheet_url', '')
-        text_file = _find_datasheet_file(ds_dir, part_number, datasheet_url)
+        text_file = _find_datasheet_file(ds_dir, comp_id, part_number, datasheet_url)
         if text_file is None:
             logger.warning(f'{comp_id}: No datasheet text file found for {part_number}')
-            continue
+            return comp_id, None
         raw_text = text_file.read_text(encoding='utf-8', errors='replace')
         sections = extract_sections(comp_id, part_number, raw_text)
-        if sections:
-            store[comp_id] = sections
+        return comp_id, sections
+
+    with ThreadPoolExecutor(max_workers=max(1, PARALLEL_SLOTS)) as executor:
+        futures = [
+            executor.submit(process_component, comp_id, comp_data)
+            for comp_id, comp_data in components.items()
+        ]
+        for future in as_completed(futures):
+            comp_id, sections = future.result()
+            if sections:
+                store[comp_id] = sections
     logger.info(f'Built component store: {len(store)}/{len(components)} components processed')
     return store
 
-def _find_datasheet_file(ds_dir: Path, part_number: str, datasheet_url: str='') -> Optional[Path]:
+def _find_datasheet_file(ds_dir: Path, component_id: str, part_number: str, datasheet_url: str='') -> Optional[Path]:
     if not ds_dir.exists():
         return None
-    candidates = [f'{part_number}.txt', f'{part_number}Plumber.txt', f'{part_number}-D.txt', f'{part_number}-DPlumber.txt', f'{part_number.lower()}.txt', f'{part_number.lower()}Plumber.txt']
+    candidates = [f'{component_id}.txt', f'{component_id.lower()}.txt', f'{part_number}.txt', f'{part_number}Plumber.txt', f'{part_number}-D.txt', f'{part_number}-DPlumber.txt', f'{part_number.lower()}.txt', f'{part_number.lower()}Plumber.txt']
     if datasheet_url:
         from urllib.parse import urlparse
         url_path = urlparse(datasheet_url).path
@@ -84,6 +95,7 @@ def _find_datasheet_file(ds_dir: Path, part_number: str, datasheet_url: str='') 
         if p.exists():
             return p
     for p in ds_dir.glob('*.txt'):
-        if part_number.lower() in p.stem.lower():
+        stem = p.stem.lower()
+        if component_id.lower() == stem or part_number.lower() in stem:
             return p
     return None

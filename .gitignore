@@ -28,3 +28,7 @@ initialOCR/
 #documents
 *.pdf
 config.env
+pipeline/hardware_runs/
+
+#tests
+test_files/

@@ -14,15 +14,16 @@ def assemble_stpa_json(system_name: str, netlist_source: str, netlist_data: dict
     logger.info('=' * 60)
     notes = notes or {}
     stpa = {'system_metadata': {'system_name': system_name, 'netlist_source': netlist_source, 'analysis_date': date.today().isoformat()}, 'connection_pairs': {}, 'components': {}, 'connection_details': {}, 'graph_analysis': {}}
+    if netlist_data.get('topology_transform'):
+        stpa['system_metadata']['topology_transform'] = netlist_data['topology_transform']
     for pair_id in planning_output.connection_pairs_to_analyze:
         pair = netlist_data['connection_pairs'].get(pair_id)
         if pair:
-            stpa['connection_pairs'][pair_id] = {'endpoints': pair['endpoints'], 'net_count': pair['net_count'], 'net_names': pair['net_names']}
+            stpa['connection_pairs'][pair_id] = {'endpoints': pair['endpoints'], 'net_count': pair['net_count'], 'net_names': pair['net_names'], 'hop_count': pair.get('hop_count', 0), 'path': pair.get('path', pair['endpoints']), 'intermediate_components': pair.get('intermediate_components', [])}
     for comp_id in planning_output.modeled_components:
         comp = netlist_data['components'].get(comp_id, {})
         task_i = task_i_results.get(comp_id)
-        comp_name = comp.get('name', comp.get('part_number', comp_id))
-        stpa['components'][comp_name] = {'component_id': comp_id, 'component_class': task_i.component_class.value if task_i else 'passive', 'functional_description': task_i.functional_description if task_i else '', 'safety_critical': task_i.safety_critical if task_i else False, 'connected_to': comp.get('connected_to', [])}
+        stpa['components'][comp_id] = {'component_id': comp_id, 'name': comp.get('name', ''), 'part_number': comp.get('part_number', comp.get('value', '')), 'component_class': task_i.component_class.value if task_i else 'passive', 'functional_description': task_i.functional_description if task_i else '', 'safety_critical': task_i.safety_critical if task_i else False, 'connected_to': comp.get('connected_to', [])}
     for pair_id in planning_output.connection_pairs_to_analyze:
         pair = netlist_data['connection_pairs'].get(pair_id)
         if not pair:
@@ -33,7 +34,7 @@ def assemble_stpa_json(system_name: str, netlist_source: str, netlist_data: dict
         control_actions_serialized = [ca.model_dump(by_alias=True) for ca in task_iv]
         feedback_signals_serialized = [fs.model_dump(by_alias=True) for fs in task_v]
         all_sources = _collect_sources(task_iv, task_v)
-        stpa['connection_details'][pair_id] = {'endpoints': pair['endpoints'], 'physical_interface': task_ii.physical_interface if task_ii else 'unknown', 'control_actions': control_actions_serialized, 'feedback_signals': feedback_signals_serialized, 'source': all_sources, 'notes': notes.get(pair_id, '')}
+        stpa['connection_details'][pair_id] = {'endpoints': pair['endpoints'], 'physical_interface': task_ii.physical_interface if task_ii else 'unknown', 'control_actions': control_actions_serialized, 'feedback_signals': feedback_signals_serialized, 'source': all_sources, 'notes': notes.get(pair_id, ''), 'hop_count': pair.get('hop_count', 0), 'path': pair.get('path', pair['endpoints']), 'intermediate_components': pair.get('intermediate_components', [])}
     stpa['graph_analysis'] = compute_graph_analysis(stpa)
     logger.info(f"Assembly complete: {len(stpa['components'])} components, {len(stpa['connection_details'])} connections")
     return stpa

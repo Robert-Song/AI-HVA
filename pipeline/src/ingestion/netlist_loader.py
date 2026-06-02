@@ -5,7 +5,11 @@ from pathlib import Path
 from typing import Any
 logger = logging.getLogger(__name__)
 
-def load_netlist(path: str) -> dict[str, Any]:
+def load_netlist(
+    path: str,
+    ignored_parts: list[str] | None = None,
+    max_connection_hops: int = 0,
+) -> dict[str, Any]:
     p = Path(path)
     if not p.exists():
         raise FileNotFoundError(f'Netlist file not found: {path}')
@@ -21,6 +25,9 @@ def load_netlist(path: str) -> dict[str, Any]:
             raw = _load_json(p)
         else:
             raise ValueError(f'Unknown netlist format for {path}. Expected .net (KiCad S-expression) or .json')
+    if ignored_parts or max_connection_hops:
+        from src.ingestion.topology import apply_topology_options
+        raw = apply_topology_options(raw, ignored_parts, max_connection_hops)
     netlist = _validate_and_normalize(raw)
     logger.info(f"Loaded netlist: {len(netlist['components'])} components, {len(netlist['nets'])} nets, {len(netlist['connection_pairs'])} connection pairs")
     return netlist
@@ -54,7 +61,10 @@ def _validate_and_normalize(raw: dict) -> dict[str, Any]:
         connection_pairs = raw['connection_pairs']
     else:
         connection_pairs = _derive_connection_pairs(nets)
-    return {'components': components, 'nets': nets, 'connection_pairs': connection_pairs}
+    result = {'components': components, 'nets': nets, 'connection_pairs': connection_pairs}
+    if 'topology_transform' in raw:
+        result['topology_transform'] = raw['topology_transform']
+    return result
 
 def _derive_connection_pairs(nets: list[dict]) -> dict[str, dict]:
     pair_nets: dict[tuple[str, str], list[str]] = {}
@@ -68,6 +78,6 @@ def _derive_connection_pairs(nets: list[dict]) -> dict[str, dict]:
     connection_pairs = {}
     for (a, b), net_names in pair_nets.items():
         pair_id = f'{a}__{b}'
-        connection_pairs[pair_id] = {'endpoints': [a, b], 'net_count': len(net_names), 'net_names': net_names}
+        connection_pairs[pair_id] = {'endpoints': [a, b], 'net_count': len(net_names), 'net_names': net_names, 'hop_count': 0, 'path': [a, b], 'intermediate_components': []}
     logger.info(f'Derived {len(connection_pairs)} connection pairs from nets')
     return connection_pairs

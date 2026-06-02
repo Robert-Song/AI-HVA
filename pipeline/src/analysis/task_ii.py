@@ -13,7 +13,16 @@ def run_task_ii(pair_id: str, netlist_data: dict, task_i_results: dict[str, Task
     pair = netlist_data['connection_pairs'][pair_id]
     logger.info(f'  Task II: Signal identification for {pair_id}')
     endpoint_a, endpoint_b, task_i_a, task_i_b, docs_a, docs_b, domain_knowledge = build_task_ii_context(pair_id, netlist_data, task_i_results, component_store, domain_store)
-    user_prompt = task_ii_user_prompt(pair_id=pair_id, endpoint_a=endpoint_a, endpoint_b=endpoint_b, net_names=pair['net_names'], task_i_a=task_i_a, task_i_b=task_i_b, docs_a=docs_a, docs_b=docs_b, domain_knowledge=domain_knowledge)
+    path = pair.get('path', pair.get('endpoints', []))
+    intermediate = pair.get('intermediate_components', [])
+    path_context = ''
+    if path and len(path) > 2:
+        path_context = (
+            f"Endpoint path: {' -> '.join(path)}\n"
+            f"Intermediate components: {', '.join(intermediate)}\n"
+            f"Hop count: {pair.get('hop_count', len(intermediate))}"
+        )
+    user_prompt = task_ii_user_prompt(pair_id=pair_id, endpoint_a=endpoint_a, endpoint_b=endpoint_b, net_names=pair['net_names'], task_i_a=task_i_a, task_i_b=task_i_b, docs_a=docs_a, docs_b=docs_b, domain_knowledge=domain_knowledge, path_context=path_context)
     result = run_llm_task(system_prompt=TASK_II_SYSTEM_PROMPT, user_prompt=user_prompt, output_model=TaskIIOutput, model=ANALYSIS_MODEL)
     if result:
         logger.info(f'    → Interface: {result.physical_interface} | {len(result.signals)} signals identified')

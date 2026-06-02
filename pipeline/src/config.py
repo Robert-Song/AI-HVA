@@ -17,7 +17,7 @@ ANALYSIS_MODEL = os.getenv('ANALYSIS_MODEL', 'gpt-4o')
 EMBEDDING_API_KEY = os.getenv('EMBEDDING_API_KEY', OPENAI_API_KEY)
 EMBEDDING_BASE_URL = os.getenv('EMBEDDING_BASE_URL', LLM_BASE_URL)
 
-EMBEDDING_BACKEND = os.getenv('EMBEDDING_BACKEND', 'minilm')
+EMBEDDING_BACKEND = os.getenv('EMBEDDING_BACKEND', 'qwen3')
 EMBEDDING_MODELS = {
     'minilm': {'name': 'all-MiniLM-L6-v2', 'dimension': 384, 'instruction_prefix': False, 'type': 'local'}, 
     'qwen3': {'name': 'Qwen/Qwen3-Embedding-0.6B', 'dimension': 1024, 'instruction_prefix': True, 'type': 'local'},
@@ -34,3 +34,4 @@ DATASHEET_DIR = os.getenv('DATASHEET_DIR', str(PROJECT_ROOT / 'datasheets'))
 DOMAIN_CORPUS_DIR = os.getenv('DOMAIN_CORPUS_DIR', str(PROJECT_ROOT / 'domain_docs'))
 OUTPUT_DIR = os.getenv('OUTPUT_DIR', str(PROJECT_ROOT / 'output'))
 MAX_LLM_RETRIES = int(os.getenv('MAX_LLM_RETRIES', '2'))
+PARALLEL_SLOTS = int(os.getenv('PARALLEL_SLOTS', '4'))
